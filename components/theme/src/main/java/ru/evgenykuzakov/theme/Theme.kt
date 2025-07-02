@@ -14,13 +14,12 @@ import androidx.compose.ui.platform.LocalContext
 
 private val DarkColorScheme = darkColorScheme(
     primary = OrangeBrand,
-
-
+    onSurface = White
 )
 
 private val LightColorScheme = lightColorScheme(
     primary = OrangeBrand,
-
+    onSurface = Black
 )
 
 val ColorScheme.indicator: Color

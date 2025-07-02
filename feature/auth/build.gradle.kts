@@ -38,10 +38,15 @@ android {
 
 dependencies {
     implementation(project(":utils"))
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.ui)
+    implementation(libs.androidx.ui.graphics)
+    implementation(libs.androidx.material3)
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.hilt.android)
+    implementation(libs.hilt.navigation.compose)
     implementation(libs.kotlinx.coroutines.android)
     ksp(libs.hilt.android.compiler)
     testImplementation(libs.junit)
