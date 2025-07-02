@@ -37,10 +37,12 @@ android {
 }
 
 dependencies {
+    implementation(project(":utils"))
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.hilt.android)
+    implementation(libs.kotlinx.coroutines.android)
     ksp(libs.hilt.android.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
