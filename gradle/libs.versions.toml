@@ -22,6 +22,7 @@ kotlinxSerializationJson = "1.8.1"
 material3Android = "1.2.1"
 appcompatVersion = "1.7.1"
 material = "1.12.0"
+kotlinxCoroutines = "1.10.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -46,6 +47,8 @@ kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serializa
 androidx-material3 = { group = "androidx.compose.material3", name = "material3-android", version.ref = "material3Android" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompatVersion" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutines" }
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
