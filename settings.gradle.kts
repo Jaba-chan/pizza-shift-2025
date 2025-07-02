@@ -21,4 +21,8 @@ dependencyResolutionManagement {
 
 rootProject.name = "pizza-shift-2025"
 include(":app")
- 
+include(":feature")
+include(":feature:auth")
+include(":shared")
+include(":shared:network")
+include(":shared:datastore")
