@@ -1,6 +1,5 @@
-package ru.evgenykuzakov.pizza_shift_2025.ui.theme
+package ru.evgenykuzakov.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
@@ -34,10 +33,10 @@ private val LightColorScheme = lightColorScheme(
 )
 
 @Composable
-fun Pizzashift2025Theme(
+fun Pizza_shift_2025_Theme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
+    dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {

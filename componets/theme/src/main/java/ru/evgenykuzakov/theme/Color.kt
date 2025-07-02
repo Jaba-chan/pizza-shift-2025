@@ -1,4 +1,4 @@
-package ru.evgenykuzakov.pizza_shift_2025.ui.theme
+package ru.evgenykuzakov.theme
 
 import androidx.compose.ui.graphics.Color
 
