@@ -12,7 +12,7 @@ interface AuthRetrofitApi {
     @POST("auth/otp")
     suspend fun createOtp(@Body request: OtpRequest)
 
-    @POST("/users/signin")
+    @POST("users/signin")
     suspend fun signIn(@Body request: SignInRequest): UserDto
 
     @GET("users/session")

@@ -14,18 +14,28 @@ import androidx.compose.ui.platform.LocalContext
 
 private val DarkColorScheme = darkColorScheme(
     primary = OrangeBrand,
-    onSurface = White
+    onSurface = White,
+    outline = Border,
+    background = ContentWB,
 )
 
 private val LightColorScheme = lightColorScheme(
     primary = OrangeBrand,
-    onSurface = Black
+    onSurface = Black,
+    outline = Border,
+    background = White,
 )
 
 val ColorScheme.indicator: Color
     @Composable
     get() = if (isSystemInDarkTheme()) IndicatorLight else IndicatorLight
+val ColorScheme.Content5: Color
+    @Composable
+    get() = if (isSystemInDarkTheme()) Content5Color else Content5Color
 
+val ColorScheme.ButtonContent: Color
+    @Composable
+    get() = if (isSystemInDarkTheme()) White else White
 
 @Composable
 fun Pizza_shift_2025_Theme(

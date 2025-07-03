@@ -6,9 +6,10 @@ import ru.evgenykuzakov.auth.domain.AuthRepository
 import ru.evgenykuzakov.auth.domain.model.params.OtpParams
 import ru.evgenykuzakov.auth.domain.model.User
 import ru.evgenykuzakov.auth.domain.model.params.SignInParams
+import javax.inject.Inject
 
-class AuthRepositoryImpl(
-    private val api: AuthRetrofitApi
+class AuthRepositoryImpl @Inject constructor(
+    private val api: AuthRetrofitApi,
 ) : AuthRepository {
 
     override suspend fun signIn(params: SignInParams): User {

@@ -7,15 +7,15 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class UserDto(
     @SerialName("city")
-    val city: String,
+    val city: String?,
     @SerialName("email")
-    val email: String,
+    val email: String?,
     @SerialName("firstname")
-    val firstname: String,
+    val firstname: String?,
     @SerialName("lastname")
-    val lastname: String,
+    val lastname: String?,
     @SerialName("middlename")
-    val middlename: String,
+    val middlename: String?,
     @SerialName("phone")
-    val phone: String
+    val phone: String?
 )

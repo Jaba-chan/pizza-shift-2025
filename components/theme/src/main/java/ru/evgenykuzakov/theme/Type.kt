@@ -13,21 +13,22 @@ val Typography = Typography(
         fontSize = TitleH2,
         lineHeight = 24.sp,
         letterSpacing = TitleH2 * 0f
-    )
-    /* Other default text styles to override
-    titleLarge = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
-        fontSize = 22.sp,
-        lineHeight = 28.sp,
-        letterSpacing = 0.sp
     ),
-    labelSmall = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Medium,
-        fontSize = 11.sp,
-        lineHeight = 16.sp,
-        letterSpacing = 0.5.sp
-    )
-    */
+
+    bodyLarge =  TextStyle(
+        fontFamily = InterFontFamily,
+        fontWeight = FontWeight.W400,
+        fontSize = Body16,
+        lineHeight = 24.sp,
+        letterSpacing = Body16 * 0f
+    ),
 )
+
+val Typography.ButtonSemibold: TextStyle
+    get() = TextStyle(
+        fontFamily = InterFontFamily,
+        fontWeight = FontWeight.W600,
+        fontSize = Body16,
+        lineHeight = 24.sp,
+        letterSpacing = Body16 * 0f
+    )

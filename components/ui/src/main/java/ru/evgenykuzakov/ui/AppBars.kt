@@ -1,6 +1,7 @@
 package ru.evgenykuzakov.ui
 
 import androidx.annotation.DrawableRes
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,10 +12,12 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import ru.evgenykuzakov.theme.indicator
 
 @Composable
 fun BasicAppBar(
@@ -23,21 +26,23 @@ fun BasicAppBar(
 ){
     Row(
         modifier = Modifier
-            .fillMaxSize()
             .padding(
                 horizontal = 16.dp,
                 vertical = 12.dp
-            )
+            ),
     ) {
-        if (leadingIcon != null){
-            leadingIcon()
-            Spacer(modifier = Modifier.width(32.dp))
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            if (leadingIcon != null){
+                leadingIcon()
+                Spacer(modifier = Modifier.width(32.dp))
+            }
+            TitleH2(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                text = headingText
+            )
         }
-        TitleH2(
-            modifier = Modifier
-                .fillMaxWidth(),
-            text = headingText
-        )
+
     }
 }
 
@@ -46,7 +51,7 @@ fun AppBarIconButton(
     onButtonClick: () -> Unit,
     iconContentDesc: String? = null,
     @DrawableRes iconResId: Int,
-    iconTint: Color = MaterialTheme.colorScheme.primary
+    iconTint: Color = MaterialTheme.colorScheme.indicator
 ){
     IconButton(
         onClick = onButtonClick

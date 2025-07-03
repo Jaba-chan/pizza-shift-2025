@@ -13,6 +13,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 internal object CommonNetworkModule {
+
     @Provides
     @Singleton
     fun provideRetrofitBuilder(
