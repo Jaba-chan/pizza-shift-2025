@@ -14,7 +14,7 @@ class AuthRepositoryImpl @Inject constructor(
 ) : AuthRepository {
 
     override suspend fun signIn(params: SignInParams): User {
-        return api.signIn(params.toDto()).toDomain()
+        return api.signIn(params.toDto()).user.toDomain()
     }
 
     override suspend fun createOtp(params: OtpParams) {
@@ -22,6 +22,6 @@ class AuthRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getUserSession(): User {
-        return api.getUserSession().toDomain()
+        return api.getUserSession().user.toDomain()
     }
 }
