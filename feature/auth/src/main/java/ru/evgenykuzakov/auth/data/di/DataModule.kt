@@ -4,7 +4,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import ru.evgenykuzakov.auth.data.AuthRepositoryImpl
+import ru.evgenykuzakov.auth.data.repository.AuthRepositoryImpl
 import ru.evgenykuzakov.auth.domain.AuthRepository
 
 @Module

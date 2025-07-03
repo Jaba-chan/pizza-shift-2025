@@ -7,9 +7,9 @@ import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import ru.evgenykuzakov.auth.data.AuthInterceptor
-import ru.evgenykuzakov.auth.data.AuthRetrofitApi
-import ru.evgenykuzakov.auth.data.OptTokenDataSource
+import ru.evgenykuzakov.auth.data.network.AuthInterceptor
+import ru.evgenykuzakov.auth.data.network.AuthRetrofitApi
+import ru.evgenykuzakov.auth.data.datastore.OptTokenDataSource
 import javax.inject.Singleton
 
 @Module

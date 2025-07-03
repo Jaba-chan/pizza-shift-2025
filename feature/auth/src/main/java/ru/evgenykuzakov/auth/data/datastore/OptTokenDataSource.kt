@@ -1,4 +1,4 @@
-package ru.evgenykuzakov.auth.data
+package ru.evgenykuzakov.auth.data.datastore
 
 import android.content.Context
 import android.content.SharedPreferences

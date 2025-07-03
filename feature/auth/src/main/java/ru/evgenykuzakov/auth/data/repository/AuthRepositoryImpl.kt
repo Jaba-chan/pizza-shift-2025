@@ -1,7 +1,8 @@
-package ru.evgenykuzakov.auth.data
+package ru.evgenykuzakov.auth.data.repository
 
 import ru.evgenykuzakov.auth.data.mapper.toDomain
 import ru.evgenykuzakov.auth.data.mapper.toDto
+import ru.evgenykuzakov.auth.data.network.AuthRetrofitApi
 import ru.evgenykuzakov.auth.domain.AuthRepository
 import ru.evgenykuzakov.auth.domain.model.params.OtpParams
 import ru.evgenykuzakov.auth.domain.model.User

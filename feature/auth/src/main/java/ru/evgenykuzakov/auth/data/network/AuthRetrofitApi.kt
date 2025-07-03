@@ -1,4 +1,4 @@
-package ru.evgenykuzakov.auth.data
+package ru.evgenykuzakov.auth.data.network
 
 import retrofit2.http.Body
 import retrofit2.http.GET
