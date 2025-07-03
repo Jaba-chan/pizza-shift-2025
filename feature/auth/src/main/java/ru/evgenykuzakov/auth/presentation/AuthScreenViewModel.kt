@@ -9,15 +9,14 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import ru.evgenykuzakov.auth.domain.model.params.OtpParams
 import ru.evgenykuzakov.auth.domain.model.params.SignInParams
-import ru.evgenykuzakov.auth.domain.use_case.CreateOptUseCase
-import ru.evgenykuzakov.auth.domain.use_case.GetUserSessionUseCase
+import ru.evgenykuzakov.auth.domain.use_case.RequestOtpUseCase
 import ru.evgenykuzakov.auth.domain.use_case.SignInUseCase
 import ru.evgenykuzakov.utils.Resource
 import javax.inject.Inject
 
 @HiltViewModel
 class AuthScreenViewModel @Inject constructor(
-    private val createOptUseCase: CreateOptUseCase,
+    private val createOptUseCase: RequestOtpUseCase,
     private val signInUseCase: SignInUseCase,
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(AuthScreenUIState())

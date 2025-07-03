@@ -10,7 +10,7 @@ import ru.evgenykuzakov.auth.domain.model.params.OtpParams
 import ru.evgenykuzakov.utils.Resource
 import javax.inject.Inject
 
-class CreateOptUseCase @Inject constructor(
+class RequestOtpUseCase @Inject constructor(
     private val repository: AuthRepository
 ) {
     suspend operator fun invoke(params: OtpParams): Flow<Resource<Unit>> =
