@@ -1,12 +1,10 @@
 package ru.evgenykuzakov.ui
 
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.Paragraph
 import ru.evgenykuzakov.theme.Content5
 
 @Composable

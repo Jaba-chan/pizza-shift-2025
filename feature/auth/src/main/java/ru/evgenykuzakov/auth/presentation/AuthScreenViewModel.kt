@@ -19,7 +19,6 @@ import javax.inject.Inject
 class AuthScreenViewModel @Inject constructor(
     private val createOptUseCase: CreateOptUseCase,
     private val signInUseCase: SignInUseCase,
-    private val getUserSessionUseCase: GetUserSessionUseCase
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(AuthScreenUIState())
     val uiState: StateFlow<AuthScreenUIState> = _uiState
