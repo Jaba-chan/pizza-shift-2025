@@ -6,9 +6,12 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 import ru.evgenykuzakov.auth.presentation.AuthScreen
+import ru.evgenykuzakov.pizza_shift_2025.navigation.AppNavGraph
 import ru.evgenykuzakov.theme.Pizza_shift_2025_Theme
 
 @AndroidEntryPoint
@@ -18,9 +21,19 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             Pizza_shift_2025_Theme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    AuthScreen(
-                        paddingValues = innerPadding
+                val navController = rememberNavController()
+
+                Scaffold(
+                    modifier = Modifier
+                        .fillMaxSize()
+                ) { innerPadding ->
+                    AppNavGraph(
+                        navHostController = navController,
+                        authScreenContent = {
+                            AuthScreen(
+                                paddingValues = innerPadding
+                            )
+                        }
                     )
                 }
             }

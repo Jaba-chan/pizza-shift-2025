@@ -19,5 +19,8 @@ fun AuthScreen(
             .fillMaxSize()
             .padding(paddingValues)
     ){
+        BasicAppBar(
+            headingText = "Авторизация"
+        )
     }
 }
