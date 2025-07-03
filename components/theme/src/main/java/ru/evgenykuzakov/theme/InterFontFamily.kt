@@ -14,5 +14,5 @@ val provider = GoogleFont.Provider(
 )
 
 val InterFontFamily = FontFamily(
-    Font(googleFont = interFontName, fontProvider = provider)
+    Font(googleFont = interFontName, fontProvider = provider, weight = FontWeight.W700)
 )
