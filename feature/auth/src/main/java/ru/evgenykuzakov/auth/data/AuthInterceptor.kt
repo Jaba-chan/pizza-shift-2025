@@ -4,7 +4,7 @@ import okhttp3.Interceptor
 import okhttp3.Response
 
 internal class AuthInterceptor(
-    private val optTokenStorage: OptTokenStorage
+    private val optTokenStorage: OptTokenDataSource
 ): Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {

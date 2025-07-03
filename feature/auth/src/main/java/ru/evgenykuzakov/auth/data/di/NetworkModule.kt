@@ -9,7 +9,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import ru.evgenykuzakov.auth.data.AuthInterceptor
 import ru.evgenykuzakov.auth.data.AuthRetrofitApi
-import ru.evgenykuzakov.auth.data.OptTokenStorage
+import ru.evgenykuzakov.auth.data.OptTokenDataSource
 import javax.inject.Singleton
 
 @Module
@@ -19,7 +19,7 @@ internal object NetworkModule {
     @Provides
     @Singleton
     fun provideAuthInterceptor(
-        optTokenStorage: OptTokenStorage
+        optTokenStorage: OptTokenDataSource
     ): AuthInterceptor {
         return AuthInterceptor(optTokenStorage)
     }
