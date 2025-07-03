@@ -1,43 +1,47 @@
-package ru.evgenykuzakov.pizza_shift_2025.ui.theme
+package ru.evgenykuzakov.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+    primary = OrangeBrand,
+    onSurface = White,
+    outline = Border,
+    background = ContentWB,
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
-
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
+    primary = OrangeBrand,
+    onSurface = Black,
+    outline = Border,
+    background = White,
 )
 
+val ColorScheme.indicator: Color
+    @Composable
+    get() = if (isSystemInDarkTheme()) IndicatorLight else IndicatorLight
+val ColorScheme.Content5: Color
+    @Composable
+    get() = if (isSystemInDarkTheme()) Content5Color else Content5Color
+
+val ColorScheme.ButtonContent: Color
+    @Composable
+    get() = if (isSystemInDarkTheme()) White else White
+
 @Composable
-fun Pizzashift2025Theme(
+fun Pizza_shift_2025_Theme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
+    dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {
