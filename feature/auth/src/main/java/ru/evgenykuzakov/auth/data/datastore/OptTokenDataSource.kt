@@ -5,7 +5,7 @@ import android.content.SharedPreferences
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-internal class OptTokenDataSource @Inject constructor(
+class OptTokenDataSource @Inject constructor(
     @ApplicationContext context: Context
 ) {
     private val sharedPreferences: SharedPreferences =

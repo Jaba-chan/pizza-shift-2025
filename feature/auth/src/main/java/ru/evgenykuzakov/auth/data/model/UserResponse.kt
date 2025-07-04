@@ -7,6 +7,6 @@ import kotlinx.serialization.Serializable
 data class UserResponse(
     val reason: String,
     val success: Boolean,
-    val token: String,
-    val user: UserDto
+    val token: String?,
+    val user: UserDto?
 )
