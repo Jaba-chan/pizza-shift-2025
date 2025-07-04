@@ -64,8 +64,7 @@ internal fun CodeTextInput(
             .fillMaxWidth()
             .animateContentSize()
             .padding(
-                top = 16.dp,
-                bottom = 24.dp
+                top = 16.dp
             ),
         value = state.codeState!!.code,
         onTextChanged = onTextChanged,
@@ -79,7 +78,7 @@ internal fun AuthButton(
     onClick: () -> Unit
 ){
     ShiftButton(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth().padding(top = 24.dp),
         onClick = onClick
     ){
         if (state.codeState?.codeStatus is SentState.Loading || state.phoneStatus is SentState.Loading)
