@@ -34,3 +34,17 @@ fun Paragraph16(
         color = color
     )
 }
+
+@Composable
+fun Paragraph14(
+    modifier: Modifier = Modifier,
+    text: String,
+    color: Color = MaterialTheme.colorScheme.onSurface
+){
+    Text(
+        modifier = modifier,
+        text = text,
+        style = MaterialTheme.typography.bodyMedium,
+        color = color
+    )
+}

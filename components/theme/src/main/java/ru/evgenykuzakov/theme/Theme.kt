@@ -29,9 +29,14 @@ private val LightColorScheme = lightColorScheme(
 val ColorScheme.indicator: Color
     @Composable
     get() = if (isSystemInDarkTheme()) IndicatorLight else IndicatorLight
+
 val ColorScheme.Content5: Color
     @Composable
     get() = if (isSystemInDarkTheme()) Content5Color else Content5Color
+
+val ColorScheme.Content6: Color
+    @Composable
+    get() = if (isSystemInDarkTheme()) Content6Color else Content6Color
 
 val ColorScheme.ButtonContent: Color
     @Composable
