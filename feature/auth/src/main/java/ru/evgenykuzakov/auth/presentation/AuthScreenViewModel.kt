@@ -31,7 +31,8 @@ class AuthScreenViewModel @Inject constructor(
     }
 
     fun onCodeTextChanged(text: String) {
-        if (_uiState.value.codeState?.codeStatus is CodeStatus.Idle)
+        println(_uiState.value.codeState?.codeStatus)
+        if (_uiState.value.codeState?.codeStatus !is SentState.Loading)
             _uiState.update {
                 it.copy(
                     codeState = it.codeState?.copy(code = text)
@@ -41,11 +42,11 @@ class AuthScreenViewModel @Inject constructor(
 
     fun sendPhone() {
         val currentState = _uiState.value
-        if (currentState.phoneStatus is PhoneStatus.Loading) return
+        if (currentState.phoneStatus is SentState.Loading) return
 
         _uiState.update {
             it.copy(
-                phoneStatus = PhoneStatus.Loading
+                phoneStatus = SentState.Loading
             )
         }
         viewModelScope.launch {
@@ -55,12 +56,13 @@ class AuthScreenViewModel @Inject constructor(
                 )
                 _uiState.update {
                     it.copy(
-                        codeState = CodeState(code = "", CodeStatus.Idle)
+                        phoneStatus = SentState.Idle,
+                        codeState = CodeState(code = "", SentState.Idle)
                     )
                 }
             } catch (e: Exception) {
                 _uiState.update {
-                    it.copy(phoneStatus = PhoneStatus.Error(e.localizedMessage.orEmpty()))
+                    it.copy(phoneStatus = SentState.Error(e.localizedMessage.orEmpty()))
                 }
             }
         }
@@ -68,12 +70,12 @@ class AuthScreenViewModel @Inject constructor(
 
     fun sendCode() {
         val currentState = _uiState.value
-        if (currentState.codeState?.codeStatus is CodeStatus.Loading) return
+        if (currentState.codeState?.codeStatus is SentState.Loading) return
 
         _uiState.update {
             it.copy(
                 codeState = currentState.codeState?.copy(
-                    codeStatus = CodeStatus.Loading
+                    codeStatus = SentState.Loading
                 )
             )
         }
@@ -85,11 +87,18 @@ class AuthScreenViewModel @Inject constructor(
                         code = currentState.codeState?.code?.toIntOrNull() ?: 0
                     )
                 )
+                _uiState.update {
+                    it.copy(
+                        codeState = currentState.codeState?.copy(
+                            codeStatus = SentState.Idle
+                        )
+                    )
+                }
             } catch (e: Exception) {
                 println(e.message)
                 _uiState.update {
                     it.copy(
-                        codeState = it.codeState?.copy(codeStatus = CodeStatus.Error(e.localizedMessage.orEmpty()))
+                        codeState = it.codeState?.copy(codeStatus = SentState.Error(e.localizedMessage.orEmpty()))
                     )
                 }
             }
