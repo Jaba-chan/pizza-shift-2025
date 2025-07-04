@@ -17,7 +17,7 @@ class AuthRepositoryImpl @Inject constructor(
         return api.signIn(params.toDto()).user.toDomain()
     }
 
-    override suspend fun createOtp(params: OtpParams) {
+    override suspend fun requestOtp(params: OtpParams) {
         return api.createOtp(request = params.toDto())
     }
 
