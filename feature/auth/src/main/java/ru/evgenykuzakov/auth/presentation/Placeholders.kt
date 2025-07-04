@@ -1,23 +1,34 @@
 package ru.evgenykuzakov.auth.presentation
 
+import android.content.Context
 import androidx.compose.animation.animateContentSize
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.indication
+import androidx.compose.foundation.interaction.InteractionSource
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import ru.evgenykuzakov.auth.R
+import ru.evgenykuzakov.theme.Content6
 import ru.evgenykuzakov.ui.AppBarIconButton
 import ru.evgenykuzakov.ui.BasicAppBar
 import ru.evgenykuzakov.ui.ButtonProgressIndicator
+import ru.evgenykuzakov.ui.Paragraph14
 import ru.evgenykuzakov.ui.Paragraph16
 import ru.evgenykuzakov.ui.ShiftButton
 import ru.evgenykuzakov.ui.ShiftButtonText
 import ru.evgenykuzakov.ui.ShiftTextField
 
 @Composable
-internal fun AppBar(){
+internal fun AppBar() {
     BasicAppBar(
         headingText = stringResource(R.string.auth),
         leadingIcon = {
@@ -30,7 +41,7 @@ internal fun AppBar(){
 }
 
 @Composable
-internal fun HeadingText(){
+internal fun HeadingText() {
     Paragraph16(
         modifier = Modifier
             .fillMaxWidth()
@@ -43,7 +54,7 @@ internal fun HeadingText(){
 internal fun PhoneTextInput(
     state: AuthScreenUIState,
     onTextChanged: (String) -> Unit
-){
+) {
     ShiftTextField(
         modifier = Modifier.fillMaxWidth(),
         value = state.phone,
@@ -58,7 +69,7 @@ internal fun PhoneTextInput(
 internal fun CodeTextInput(
     state: AuthScreenUIState,
     onTextChanged: (String) -> Unit
-){
+) {
     ShiftTextField(
         modifier = Modifier
             .fillMaxWidth()
@@ -76,11 +87,13 @@ internal fun CodeTextInput(
 internal fun AuthButton(
     state: AuthScreenUIState,
     onClick: () -> Unit
-){
+) {
     ShiftButton(
-        modifier = Modifier.fillMaxWidth().padding(top = 24.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 24.dp),
         onClick = onClick
-    ){
+    ) {
         if (state.codeState?.codeStatus is SentState.Loading || state.phoneStatus is SentState.Loading)
             ButtonProgressIndicator()
         else
@@ -88,4 +101,44 @@ internal fun AuthButton(
                 text = stringResource(if (state.codeState == null) R.string.continue_str else R.string.login)
             )
     }
+}
+
+@Composable
+internal fun TimerText(
+    context: Context,
+    time: Int
+) {
+    val sec = context.resources.getQuantityString(
+        R.plurals.seconds,
+        time,
+        time
+    )
+    Paragraph14(
+        modifier = Modifier.padding(top = 16.dp),
+        text = "${stringResource(R.string.request_code_again_after_n_sec)} $sec",
+        color = MaterialTheme.colorScheme.Content6
+    )
+}
+
+@Composable
+internal fun RequestAgainTextButton(
+    onClick: () -> Unit
+) {
+    Box(
+        modifier = Modifier.fillMaxWidth()
+    ){
+        ShiftButtonText(
+            modifier = Modifier
+                .padding(top = 24.dp)
+                .align(Alignment.Center)
+                .clickable(
+                    onClick = onClick,
+                    indication = null,
+                    interactionSource = remember { MutableInteractionSource() }
+                ),
+            text = stringResource(R.string.request_code_again),
+            color = MaterialTheme.colorScheme.onSurface,
+        )
+    }
+
 }

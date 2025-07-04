@@ -5,7 +5,7 @@
     <string name="phone">Телефон</string>
     <string name="login">Войти</string>
     <string name="verification_code">Проверочный код</string>
-    <string name="request_code_again_after_n_sec">Запросить код повторно можно через %d секунд</string>
+    <string name="request_code_again_after_n_sec">Запросить код повторно можно через</string>
     <string name="request_code_again">Запросить код ещё раз</string>
     <string name="continue_str">Продолжить</string>
 </resources>
