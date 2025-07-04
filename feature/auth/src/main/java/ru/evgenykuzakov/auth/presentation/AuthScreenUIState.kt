@@ -2,29 +2,22 @@ package ru.evgenykuzakov.auth.presentation
 
 data class AuthScreenUIState(
     val phone: String = "",
-    val phoneStatus: PhoneStatus = PhoneStatus.Idle,
+    val phoneStatus: SentState = SentState.Idle,
     val codeState: CodeState? = null
 )
 
-sealed interface PhoneStatus {
-
-    object Idle: PhoneStatus
-
-    object Loading : PhoneStatus
-
-    data class Error(val message: String) : PhoneStatus
-}
-
 data class CodeState(
     val code: String = "",
-    val codeStatus: CodeStatus
+    val codeStatus: SentState
 )
-sealed interface CodeStatus {
 
-    object Idle: CodeStatus
+sealed interface SentState {
 
-    object Loading : CodeStatus
+    object Idle: SentState
 
-    data class Error(val message: String) : CodeStatus
+    object Loading : SentState
 
+    data class Error(val message: String) :
+        SentState
 }
+

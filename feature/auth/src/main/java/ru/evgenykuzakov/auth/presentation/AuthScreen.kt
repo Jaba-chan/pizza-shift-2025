@@ -16,8 +16,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import ru.evgenykuzakov.auth.R
 import ru.evgenykuzakov.ui.AppBarIconButton
 import ru.evgenykuzakov.ui.BasicAppBar
+import ru.evgenykuzakov.ui.ButtonProgressIndicator
 import ru.evgenykuzakov.ui.Paragraph16
 import ru.evgenykuzakov.ui.ShiftButton
+import ru.evgenykuzakov.ui.ShiftButtonText
 import ru.evgenykuzakov.ui.ShiftTextField
 import ru.evgenykuzakov.ui.SpacerHeight16
 import ru.evgenykuzakov.ui.SpacerHeight24
@@ -61,6 +63,8 @@ fun AuthScreen(
                 value = state.phone,
                 onTextChanged = { viewModel.onPhoneTextChanged(it) },
                 placeholderText = stringResource(R.string.phone),
+                readOnly = state.codeState != null,
+                enabled = state.codeState == null
                 )
             SpacerHeight16()
             if (state.codeState != null){
@@ -77,14 +81,19 @@ fun AuthScreen(
 
             ShiftButton(
                 modifier = Modifier.fillMaxWidth(),
-                text = stringResource( if (state.codeState== null) R.string.continue_str else R.string.login
-                ),
                 onClick = {
                     viewModel.apply {
                         if (state.codeState == null) viewModel.sendPhone() else viewModel.sendCode()
                     }
                 }
-            )
+            ){
+                if (state.codeState?.codeStatus is SentState.Loading || state.phoneStatus is SentState.Loading)
+                    ButtonProgressIndicator()
+                else
+                    ShiftButtonText(
+                        text = stringResource(if (state.codeState == null) R.string.continue_str else R.string.login)
+                    )
+            }
         }
     }
 }

@@ -15,34 +15,40 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import ru.evgenykuzakov.theme.Content5
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ShiftTextField(
     modifier: Modifier = Modifier,
     value: String,
-    placeholderText: String,
     onTextChanged: (String) -> Unit,
     textStyle: TextStyle = MaterialTheme.typography.bodyLarge,
     enabled: Boolean = true,
+    readOnly: Boolean = false,
     singleLine: Boolean = true,
-    isError: Boolean = false,
-    height: Dp = 48.dp,
-    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     visualTransformation: VisualTransformation = VisualTransformation.None,
-    shape: RoundedCornerShape = RoundedCornerShape(8.dp)
+    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
+    height: Dp = 48.dp,
+    placeholderText: String,
+    shape: RoundedCornerShape = RoundedCornerShape(8.dp),
+    isError: Boolean = false,
 ) {
     BasicTextField(
         modifier = modifier
             .height(height),
         value = value,
         onValueChange = onTextChanged,
-        singleLine = singleLine,
-        interactionSource = interactionSource,
         textStyle = textStyle,
-    ) { innerTextField ->
+        enabled = enabled,
+        readOnly =readOnly,
+        singleLine = singleLine,
+        visualTransformation = visualTransformation,
+        interactionSource = interactionSource,
+        ) { innerTextField ->
         OutlinedTextFieldDefaults.DecorationBox(
             value = value,
+            isError = isError,
             innerTextField = innerTextField,
             enabled = enabled,
             singleLine = singleLine,
@@ -54,7 +60,10 @@ fun ShiftTextField(
                 bottom = 0.dp,
             ),
             placeholder =  {
-                Paragraph16(text = placeholderText)
+                Paragraph16(
+                    text = placeholderText,
+                    color = MaterialTheme.colorScheme.Content5
+                )
             },
             container = {
                 OutlinedTextFieldDefaults.ContainerBox(

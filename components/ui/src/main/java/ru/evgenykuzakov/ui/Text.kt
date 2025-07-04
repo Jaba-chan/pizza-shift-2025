@@ -25,7 +25,7 @@ fun TitleH2(
 fun Paragraph16(
     modifier: Modifier = Modifier,
     text: String,
-    color: Color = MaterialTheme.colorScheme.Content5
+    color: Color = MaterialTheme.colorScheme.onSurface
 ){
     Text(
         modifier = modifier,
