@@ -1,11 +1,11 @@
-package ru.evgenykuzakov.auth.data
+package ru.evgenykuzakov.auth.data.datastore
 
 import android.content.Context
 import android.content.SharedPreferences
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-internal class OptTokenStorage @Inject constructor(
+internal class OptTokenDataSource @Inject constructor(
     @ApplicationContext context: Context
 ) {
     private val sharedPreferences: SharedPreferences =

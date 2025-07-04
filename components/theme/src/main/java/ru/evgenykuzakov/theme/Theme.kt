@@ -38,7 +38,7 @@ val ColorScheme.ButtonContent: Color
     get() = if (isSystemInDarkTheme()) White else White
 
 @Composable
-fun Pizza_shift_2025_Theme(
+fun ShiftAppTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = false,

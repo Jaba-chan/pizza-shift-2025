@@ -6,7 +6,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import ru.evgenykuzakov.auth.data.OptTokenStorage
+import ru.evgenykuzakov.auth.data.datastore.OptTokenDataSource
 import javax.inject.Singleton
 
 @Module
@@ -17,8 +17,8 @@ internal object DatastoreModule {
     @Singleton
     fun provideOptTokenStorage(
         @ApplicationContext context: Context
-    ): OptTokenStorage {
-        return OptTokenStorage(context)
+    ): OptTokenDataSource {
+        return OptTokenDataSource(context)
     }
 
 }

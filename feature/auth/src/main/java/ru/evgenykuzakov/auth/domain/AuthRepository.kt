@@ -8,7 +8,7 @@ interface AuthRepository {
 
     suspend fun signIn(params: SignInParams): User
 
-    suspend fun createOtp(params: OtpParams)
+    suspend fun requestOtp(params: OtpParams)
 
     suspend fun getUserSession(): User
 }

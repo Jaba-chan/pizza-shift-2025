@@ -11,7 +11,7 @@ import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 import ru.evgenykuzakov.auth.presentation.AuthScreen
 import ru.evgenykuzakov.pizza_shift_2025.navigation.AppNavGraph
-import ru.evgenykuzakov.theme.Pizza_shift_2025_Theme
+import ru.evgenykuzakov.theme.ShiftAppTheme
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -19,7 +19,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            Pizza_shift_2025_Theme {
+            ShiftAppTheme {
                 val navController = rememberNavController()
 
                 Scaffold(

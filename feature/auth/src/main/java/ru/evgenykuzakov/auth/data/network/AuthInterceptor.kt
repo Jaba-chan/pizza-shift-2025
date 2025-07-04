@@ -1,10 +1,11 @@
-package ru.evgenykuzakov.auth.data
+package ru.evgenykuzakov.auth.data.network
 
 import okhttp3.Interceptor
 import okhttp3.Response
+import ru.evgenykuzakov.auth.data.datastore.OptTokenDataSource
 
 internal class AuthInterceptor(
-    private val optTokenStorage: OptTokenStorage
+    private val optTokenStorage: OptTokenDataSource
 ): Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {

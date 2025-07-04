@@ -17,5 +17,5 @@ data class UserDto(
     @SerialName("middlename")
     val middlename: String?,
     @SerialName("phone")
-    val phone: String?
+    val phone: String
 )
