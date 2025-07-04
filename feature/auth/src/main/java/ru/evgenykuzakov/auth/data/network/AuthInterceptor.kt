@@ -10,7 +10,7 @@ internal class AuthInterceptor(
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
-        val token = optTokenStorage.authToken
+        val token = optTokenStorage.getAuthToken()
 
         val authorizedRequest = request.newBuilder()
             .header("Authorization", "Bearer $token")

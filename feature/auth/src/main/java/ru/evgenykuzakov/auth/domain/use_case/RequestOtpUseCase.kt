@@ -6,7 +6,4 @@ import javax.inject.Inject
 
 class RequestOtpUseCase @Inject constructor(
     private val repository: AuthRepository
-) {
-    suspend operator fun invoke(params: OtpParams): Unit = repository.requestOtp(params)
-
-}
+) : suspend (OtpParams) -> Unit by repository::requestOtp

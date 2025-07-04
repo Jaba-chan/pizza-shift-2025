@@ -14,15 +14,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import ru.evgenykuzakov.auth.R
-import ru.evgenykuzakov.ui.AppBarIconButton
-import ru.evgenykuzakov.ui.BasicAppBar
 import ru.evgenykuzakov.ui.ButtonProgressIndicator
-import ru.evgenykuzakov.ui.Paragraph16
 import ru.evgenykuzakov.ui.ShiftButton
 import ru.evgenykuzakov.ui.ShiftButtonText
 import ru.evgenykuzakov.ui.ShiftTextField
-import ru.evgenykuzakov.ui.SpacerHeight16
-import ru.evgenykuzakov.ui.SpacerHeight24
 
 @Composable
 fun AuthScreen(
@@ -37,63 +32,24 @@ fun AuthScreen(
             .fillMaxSize()
             .padding(paddingValues)
     ) {
-        BasicAppBar(
-            headingText = stringResource(R.string.auth),
-            leadingIcon = {
-                AppBarIconButton(
-                    onButtonClick = {},
-                    iconResId = R.drawable.ic_x
-                )
-            }
-        )
-        SpacerHeight24()
+        AppBar()
         Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp)
         ) {
-            Paragraph16(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                text = stringResource(R.string.enter_your_phone_for_login)
-            )
-            SpacerHeight16()
-            ShiftTextField(
-                modifier = Modifier.fillMaxWidth(),
-                value = state.phone,
-                onTextChanged = { viewModel.onPhoneTextChanged(it) },
-                placeholderText = stringResource(R.string.phone),
-                readOnly = state.codeState != null,
-                enabled = state.codeState == null
-                )
-            SpacerHeight16()
+            HeadingText()
+
+            PhoneTextInput(state, viewModel::onPhoneTextChanged)
+
             if (state.codeState != null){
-                ShiftTextField(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .animateContentSize(),
-                    value = state.codeState!!.code,
-                    onTextChanged = { viewModel.onCodeTextChanged(it) },
-                    placeholderText = stringResource(R.string.verification_code)
-                )
-                SpacerHeight24()
+                CodeTextInput(state, viewModel::onCodeTextChanged)
             }
 
-            ShiftButton(
-                modifier = Modifier.fillMaxWidth(),
-                onClick = {
-                    viewModel.apply {
-                        if (state.codeState == null) viewModel.sendPhone() else viewModel.sendCode()
-                    }
-                }
-            ){
-                if (state.codeState?.codeStatus is SentState.Loading || state.phoneStatus is SentState.Loading)
-                    ButtonProgressIndicator()
-                else
-                    ShiftButtonText(
-                        text = stringResource(if (state.codeState == null) R.string.continue_str else R.string.login)
-                    )
-            }
+            AuthButton(
+                state = state ,
+                onClick = { if (state.codeState == null) viewModel.sendPhone() else viewModel.sendCode() }
+            )
         }
     }
 }

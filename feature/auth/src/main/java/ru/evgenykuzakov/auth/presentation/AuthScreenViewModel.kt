@@ -3,6 +3,7 @@ package ru.evgenykuzakov.auth.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
@@ -23,48 +24,43 @@ class AuthScreenViewModel @Inject constructor(
     val uiState: StateFlow<AuthScreenUIState> = _uiState
 
     fun onPhoneTextChanged(text: String) {
-        _uiState.update {
-            it.copy(
-                phone = text
-            )
-        }
+        _uiState.update { it.copy(phone = text) }
     }
 
     fun onCodeTextChanged(text: String) {
-        println(_uiState.value.codeState?.codeStatus)
         if (_uiState.value.codeState?.codeStatus !is SentState.Loading)
-            _uiState.update {
-                it.copy(
-                    codeState = it.codeState?.copy(code = text)
-                )
-            }
+            _uiState.update { it.copy(codeState = it.codeState?.copy(code = text)) }
+    }
+
+    private val sendPhoneHandler = CoroutineExceptionHandler { _, exception ->
+        _uiState.update { it.copy(phoneStatus = SentState.Error(exception.localizedMessage.orEmpty())) }
     }
 
     fun sendPhone() {
         val currentState = _uiState.value
         if (currentState.phoneStatus is SentState.Loading) return
 
+        _uiState.update { it.copy(phoneStatus = SentState.Loading) }
+        viewModelScope.launch(sendPhoneHandler) {
+            createOptUseCase(OtpParams(phone = currentState.phone))
+            _uiState.update {
+                it.copy(
+                    phoneStatus = SentState.Idle,
+                    codeState = CodeState(code = "", SentState.Idle)
+                )
+            }
+        }
+    }
+
+    private val handler = CoroutineExceptionHandler { _, exception ->
         _uiState.update {
             it.copy(
-                phoneStatus = SentState.Loading
-            )
-        }
-        viewModelScope.launch {
-            try {
-                createOptUseCase(
-                    params = OtpParams(phone = currentState.phone)
-                )
-                _uiState.update {
-                    it.copy(
-                        phoneStatus = SentState.Idle,
-                        codeState = CodeState(code = "", SentState.Idle)
+                codeState = it.codeState?.copy(
+                    codeStatus = SentState.Error(
+                        exception.localizedMessage.orEmpty()
                     )
-                }
-            } catch (e: Exception) {
-                _uiState.update {
-                    it.copy(phoneStatus = SentState.Error(e.localizedMessage.orEmpty()))
-                }
-            }
+                )
+            )
         }
     }
 
@@ -72,36 +68,16 @@ class AuthScreenViewModel @Inject constructor(
         val currentState = _uiState.value
         if (currentState.codeState?.codeStatus is SentState.Loading) return
 
-        _uiState.update {
-            it.copy(
-                codeState = currentState.codeState?.copy(
-                    codeStatus = SentState.Loading
-                )
-            )
-        }
-        viewModelScope.launch {
-            try {
+        _uiState.update { it.copy(codeState = currentState.codeState?.copy(codeStatus = SentState.Loading)) }
+        viewModelScope.launch(handler) {
                 signInUseCase(
-                    params = SignInParams(
+                    SignInParams(
                         phone = currentState.phone,
                         code = currentState.codeState?.code?.toIntOrNull() ?: 0
                     )
                 )
-                _uiState.update {
-                    it.copy(
-                        codeState = currentState.codeState?.copy(
-                            codeStatus = SentState.Idle
-                        )
-                    )
-                }
-            } catch (e: Exception) {
-                println(e.message)
-                _uiState.update {
-                    it.copy(
-                        codeState = it.codeState?.copy(codeStatus = SentState.Error(e.localizedMessage.orEmpty()))
-                    )
-                }
-            }
+                _uiState.update { it.copy(codeState = currentState.codeState?.copy(codeStatus = SentState.Idle)) }
+
         }
     }
 }

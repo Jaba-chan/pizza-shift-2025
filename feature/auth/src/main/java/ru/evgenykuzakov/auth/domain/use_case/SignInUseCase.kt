@@ -7,6 +7,4 @@ import javax.inject.Inject
 
 class SignInUseCase @Inject constructor(
     private val repository: AuthRepository
-) {
-    suspend operator fun invoke(params: SignInParams): User = repository.signIn(params)
-}
+) : suspend (SignInParams) -> User by repository::signIn
