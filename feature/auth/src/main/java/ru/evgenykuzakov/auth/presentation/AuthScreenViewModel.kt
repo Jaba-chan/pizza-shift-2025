@@ -5,9 +5,11 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import ru.evgenykuzakov.auth.domain.model.params.OtpParams
@@ -26,6 +28,9 @@ class AuthScreenViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(AuthScreenUIState())
     val uiState: StateFlow<AuthScreenUIState> = _uiState
 
+    private val _action = Channel<AuthActions>(Channel.BUFFERED)
+    val action = _action.receiveAsFlow()
+
     private var timerJob: Job? = null
 
     fun onPhoneTextChanged(text: String) {
@@ -41,7 +46,7 @@ class AuthScreenViewModel @Inject constructor(
         _uiState.update { it.copy(phoneStatus = SentState.Error(exception.localizedMessage.orEmpty())) }
     }
 
-    fun onAuthButtonClicked(){
+    fun onAuthButtonClicked() {
         if (_uiState.value.phoneStatus is SentState.Loading) return
         _uiState.update { it.copy(phoneStatus = SentState.Loading) }
         requestOtp()
@@ -78,12 +83,15 @@ class AuthScreenViewModel @Inject constructor(
 
         _uiState.update { it.copy(codeState = currentState.codeState?.copy(codeStatus = SentState.Loading)) }
         viewModelScope.launch(handler) {
-           signInUseCase(
+            val status = signInUseCase(
                 SignInParams(
                     phone = currentState.phone,
                     code = currentState.codeState?.code?.toIntOrNull() ?: 0
                 )
             )
+            if (status is Resource.Success){
+                _action.send(AuthActions.NavigateToCatalogScreen)
+            }
             _uiState.update { it.copy(codeState = currentState.codeState?.copy(codeStatus = SentState.Idle)) }
 
         }
@@ -102,7 +110,7 @@ class AuthScreenViewModel @Inject constructor(
         }
     }
 
-    fun onRequestButtonClicked(){
+    fun onRequestButtonClicked() {
         requestOtp()
     }
 }

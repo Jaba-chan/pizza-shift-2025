@@ -2,16 +2,22 @@ package ru.evgenykuzakov.pizza.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import ru.evgenykuzakov.network.di.RetrofitBaseUrl
 import ru.evgenykuzakov.pizza.domain.use_case.GetCatalogUseCase
 import javax.inject.Inject
 
+@HiltViewModel
 class CatalogViewModel @Inject constructor(
+    @RetrofitBaseUrl private val baseUrl: String,
     private val getCatalogUseCase: GetCatalogUseCase
 ): ViewModel() {
+
+    fun getBaseUrl() = baseUrl
 
     private val _uiState = MutableStateFlow<CatalogScreenUIState>(CatalogScreenUIState.Loading)
     val uiState: StateFlow<CatalogScreenUIState> = _uiState

@@ -17,7 +17,7 @@ internal object CommonNetworkModule {
     @Provides
     @Singleton
     fun provideRetrofitBuilder(
-        @RetrofitBaseUrl  baseUrl: String,
+        @RetrofitBaseUrl baseUrl: String,
         client: OkHttpClient,
     ): Retrofit {
         return Retrofit.Builder()

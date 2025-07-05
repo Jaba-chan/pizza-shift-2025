@@ -60,6 +60,7 @@ android {
 
 dependencies {
     implementation(project(":feature:auth"))
+    implementation(project(":feature:pizza"))
     implementation(project(":shared:network"))
     implementation(project(":components:ui"))
     implementation(project(":components:theme"))

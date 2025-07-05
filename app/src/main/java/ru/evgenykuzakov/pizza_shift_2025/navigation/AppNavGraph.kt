@@ -10,6 +10,7 @@ import androidx.navigation.compose.composable
 fun AppNavGraph(
     navHostController: NavHostController,
     authScreenContent: @Composable () -> Unit,
+    catalogScreenContent: @Composable () -> Unit
 ) {
     NavHost(
         navController = navHostController,
@@ -18,6 +19,9 @@ fun AppNavGraph(
     ) {
         composable(Screen.AuthScreen.route) {
             authScreenContent()
+        }
+        composable(Screen.CatalogScreen.route) {
+            catalogScreenContent()
         }
     }
 }
