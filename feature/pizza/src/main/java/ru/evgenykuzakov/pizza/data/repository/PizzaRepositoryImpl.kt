@@ -10,7 +10,11 @@ class PizzaRepositoryImpl @Inject constructor(
     private val api: PizzaRetrofitApi
 ) : PizzaRepository {
 
-    override suspend fun getCatalog(): List<Catalog> {
-        return api.getCatalog().catalog.map { it.toDomain() }
-    }
+    private var cachedCatalog = emptyList<Catalog>()
+
+    override suspend fun getCatalog(): List<Catalog> =
+        cachedCatalog.ifEmpty {
+            cachedCatalog = api.getCatalog().catalog.map { it.toDomain() }
+            cachedCatalog
+        }
 }
