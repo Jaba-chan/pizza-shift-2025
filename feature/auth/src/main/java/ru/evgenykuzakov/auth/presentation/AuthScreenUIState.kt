@@ -8,6 +8,8 @@ data class AuthScreenUIState(
 
 data class CodeState(
     val code: String = "",
+    val timer: Int? = null,
+    val showResendCodeButton: Boolean = false,
     val codeStatus: SentState
 )
 

@@ -8,7 +8,10 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import ru.evgenykuzakov.theme.ButtonContent
@@ -32,12 +35,17 @@ fun ShiftButton(
 
 @Composable
 fun ShiftButtonText(
-    text: String
+    modifier: Modifier = Modifier,
+    textAlign: TextAlign = TextAlign.Center,
+    text: String,
+    color: Color = MaterialTheme.colorScheme.ButtonContent
 ){
     Text(
+        modifier = modifier,
         text = text,
+        textAlign = textAlign,
         style = MaterialTheme.typography.ButtonSemibold,
-        color = MaterialTheme.colorScheme.ButtonContent
+        color = color
     )
 }
 

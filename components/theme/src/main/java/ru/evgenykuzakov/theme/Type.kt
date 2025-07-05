@@ -22,6 +22,14 @@ val Typography = Typography(
         lineHeight = 24.sp,
         letterSpacing = Body16 * 0f
     ),
+
+    bodyMedium =  TextStyle(
+        fontFamily = InterFontFamily,
+        fontWeight = FontWeight.W400,
+        fontSize = Body14,
+        lineHeight = 20.sp,
+        letterSpacing = Body14 * 0f
+    ),
 )
 
 val Typography.ButtonSemibold: TextStyle
