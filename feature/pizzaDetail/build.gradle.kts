@@ -40,7 +40,10 @@ dependencies {
     implementation(project(":utils"))
     implementation(project(":components:ui"))
     implementation(project(":components:theme"))
+    implementation(project(":components:resource"))
+    implementation(project(":shared:pizza"))
     implementation(project(":shared:cart"))
+    implementation(project(":shared:network"))
     implementation(libs.coil.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
@@ -53,5 +56,6 @@ dependencies {
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigation.compose)
     implementation(libs.kotlinx.coroutines.android)
+    implementation(project(":shared:model"))
     ksp(libs.hilt.android.compiler)
 }
