@@ -1,9 +1,9 @@
 package ru.evgenykuzakov.pizza.data.mapper
 
-import ru.evgenykuzakov.models.pizza.type.DoughType
+import ru.evgenykuzakov.cart.domain.model.DoughType
 import ru.evgenykuzakov.pizza.data.model.DoughDto
 
-fun DoughDto.toDomain() = ru.evgenykuzakov.models.pizza.Dough(
+fun DoughDto.toDomain() = ru.evgenykuzakov.cart.domain.model.Dough(
     price = price,
-    type = DoughType.fromString(type)
+    type = ru.evgenykuzakov.cart.domain.model.DoughType.fromString(type)
 )
