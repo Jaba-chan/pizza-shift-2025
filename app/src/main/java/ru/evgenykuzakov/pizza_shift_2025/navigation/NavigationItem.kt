@@ -1,6 +1,6 @@
 package ru.evgenykuzakov.pizza_shift_2025.navigation
 
-import ru.evgenykuzakov.pizza_shift_2025.R
+import ru.evgenykuzakov.resource.R as Res
 
 sealed class NavigationItem(
     val screen: Screen,
@@ -9,26 +9,26 @@ sealed class NavigationItem(
 ) {
     data object Pizza: NavigationItem(
         screen = Screen.PizzaScreen,
-        titleResId = R.string.pizza,
-        iconResId = R.drawable.ic_pizza
+        titleResId = Res.string.pizza,
+        iconResId = Res.drawable.ic_pizza
 
     )
     data object Order: NavigationItem(
         screen = Screen.OrdersScreen,
-        titleResId = R.string.orders,
-        iconResId = R.drawable.ic_order
+        titleResId = Res.string.orders,
+        iconResId = Res.drawable.ic_order
 
     )
     data object Cart: NavigationItem(
         screen = Screen.CartScreen,
-        titleResId = R.string.cart,
-        iconResId = R.drawable.ic_cart
+        titleResId = Res.string.cart,
+        iconResId = Res.drawable.ic_cart
 
     )
     data object Profile: NavigationItem(
         screen = Screen.ProfileScreen,
-        titleResId = R.string.profile,
-        iconResId = R.drawable.ic_profile
+        titleResId = Res.string.profile,
+        iconResId = Res.drawable.ic_profile
 
     )
 }

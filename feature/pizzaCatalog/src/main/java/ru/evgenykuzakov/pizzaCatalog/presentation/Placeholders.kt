@@ -28,10 +28,11 @@ import ru.evgenykuzakov.theme.Content3
 import ru.evgenykuzakov.ui.BasicAppBar
 import ru.evgenykuzakov.ui.Paragraph12
 import ru.evgenykuzakov.ui.Paragraph16
+import ru.evgenykuzakov.resource.R as Res
 
 @Composable
 internal fun AppBar() {
-    BasicAppBar(headingText = stringResource(R.string.pizza))
+    BasicAppBar(headingText = stringResource(Res.string.pizza))
 }
 
 @Composable

@@ -3,8 +3,6 @@ package ru.evgenykuzakov.auth.presentation
 import android.content.Context
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.indication
-import androidx.compose.foundation.interaction.InteractionSource
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -17,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import ru.evgenykuzakov.auth.R
+import ru.evgenykuzakov.resource.R as Res
 import ru.evgenykuzakov.theme.Content6
 import ru.evgenykuzakov.ui.AppBarIconButton
 import ru.evgenykuzakov.ui.BasicAppBar
@@ -34,7 +33,7 @@ internal fun AppBar() {
         leadingIcon = {
             AppBarIconButton(
                 onButtonClick = {},
-                iconResId = R.drawable.ic_x
+                iconResId = Res.drawable.ic_x
             )
         }
     )
@@ -98,7 +97,7 @@ internal fun AuthButton(
             ButtonProgressIndicator()
         else
             ShiftButtonText(
-                text = stringResource(if (state.codeState == null) R.string.continue_str else R.string.login)
+                text = stringResource(if (state.codeState == null) Res.string.continue_str else R.string.login)
             )
     }
 }
