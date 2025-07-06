@@ -41,7 +41,6 @@ dependencies {
     implementation(project(":components:ui"))
     implementation(project(":components:theme"))
     implementation(project(":shared:network"))
-    implementation(project(":shared:models"))
     implementation(libs.coil.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)

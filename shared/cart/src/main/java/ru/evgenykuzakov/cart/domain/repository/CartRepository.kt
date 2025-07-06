@@ -6,4 +6,6 @@ interface CartRepository {
 
     suspend fun getCart(): List<Pizza>
 
+    suspend fun addToCard(pizza: Pizza)
+
 }
