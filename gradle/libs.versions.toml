@@ -27,6 +27,7 @@ kotlinxCoroutines = "1.10.2"
 uiTextGoogleFonts = "1.8.3"
 navigationCompose = "2.9.0"
 coil = "2.5.0"
+room= "2.7.2"
 
 
 [libraries]
@@ -57,6 +58,10 @@ material = { group = "com.google.android.material", name = "material", version.r
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutines" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
