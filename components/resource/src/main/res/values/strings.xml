@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pizza">Пицца</string>
+    <string name="orders">Заказы</string>
+    <string name="cart">Корзина</string>
+    <string name="profile">Профиль</string>
+    <string name="continue_str">Продолжить</string>
+</resources>
