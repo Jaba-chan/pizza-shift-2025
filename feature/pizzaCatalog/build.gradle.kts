@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    namespace = "ru.evgenykuzakov.catalog"
+    namespace = "ru.evgenykuzakov.pizzaCatalog"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
@@ -40,6 +40,7 @@ dependencies {
     implementation(project(":utils"))
     implementation(project(":components:ui"))
     implementation(project(":components:theme"))
+    implementation(project(":shared:pizza"))
     implementation(project(":shared:network"))
     implementation(project(":shared:model"))
     implementation(libs.coil.compose)

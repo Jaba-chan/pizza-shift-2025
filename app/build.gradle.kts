@@ -61,7 +61,7 @@ android {
 dependencies {
     implementation(project(":utils"))
     implementation(project(":feature:auth"))
-    implementation(project(":feature:catalog"))
+    implementation(project(":feature:pizzaCatalog"))
     implementation(project(":shared:network"))
     implementation(project(":components:ui"))
     implementation(project(":components:theme"))

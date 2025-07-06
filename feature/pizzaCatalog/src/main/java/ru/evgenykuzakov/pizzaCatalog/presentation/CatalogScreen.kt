@@ -1,4 +1,4 @@
-package ru.evgenykuzakov.pizza.presentation
+package ru.evgenykuzakov.pizzaCatalog.presentation
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -27,7 +27,6 @@ fun CatalogScreen(
             is CatalogScreenUIState.Content -> Catalog((state as CatalogScreenUIState.Content).catalog, viewModel.getBaseUrl())
             is CatalogScreenUIState.Error -> {}
             CatalogScreenUIState.Loading -> LoadingScreen()
-
         }
     }
 }

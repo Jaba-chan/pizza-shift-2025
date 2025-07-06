@@ -1,4 +1,4 @@
-package ru.evgenykuzakov.pizza.presentation
+package ru.evgenykuzakov.pizzaCatalog.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

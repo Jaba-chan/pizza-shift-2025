@@ -1,4 +1,4 @@
-package ru.evgenykuzakov.pizza.presentation
+package ru.evgenykuzakov.pizzaCatalog.presentation
 
 import ru.evgenykuzakov.pizza.domain.model.Catalog
 

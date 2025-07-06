@@ -1,4 +1,4 @@
-package ru.evgenykuzakov.pizza.presentation
+package ru.evgenykuzakov.pizzaCatalog.presentation
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -22,9 +22,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import ru.evgenykuzakov.network.di.RetrofitBaseUrl
-import ru.evgenykuzakov.pizza.R
 import ru.evgenykuzakov.pizza.domain.model.Catalog
+import ru.evgenykuzakov.pizzaCatalog.R
 import ru.evgenykuzakov.theme.Content3
 import ru.evgenykuzakov.ui.BasicAppBar
 import ru.evgenykuzakov.ui.Paragraph12
