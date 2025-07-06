@@ -12,8 +12,8 @@ class PizzaTypeConverter {
     @TypeConverter fun fromSize(value: SizeEntity): String = json.encodeToString(value)
     @TypeConverter fun toSize(value: String): SizeEntity = json.decodeFromString(value)
 
-    @TypeConverter fun fromTopping(value: ToppingEntity): String = json.encodeToString(value)
-    @TypeConverter fun toTopping(value: String): ToppingEntity = json.decodeFromString(value)
+    @TypeConverter fun fromTopping(value: List<ToppingEntity>): String = json.encodeToString(value)
+    @TypeConverter fun toTopping(value: String): List<ToppingEntity> = json.decodeFromString(value)
 
     @TypeConverter fun fromDough(value: DoughEntity): String = json.encodeToString(value)
     @TypeConverter fun toDough(value: String): DoughEntity = json.decodeFromString(value)
