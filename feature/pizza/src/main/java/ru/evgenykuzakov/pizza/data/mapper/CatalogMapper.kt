@@ -8,10 +8,6 @@ fun CatalogDto.toDomain() = Catalog(
     id = id,
     description = description,
     img = img,
-    isGlutenFree = isGlutenFree,
-    isHit = isHit,
-    isNew = isNew,
-    isVegetarian = isVegetarian,
     name = name,
     priceFrom = sizes.map { it.toDomain() }.first{ it.type == SizeType.Small }.price
 )
