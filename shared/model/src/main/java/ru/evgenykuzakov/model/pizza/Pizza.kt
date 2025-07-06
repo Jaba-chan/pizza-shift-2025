@@ -1,4 +1,4 @@
-package ru.evgenykuzakov.cart.domain.model
+package ru.evgenykuzakov.model.pizza
 
 data class Pizza(
     val id: String,

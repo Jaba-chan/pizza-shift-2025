@@ -1,8 +1,8 @@
 package ru.evgenykuzakov.cart.data.mapper
 
 import ru.evgenykuzakov.cart.data.database.model.ToppingEntity
-import ru.evgenykuzakov.cart.domain.model.Topping
-import ru.evgenykuzakov.cart.domain.model.type.IngredientType
+import ru.evgenykuzakov.model.pizza.Topping
+import ru.evgenykuzakov.model.pizza.type.IngredientType
 
 fun ToppingEntity.toDomain() = Topping(
     img = img,

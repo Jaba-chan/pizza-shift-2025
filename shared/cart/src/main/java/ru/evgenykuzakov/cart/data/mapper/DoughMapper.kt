@@ -1,8 +1,8 @@
 package ru.evgenykuzakov.cart.data.mapper
 
 import ru.evgenykuzakov.cart.data.database.model.DoughEntity
-import ru.evgenykuzakov.cart.domain.model.Dough
-import ru.evgenykuzakov.cart.domain.model.type.DoughType
+import ru.evgenykuzakov.model.pizza.Dough
+import ru.evgenykuzakov.model.pizza.type.DoughType
 
 fun DoughEntity.toDomain() = Dough(
     price = price,

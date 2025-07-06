@@ -1,4 +1,4 @@
-package ru.evgenykuzakov.cart.domain.model.type
+package ru.evgenykuzakov.model.pizza.type
 
 sealed class DoughType(val name: String) {
     data object Thin : DoughType("THIN")

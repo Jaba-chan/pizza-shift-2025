@@ -1,6 +1,6 @@
 package ru.evgenykuzakov.cart.domain.repository
 
-import ru.evgenykuzakov.cart.domain.model.Pizza
+import ru.evgenykuzakov.model.pizza.Pizza
 
 interface CartRepository {
 

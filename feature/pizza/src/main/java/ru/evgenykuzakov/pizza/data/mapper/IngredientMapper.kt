@@ -1,10 +1,11 @@
 package ru.evgenykuzakov.pizza.data.mapper
 
-import ru.evgenykuzakov.cart.domain.model.IngredientType
+import ru.evgenykuzakov.model.pizza.Ingredient
+import ru.evgenykuzakov.model.pizza.type.IngredientType
 import ru.evgenykuzakov.pizza.data.model.IngredientDto
 
-fun IngredientDto.toDomain() = ru.evgenykuzakov.cart.domain.model.Ingredient(
+fun IngredientDto.toDomain() = Ingredient(
     img = img,
     price = price,
-    type = ru.evgenykuzakov.cart.domain.model.IngredientType.fromString(type)
+    type = IngredientType.fromString(type)
 )

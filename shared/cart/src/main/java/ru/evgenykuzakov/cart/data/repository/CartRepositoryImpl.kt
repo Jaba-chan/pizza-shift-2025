@@ -1,11 +1,10 @@
 package ru.evgenykuzakov.cart.data.repository
 
 import ru.evgenykuzakov.cart.data.database.CartDatabase
-import ru.evgenykuzakov.cart.data.database.model.PizzaEntity
 import ru.evgenykuzakov.cart.data.mapper.toDomain
 import ru.evgenykuzakov.cart.data.mapper.toEntity
-import ru.evgenykuzakov.cart.domain.model.Pizza
 import ru.evgenykuzakov.cart.domain.repository.CartRepository
+import ru.evgenykuzakov.model.pizza.Pizza
 import javax.inject.Inject
 
 class CartRepositoryImpl @Inject constructor(

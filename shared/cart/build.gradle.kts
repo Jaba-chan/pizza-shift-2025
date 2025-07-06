@@ -36,6 +36,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":shared:model"))
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
