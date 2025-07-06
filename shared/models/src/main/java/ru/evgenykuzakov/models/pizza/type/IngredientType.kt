@@ -1,4 +1,4 @@
-package ru.evgenykuzakov.pizza.domain.model.type
+package ru.evgenykuzakov.models.pizza.type
 
 sealed class IngredientType(val name: String) {
     data object Pineapple : IngredientType("PINEAPPLE")
@@ -23,24 +23,24 @@ sealed class IngredientType(val name: String) {
     companion object {
         fun fromString(value: String): IngredientType =
             when (value.uppercase()) {
-                "PINEAPPLE" -> IngredientType.Pineapple
-                "MOZZARELLA" -> IngredientType.Mozzarella
-                "PEPERONI" -> IngredientType.Peperoni
-                "GREEN_PEPPER" -> IngredientType.GreenPepper
-                "MUSHROOMS" -> IngredientType.Mushrooms
-                "BASIL" -> IngredientType.Basil
-                "CHEDDAR" -> IngredientType.Cheddar
-                "PARMESAN" -> IngredientType.Parmesan
-                "FETA" -> IngredientType.Feta
-                "HAM" -> IngredientType.Ham
-                "PICKLE" -> IngredientType.Pickle
-                "TOMATO" -> IngredientType.Tomato
-                "BACON" -> IngredientType.Bacon
-                "ONION" -> IngredientType.Onion
-                "CHILE" -> IngredientType.Chile
-                "SHRIMPS" -> IngredientType.Shrimps
-                "CHICKEN_FILLET" -> IngredientType.ChickenFillet
-                "MEATBALLS" -> IngredientType.Meatballs
+                "PINEAPPLE" -> Pineapple
+                "MOZZARELLA" -> Mozzarella
+                "PEPERONI" -> Peperoni
+                "GREEN_PEPPER" -> GreenPepper
+                "MUSHROOMS" -> Mushrooms
+                "BASIL" -> Basil
+                "CHEDDAR" -> Cheddar
+                "PARMESAN" -> Parmesan
+                "FETA" -> Feta
+                "HAM" -> Ham
+                "PICKLE" -> Pickle
+                "TOMATO" -> Tomato
+                "BACON" -> Bacon
+                "ONION" -> Onion
+                "CHILE" -> Chile
+                "SHRIMPS" -> Shrimps
+                "CHICKEN_FILLET" -> ChickenFillet
+                "MEATBALLS" -> Meatballs
                 else -> throw IllegalArgumentException("Unknown ingredient type: $value")
             }
     }

@@ -1,10 +1,9 @@
 package ru.evgenykuzakov.pizza.data.mapper
 
+import ru.evgenykuzakov.models.pizza.type.IngredientType
 import ru.evgenykuzakov.pizza.data.model.ToppingDto
-import ru.evgenykuzakov.pizza.domain.model.Topping
-import ru.evgenykuzakov.pizza.domain.model.type.IngredientType
 
-fun ToppingDto.toDomain() = Topping(
+fun ToppingDto.toDomain() = ru.evgenykuzakov.models.pizza.Topping(
     img = img,
     price = price,
     type = IngredientType.fromString(type)
