@@ -40,6 +40,7 @@ dependencies {
     implementation(project(":utils"))
     implementation(project(":components:ui"))
     implementation(project(":components:theme"))
+    implementation(project(":components:resource"))
     implementation(project(":shared:pizza"))
     implementation(project(":shared:network"))
     implementation(project(":shared:model"))
