@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    namespace = "ru.evgenykuzakov.pizza"
+    namespace = "ru.evgenykuzakov.catalog"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
