@@ -5,9 +5,5 @@ data class Catalog(
     val name: String,
     val description: String,
     val priceFrom: Int,
-    val img: String,
-    val isGlutenFree: Boolean,
-    val isHit: Boolean,
-    val isNew: Boolean,
-    val isVegetarian: Boolean
+    val img: String
 )
