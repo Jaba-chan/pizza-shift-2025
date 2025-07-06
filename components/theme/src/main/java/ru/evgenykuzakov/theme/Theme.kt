@@ -21,7 +21,7 @@ private val DarkColorScheme = darkColorScheme(
 
 private val LightColorScheme = lightColorScheme(
     primary = OrangeBrand,
-    onSurface = Black,
+    onSurface = ContentWB,
     outline = Border,
     background = White,
 )
@@ -29,6 +29,10 @@ private val LightColorScheme = lightColorScheme(
 val ColorScheme.indicator: Color
     @Composable
     get() = if (isSystemInDarkTheme()) IndicatorLight else IndicatorLight
+
+val ColorScheme.Content3: Color
+    @Composable
+    get() = if (isSystemInDarkTheme()) Content3Color else Content3Color
 
 val ColorScheme.Content5: Color
     @Composable

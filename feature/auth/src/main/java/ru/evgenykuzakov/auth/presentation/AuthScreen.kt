@@ -6,6 +6,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -18,10 +20,19 @@ import ru.evgenykuzakov.auth.R
 @Composable
 fun AuthScreen(
     viewModel: AuthScreenViewModel = hiltViewModel(),
+    onNavigateToCatalog: () -> Unit,
     paddingValues: PaddingValues
 ) {
     val context = LocalContext.current
     val state by viewModel.uiState.collectAsState()
+
+    LaunchedEffect(Unit) {
+        viewModel.action.collect{
+            when(it){
+                AuthActions.NavigateToCatalogScreen -> onNavigateToCatalog()
+            }
+        }
+    }
 
     Column(
         modifier = Modifier
