@@ -54,6 +54,9 @@ android {
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            pickFirsts += listOf(
+                "META-INF/gradle/incremental.annotation.processors"
+            )
         }
     }
 }
@@ -62,9 +65,11 @@ dependencies {
     implementation(project(":utils"))
     implementation(project(":feature:auth"))
     implementation(project(":feature:pizzaCatalog"))
+    implementation(project(":feature:pizzaDetail"))
     implementation(project(":shared:network"))
     implementation(project(":components:ui"))
     implementation(project(":components:theme"))
+    implementation(project(":components:resource"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

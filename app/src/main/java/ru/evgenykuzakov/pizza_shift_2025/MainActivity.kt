@@ -25,6 +25,7 @@ import ru.evgenykuzakov.pizza_shift_2025.navigation.BottomNavigationItem
 import ru.evgenykuzakov.pizza_shift_2025.navigation.NavigationItem
 import ru.evgenykuzakov.pizza_shift_2025.navigation.NavigationState
 import ru.evgenykuzakov.pizza_shift_2025.navigation.Screen
+import ru.evgenykuzakov.pizzadetail.presentation.PizzaDetailScreen
 import ru.evgenykuzakov.theme.ShiftAppTheme
 import ru.evgenykuzakov.utils.getBaseNavUrl
 
@@ -82,7 +83,7 @@ class MainActivity : ComponentActivity() {
                             )
                         },
                         pizzaCatalogScreenContent = { CatalogScreen(paddingValues = innerPadding) },
-                        pizzaDetailScreenContent = {}
+                        pizzaDetailScreenContent = { PizzaDetailScreen(paddingValues = innerPadding) }
                     )
                 }
             }

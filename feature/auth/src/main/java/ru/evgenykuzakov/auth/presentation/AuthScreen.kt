@@ -40,6 +40,7 @@ fun AuthScreen(
             .padding(paddingValues)
     ) {
         AppBar()
+
         Column(
             modifier = Modifier
                 .fillMaxWidth()
