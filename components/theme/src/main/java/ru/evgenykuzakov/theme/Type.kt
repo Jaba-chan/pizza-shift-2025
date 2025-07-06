@@ -2,6 +2,7 @@ package ru.evgenykuzakov.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
@@ -47,4 +48,13 @@ val Typography.ButtonSemibold: TextStyle
         fontSize = Body16,
         lineHeight = 24.sp,
         letterSpacing = Body16 * 0f
+    )
+
+val Typography.BottomBarItemLabel: TextStyle
+    get() = TextStyle(
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.W400,
+        fontSize = 10.sp,
+        lineHeight = 10.sp,
+        letterSpacing = 0.sp
     )

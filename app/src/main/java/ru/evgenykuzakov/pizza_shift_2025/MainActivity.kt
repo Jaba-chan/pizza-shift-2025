@@ -4,17 +4,32 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.NavigationBarDefaults
+import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 import ru.evgenykuzakov.auth.presentation.AuthScreen
 import ru.evgenykuzakov.pizza.presentation.CatalogScreen
 import ru.evgenykuzakov.pizza_shift_2025.navigation.AppNavGraph
+import ru.evgenykuzakov.pizza_shift_2025.navigation.BottomNavigationItem
+import ru.evgenykuzakov.pizza_shift_2025.navigation.NavigationItem
 import ru.evgenykuzakov.pizza_shift_2025.navigation.NavigationState
 import ru.evgenykuzakov.pizza_shift_2025.navigation.Screen
 import ru.evgenykuzakov.theme.ShiftAppTheme
+import ru.evgenykuzakov.utils.getBaseNavUrl
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -25,19 +40,52 @@ class MainActivity : ComponentActivity() {
             ShiftAppTheme {
                 val navController = rememberNavController()
                 val navSate = NavigationState(navController)
+
+                val navBackStackEntry by navController.currentBackStackEntryAsState()
+                val currentRoute = navBackStackEntry?.destination?.route.getBaseNavUrl()
+
+                val bottomNavItems = listOf(
+                    NavigationItem.Pizza,
+                    NavigationItem.Order,
+                    NavigationItem.Cart,
+                    NavigationItem.Profile
+                )
+                println(currentRoute)
+                println(bottomNavItems.map { it.screen.route.getBaseNavUrl() })
                 Scaffold(
                     modifier = Modifier
                         .fillMaxSize()
+                        .navigationBarsPadding(),
+                    bottomBar = {
+                        if (currentRoute in bottomNavItems.map { it.screen.route }) {
+                            Column {
+                                HorizontalDivider(color = MaterialTheme.colorScheme.outline)
+                                BottomAppBar(
+                                    modifier = Modifier.height(60.dp),
+                                    containerColor = MaterialTheme.colorScheme.background
+                                ) {
+                                    bottomNavItems.forEach {
+                                        BottomNavigationItem(
+                                            item = it,
+                                            currentRoute = currentRoute,
+                                            onClick = { navSate.navigateToViaBottomBar(it.screen.route) }
+                                        )
+                                    }
+                                }
+                            }
+                        }
+                    }
                 ) { innerPadding ->
                     AppNavGraph(
                         navHostController = navController,
                         authScreenContent = {
                             AuthScreen(
                                 paddingValues = innerPadding,
-                                onNavigateToCatalog = {navSate.navigateTo(Screen.CatalogScreen.route)}
+                                onNavigateToCatalog = { navSate.navigateTo(Screen.PizzaScreen.route) }
                             )
                         },
-                        catalogScreenContent = { CatalogScreen(paddingValues = innerPadding) }
+                        pizzaCatalogScreenContent = { CatalogScreen(paddingValues = innerPadding) },
+                        pizzaDetailScreenContent = {}
                     )
                 }
             }

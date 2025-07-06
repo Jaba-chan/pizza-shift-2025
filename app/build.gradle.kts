@@ -59,6 +59,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":utils"))
     implementation(project(":feature:auth"))
     implementation(project(":feature:pizza"))
     implementation(project(":shared:network"))
