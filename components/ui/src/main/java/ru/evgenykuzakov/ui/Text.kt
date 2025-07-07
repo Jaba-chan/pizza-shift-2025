@@ -6,7 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
-import ru.evgenykuzakov.theme.Content5
+import androidx.compose.ui.text.font.FontWeight
 
 @Composable
 fun TitleH2(
@@ -23,7 +23,7 @@ fun TitleH2(
 }
 
 @Composable
-fun Paragraph16(
+fun Paragraph16Regular(
     modifier: Modifier = Modifier,
     text: String,
     color: Color = MaterialTheme.colorScheme.onSurface,
@@ -38,7 +38,22 @@ fun Paragraph16(
 }
 
 @Composable
-fun Paragraph14(
+fun Paragraph16Medium(
+    modifier: Modifier = Modifier,
+    text: String,
+    color: Color = MaterialTheme.colorScheme.onSurface,
+    style: TextStyle = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.W500),
+){
+    Text(
+        modifier = modifier,
+        text = text,
+        style = style,
+        color = color
+    )
+}
+
+@Composable
+fun Paragraph14Regular(
     modifier: Modifier = Modifier,
     text: String,
     color: Color = MaterialTheme.colorScheme.onSurface
@@ -52,7 +67,7 @@ fun Paragraph14(
 }
 
 @Composable
-fun Paragraph12(
+fun Paragraph12Regular(
     modifier: Modifier = Modifier,
     text: String,
     color: Color = MaterialTheme.colorScheme.onSurface

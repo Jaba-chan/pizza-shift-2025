@@ -9,6 +9,8 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 
@@ -26,30 +28,19 @@ private val LightColorScheme = lightColorScheme(
     background = White,
 )
 
-val ColorScheme.indicator: Color
-    @Composable
-    get() = if (isSystemInDarkTheme()) IndicatorLight else IndicatorLight
-
-val ColorScheme.Content3: Color
-    @Composable
-    get() = if (isSystemInDarkTheme()) Content3Color else Content3Color
-
-val ColorScheme.Content5: Color
-    @Composable
-    get() = if (isSystemInDarkTheme()) Content5Color else Content5Color
-
-val ColorScheme.Content6: Color
-    @Composable
-    get() = if (isSystemInDarkTheme()) Content6Color else Content6Color
-
-val ColorScheme.ButtonContent: Color
-    @Composable
-    get() = if (isSystemInDarkTheme()) White else White
+private val LocalExtendedColors = staticCompositionLocalOf {
+    ExtendedColors(
+        indicator = Color.Unspecified,
+        content3 = Color.Unspecified,
+        content5 = Color.Unspecified,
+        content6 = Color.Unspecified,
+        buttonContent = Color.Unspecified,
+    )
+}
 
 @Composable
 fun ShiftAppTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
     dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
@@ -63,9 +54,31 @@ fun ShiftAppTheme(
         else -> LightColorScheme
     }
 
-    MaterialTheme(
-        colorScheme = colorScheme,
-        typography = Typography,
-        content = content
+    val extendedColors = ExtendedColors(
+            indicator = IndicatorLight,
+            content3 = Content3Color,
+            content5 = Content5Color,
+            content6 = Content6Color,
+            buttonContent = White,
     )
+
+    CompositionLocalProvider(
+        LocalExtendedColors provides extendedColors,
+        LocalExtendedTypography provides extendedType
+    ) {
+        MaterialTheme(
+            colorScheme = colorScheme,
+            typography = Typography,
+            content = content
+        )
+    }
+}
+
+object ExtendedTheme {
+    val colorScheme: ExtendedColors
+        @Composable
+        get() = LocalExtendedColors.current
+    val typography: ExtendedType
+        @Composable
+        get() = LocalExtendedTypography.current
 }

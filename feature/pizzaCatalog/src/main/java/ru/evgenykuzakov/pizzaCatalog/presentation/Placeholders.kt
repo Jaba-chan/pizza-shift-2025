@@ -14,34 +14,24 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import ru.evgenykuzakov.pizza.domain.model.Catalog
 import ru.evgenykuzakov.pizzaCatalog.R
-import ru.evgenykuzakov.theme.Content3
+import ru.evgenykuzakov.theme.ExtendedTheme
 import ru.evgenykuzakov.ui.BasicAppBar
-import ru.evgenykuzakov.ui.Paragraph12
-import ru.evgenykuzakov.ui.Paragraph16
+import ru.evgenykuzakov.ui.Paragraph12Regular
+import ru.evgenykuzakov.ui.Paragraph16Medium
 import ru.evgenykuzakov.resource.R as Res
 
 @Composable
 internal fun AppBar() {
     BasicAppBar(headingText = stringResource(Res.string.pizza))
 }
-
-@Composable
-internal fun LocalParagraph16(
-    text: String
-){
-    Paragraph16(text = text, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.W500))
-}
-
 
 @Composable
 internal fun PizzaCard(
@@ -63,11 +53,11 @@ internal fun PizzaCard(
         Column(
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            LocalParagraph16(text = pizza.name)
+            Paragraph16Medium(text = pizza.name)
 
-            Paragraph12(text = pizza.description, color = MaterialTheme.colorScheme.Content3)
+            Paragraph12Regular(text = pizza.description, color = ExtendedTheme.colorScheme.content3)
 
-            LocalParagraph16(text = String.format(stringResource(R.string.price_from_n), pizza.priceFrom))
+            Paragraph16Medium(text = String.format(stringResource(R.string.price_from_n), pizza.priceFrom))
         }
     }
 }

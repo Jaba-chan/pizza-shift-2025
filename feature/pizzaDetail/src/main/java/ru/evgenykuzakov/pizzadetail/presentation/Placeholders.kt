@@ -3,7 +3,6 @@ package ru.evgenykuzakov.pizzadetail.presentation
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -13,11 +12,11 @@ import coil.compose.AsyncImage
 import ru.evgenykuzakov.model.pizza.Dough
 import ru.evgenykuzakov.model.pizza.Ingredient
 import ru.evgenykuzakov.model.pizza.Size
-import ru.evgenykuzakov.theme.Content3
+import ru.evgenykuzakov.theme.ExtendedTheme
 import ru.evgenykuzakov.ui.AppBarIconButton
 import ru.evgenykuzakov.ui.BasicAppBar
-import ru.evgenykuzakov.ui.Paragraph14
-import ru.evgenykuzakov.ui.Paragraph16
+import ru.evgenykuzakov.ui.Paragraph14Regular
+import ru.evgenykuzakov.ui.Paragraph16Regular
 import ru.evgenykuzakov.ui.TitleH2
 import ru.evgenykuzakov.resource.R as Res
 
@@ -64,14 +63,14 @@ internal fun SizeAndDough(
     size: Size,
     dough: Dough
 ){
-    Paragraph14(text = "${size.type.name}, ${dough.type.name}", color = MaterialTheme.colorScheme.Content3)
+    Paragraph14Regular(text = "${size.type.name}, ${dough.type.name}", color = ExtendedTheme.colorScheme.content3)
 }
 
 @Composable
 internal fun Ingredients(
     ingredient: List<Ingredient>
 ){
-    Paragraph16(text = ingredient.joinToString(), color = MaterialTheme.colorScheme.Content3)
+    Paragraph16Regular(text = ingredient.joinToString(), color = ExtendedTheme.colorScheme.content3)
 }
 
 @Composable
@@ -79,6 +78,6 @@ internal fun SizeSelector(
     size: Size,
     dough: Dough
 ){
-    Paragraph14(text = "${size.type.name}, ${dough.type.name}", color = MaterialTheme.colorScheme.Content3)
+    Paragraph14Regular(text = "${size.type.name}, ${dough.type.name}", color = ExtendedTheme.colorScheme.content3)
 }
 

@@ -15,13 +15,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import ru.evgenykuzakov.auth.R
+import ru.evgenykuzakov.theme.ExtendedTheme
 import ru.evgenykuzakov.resource.R as Res
-import ru.evgenykuzakov.theme.Content6
 import ru.evgenykuzakov.ui.AppBarIconButton
 import ru.evgenykuzakov.ui.BasicAppBar
 import ru.evgenykuzakov.ui.ButtonProgressIndicator
-import ru.evgenykuzakov.ui.Paragraph14
-import ru.evgenykuzakov.ui.Paragraph16
+import ru.evgenykuzakov.ui.Paragraph14Regular
+import ru.evgenykuzakov.ui.Paragraph16Regular
 import ru.evgenykuzakov.ui.ShiftButton
 import ru.evgenykuzakov.ui.ShiftButtonText
 import ru.evgenykuzakov.ui.ShiftTextField
@@ -41,7 +41,7 @@ internal fun AppBar() {
 
 @Composable
 internal fun HeadingText() {
-    Paragraph16(
+    Paragraph16Regular(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 24.dp),
@@ -112,10 +112,10 @@ internal fun TimerText(
         time,
         time
     )
-    Paragraph14(
+    Paragraph14Regular(
         modifier = Modifier.padding(top = 16.dp),
         text = "${stringResource(R.string.request_code_again_after_n_sec)} $sec",
-        color = MaterialTheme.colorScheme.Content6
+        color = ExtendedTheme.colorScheme.content6
     )
 }
 

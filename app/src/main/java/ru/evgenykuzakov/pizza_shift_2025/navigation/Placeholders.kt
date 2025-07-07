@@ -16,8 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import ru.evgenykuzakov.theme.BottomBarItemLabel
-import ru.evgenykuzakov.theme.Content6
+import ru.evgenykuzakov.theme.ExtendedTheme
 
 @Composable
 internal fun RowScope.BottomNavigationItem(
@@ -27,7 +26,7 @@ internal fun RowScope.BottomNavigationItem(
 ) {
     val selected = currentRoute == item.screen.route
     val color =
-        if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.Content6
+        if (selected) MaterialTheme.colorScheme.primary else ExtendedTheme.colorScheme.content6
 
     NavigationBarItem(
         selected = selected,
@@ -44,7 +43,7 @@ internal fun RowScope.BottomNavigationItem(
                 )
                 Text(
                     text = stringResource(item.titleResId),
-                    style = MaterialTheme.typography.BottomBarItemLabel,
+                    style = ExtendedTheme.typography.bottomBarItemLabel,
                     color = color
                 )
             }
