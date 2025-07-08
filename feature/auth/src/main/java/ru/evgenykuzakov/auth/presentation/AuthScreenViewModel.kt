@@ -33,11 +33,11 @@ class AuthScreenViewModel @Inject constructor(
 
     private var timerJob: Job? = null
 
-    fun onPhoneTextChanged(text: String) {
+    fun handlePhoneTextInput(text: String) {
         _uiState.update { it.copy(phone = text) }
     }
 
-    fun onCodeTextChanged(text: String) {
+    fun handleCodeTextInput(text: String) {
         if (_uiState.value.codeState?.codeStatus !is SentState.Loading)
             _uiState.update { it.copy(codeState = it.codeState?.copy(code = text)) }
     }
@@ -46,7 +46,7 @@ class AuthScreenViewModel @Inject constructor(
         _uiState.update { it.copy(phoneStatus = SentState.Error(exception.localizedMessage.orEmpty())) }
     }
 
-    fun onAuthButtonClicked() {
+    fun auth() {
         if (_uiState.value.phoneStatus is SentState.Loading) return
         _uiState.update { it.copy(phoneStatus = SentState.Loading) }
         requestOtp()
@@ -110,7 +110,7 @@ class AuthScreenViewModel @Inject constructor(
         }
     }
 
-    fun onRequestButtonClicked() {
+    fun requestCodeAgain() {
         requestOtp()
     }
 }

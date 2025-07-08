@@ -78,7 +78,7 @@ class MainActivity : ComponentActivity() {
                         authScreenContent = {
                             AuthScreen(
                                 paddingValues = innerPadding,
-                                onNavigateToCatalog = { navSate.navigateTo(Screen.PizzaScreen.route) }
+                                navigateToCatalog = { navSate.navigateTo(Screen.PizzaScreen.route) }
                             )
                         },
                         pizzaCatalogScreenContent = {
@@ -93,7 +93,7 @@ class MainActivity : ComponentActivity() {
                         pizzaDetailScreenContent = {
                             PizzaDetailScreen(
                                 paddingValues = innerPadding,
-                                onBackClick = { navSate.navigateTo(Screen.PizzaCatalogScreen.route) }
+                                navigateBack = { navSate.navigateTo(Screen.PizzaCatalogScreen.route) }
                             )
                         }
                     )

@@ -10,16 +10,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import ru.evgenykuzakov.resource.mapToTitleResource
 
 @Composable
 fun PizzaDetailScreen(
     viewModel: PizzaDetailViewModel = hiltViewModel(),
     paddingValues: PaddingValues,
-    onBackClick: () -> Unit
+    navigateBack: () -> Unit
 ) {
     val state by viewModel.uiState.collectAsState()
 
@@ -28,7 +26,7 @@ fun PizzaDetailScreen(
             .fillMaxSize()
             .padding(paddingValues)
     ) {
-        AppBar(onButtonClick = onBackClick)
+        AppBar(onButtonClick = navigateBack)
         when (state) {
             is PizzaDetailScreenUIState.Content -> {
                 val pizza = (state as PizzaDetailScreenUIState.Content).pizza
