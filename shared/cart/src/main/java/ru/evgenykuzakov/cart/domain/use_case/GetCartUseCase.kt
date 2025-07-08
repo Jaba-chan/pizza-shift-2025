@@ -6,4 +6,4 @@ import javax.inject.Inject
 
 class GetCartUseCase @Inject constructor(
     private val repository: CartRepository
-) : suspend () -> List<ru.evgenykuzakov.model.pizza.Pizza> by repository::getCart
+) : suspend () -> List<Pizza> by repository::getCart

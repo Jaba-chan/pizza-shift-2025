@@ -12,7 +12,7 @@ import ru.evgenykuzakov.pizza.domain.repository.PizzaRepository
 abstract class DataModule {
 
     @Binds
-    internal abstract fun bindsLocalUsersRepository(
+    internal abstract fun bindsPizzaRepository(
         impl: PizzaRepositoryImpl,
     ): PizzaRepository
 
