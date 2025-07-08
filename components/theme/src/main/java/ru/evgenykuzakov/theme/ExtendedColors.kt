@@ -10,4 +10,5 @@ data class ExtendedColors(
     val content5: Color,
     val content6: Color,
     val buttonContent: Color,
+    val backgroundSecondary: Color
 )
