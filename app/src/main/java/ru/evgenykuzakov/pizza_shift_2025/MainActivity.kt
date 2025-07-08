@@ -11,23 +11,21 @@ import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.NavigationBarDefaults
-import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 import ru.evgenykuzakov.auth.presentation.AuthScreen
-import ru.evgenykuzakov.pizza.presentation.CatalogScreen
+import ru.evgenykuzakov.pizzaCatalog.presentation.CatalogScreen
 import ru.evgenykuzakov.pizza_shift_2025.navigation.AppNavGraph
 import ru.evgenykuzakov.pizza_shift_2025.navigation.BottomNavigationItem
 import ru.evgenykuzakov.pizza_shift_2025.navigation.NavigationItem
 import ru.evgenykuzakov.pizza_shift_2025.navigation.NavigationState
 import ru.evgenykuzakov.pizza_shift_2025.navigation.Screen
+import ru.evgenykuzakov.pizzadetail.presentation.PizzaDetailScreen
 import ru.evgenykuzakov.theme.ShiftAppTheme
 import ru.evgenykuzakov.utils.getBaseNavUrl
 
@@ -50,8 +48,7 @@ class MainActivity : ComponentActivity() {
                     NavigationItem.Cart,
                     NavigationItem.Profile
                 )
-                println(currentRoute)
-                println(bottomNavItems.map { it.screen.route.getBaseNavUrl() })
+
                 Scaffold(
                     modifier = Modifier
                         .fillMaxSize()
@@ -81,11 +78,24 @@ class MainActivity : ComponentActivity() {
                         authScreenContent = {
                             AuthScreen(
                                 paddingValues = innerPadding,
-                                onNavigateToCatalog = { navSate.navigateTo(Screen.PizzaScreen.route) }
+                                navigateToCatalog = { navSate.navigateTo(Screen.PizzaScreen.route) }
                             )
                         },
-                        pizzaCatalogScreenContent = { CatalogScreen(paddingValues = innerPadding) },
-                        pizzaDetailScreenContent = {}
+                        pizzaCatalogScreenContent = {
+                            CatalogScreen(
+                                paddingValues = innerPadding,
+                                onCardClick = { println(it)
+                                    navSate.navigateToViaBottomBar(Screen.PizzaDetailScreen.createRoute(it))
+                                println(it)
+                                }
+                            )
+                        },
+                        pizzaDetailScreenContent = {
+                            PizzaDetailScreen(
+                                paddingValues = innerPadding,
+                                navigateBack = { navSate.navigateTo(Screen.PizzaCatalogScreen.route) }
+                            )
+                        }
                     )
                 }
             }

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pizza">Пицца</string>
+    <string name="orders">Заказы</string>
+    <string name="cart">Корзина</string>
+    <string name="profile">Профиль</string>
+    <string name="continue_str">Продолжить</string>
+    <string name="rub_char">₽</string>
+
+    <!-- Pizza ingredients -->
+    <string name="bacon">бекон</string>
+    <string name="basil">базилик</string>
+    <string name="cheddar">чеддер</string>
+    <string name="chickenfillet">куриное филе</string>
+    <string name="chile">чили</string>
+    <string name="feta">фета</string>
+    <string name="greenpepper">зеленый перец</string>
+    <string name="ham">ветчина</string>
+    <string name="meatballs">фрикадельки</string>
+    <string name="mozzarella">моцарелла</string>
+    <string name="mushrooms">грибы</string>
+    <string name="onion">лук</string>
+    <string name="parmesan">пармезан</string>
+    <string name="peperoni">пепперони</string>
+    <string name="pickle">маринованный огурец</string>
+    <string name="pineapple">ананас</string>
+    <string name="shrimps">креветки</string>
+    <string name="tomato">помидор</string>
+
+    <!-- Pizza sizes -->
+    <string name="small_title">Маленькая</string>
+    <string name="medium_title">Средняя</string>
+    <string name="large_title">Большая</string>
+    <string name="small_size">25 см</string>
+    <string name="medium_size">30 см</string>
+    <string name="large_size">35 см</string>
+
+    <!-- Pizza dough -->
+    <string name="dough_thin">традиционное тесто</string>
+    <string name="dough_thick">толстое тесто</string>
+</resources>

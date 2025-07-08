@@ -6,7 +6,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
-import ru.evgenykuzakov.theme.Content5
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 
 @Composable
 fun TitleH2(
@@ -23,7 +24,7 @@ fun TitleH2(
 }
 
 @Composable
-fun Paragraph16(
+fun Paragraph16Regular(
     modifier: Modifier = Modifier,
     text: String,
     color: Color = MaterialTheme.colorScheme.onSurface,
@@ -38,29 +39,64 @@ fun Paragraph16(
 }
 
 @Composable
-fun Paragraph14(
+fun Paragraph16Medium(
     modifier: Modifier = Modifier,
     text: String,
-    color: Color = MaterialTheme.colorScheme.onSurface
+    color: Color = MaterialTheme.colorScheme.onSurface,
+    style: TextStyle = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.W500),
 ){
     Text(
         modifier = modifier,
         text = text,
-        style = MaterialTheme.typography.bodyMedium,
+        style = style,
         color = color
     )
 }
 
 @Composable
-fun Paragraph12(
+fun Paragraph14Regular(
     modifier: Modifier = Modifier,
     text: String,
+    color: Color = MaterialTheme.colorScheme.onSurface,
+    textAlign: TextAlign = TextAlign.Start
+){
+    Text(
+        modifier = modifier,
+        text = text,
+        style = MaterialTheme.typography.bodyMedium,
+        color = color,
+        textAlign = textAlign
+    )
+}
+
+@Composable
+fun Paragraph14Medium(
+    modifier: Modifier = Modifier,
+    text: String,
+    color: Color = MaterialTheme.colorScheme.onSurface,
+    textAlign: TextAlign = TextAlign.Start
+){
+    Text(
+        modifier = modifier,
+        text = text,
+        style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.W500),
+        color = color,
+        textAlign = textAlign
+    )
+}
+
+@Composable
+fun Paragraph12Regular(
+    modifier: Modifier = Modifier,
+    text: String,
+    textAlign: TextAlign = TextAlign.Start,
     color: Color = MaterialTheme.colorScheme.onSurface
 ){
     Text(
         modifier = modifier,
         text = text,
         style = MaterialTheme.typography.bodySmall,
-        color = color
+        color = color,
+        textAlign = textAlign
     )
 }

@@ -2,54 +2,45 @@ package ru.evgenykuzakov.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 
 private val DarkColorScheme = darkColorScheme(
     primary = OrangeBrand,
     onSurface = White,
-    outline = Border,
+    outline = BorderLight,
     background = ContentWB,
 )
 
 private val LightColorScheme = lightColorScheme(
     primary = OrangeBrand,
     onSurface = ContentWB,
-    outline = Border,
+    outline = BorderLight,
     background = White,
 )
 
-val ColorScheme.indicator: Color
-    @Composable
-    get() = if (isSystemInDarkTheme()) IndicatorLight else IndicatorLight
-
-val ColorScheme.Content3: Color
-    @Composable
-    get() = if (isSystemInDarkTheme()) Content3Color else Content3Color
-
-val ColorScheme.Content5: Color
-    @Composable
-    get() = if (isSystemInDarkTheme()) Content5Color else Content5Color
-
-val ColorScheme.Content6: Color
-    @Composable
-    get() = if (isSystemInDarkTheme()) Content6Color else Content6Color
-
-val ColorScheme.ButtonContent: Color
-    @Composable
-    get() = if (isSystemInDarkTheme()) White else White
+private val LocalExtendedColors = staticCompositionLocalOf {
+    ExtendedColors(
+        indicator = Color.Unspecified,
+        content3 = Color.Unspecified,
+        content5 = Color.Unspecified,
+        content6 = Color.Unspecified,
+        buttonContent = Color.Unspecified,
+        backgroundSecondary = Color.Unspecified
+    )
+}
 
 @Composable
 fun ShiftAppTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
     dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
@@ -63,9 +54,32 @@ fun ShiftAppTheme(
         else -> LightColorScheme
     }
 
-    MaterialTheme(
-        colorScheme = colorScheme,
-        typography = Typography,
-        content = content
+    val extendedColors = ExtendedColors(
+            indicator = IndicatorLight,
+            content3 = if (isSystemInDarkTheme()) Content3ColorDark else Content3ColorLight,
+            content5 = if (isSystemInDarkTheme()) Content5ColorDark else Content5ColorLight,
+            content6 = Content6Color,
+            buttonContent = White,
+            backgroundSecondary = if (isSystemInDarkTheme()) BGSecondaryDark else BGSecondaryLight
     )
+
+    CompositionLocalProvider(
+        LocalExtendedColors provides extendedColors,
+        LocalExtendedTypography provides extendedType
+    ) {
+        MaterialTheme(
+            colorScheme = colorScheme,
+            typography = Typography,
+            content = content
+        )
+    }
+}
+
+object ExtendedTheme {
+    val colorScheme: ExtendedColors
+        @Composable
+        get() = LocalExtendedColors.current
+    val typography: ExtendedType
+        @Composable
+        get() = LocalExtendedTypography.current
 }

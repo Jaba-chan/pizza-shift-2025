@@ -9,7 +9,7 @@ data class PizzaEntity(
     val pizzaId: String,
     val name: String,
     val img: String,
-    val toppings: List<ToppingEntity> = emptyList(),
+    val toppings: List<IngredientEntity>,
     val size: SizeEntity,
     val dough: DoughEntity
 )

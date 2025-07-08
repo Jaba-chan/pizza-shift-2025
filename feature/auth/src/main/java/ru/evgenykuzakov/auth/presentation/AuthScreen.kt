@@ -7,20 +7,17 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import ru.evgenykuzakov.auth.R
 
 @Composable
 fun AuthScreen(
     viewModel: AuthScreenViewModel = hiltViewModel(),
-    onNavigateToCatalog: () -> Unit,
+    navigateToCatalog: () -> Unit,
     paddingValues: PaddingValues
 ) {
     val context = LocalContext.current
@@ -29,7 +26,7 @@ fun AuthScreen(
     LaunchedEffect(Unit) {
         viewModel.action.collect{
             when(it){
-                AuthActions.NavigateToCatalogScreen -> onNavigateToCatalog()
+                AuthActions.NavigateToCatalogScreen -> navigateToCatalog()
             }
         }
     }
@@ -40,6 +37,7 @@ fun AuthScreen(
             .padding(paddingValues)
     ) {
         AppBar()
+
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -47,19 +45,19 @@ fun AuthScreen(
         ) {
             HeadingText()
 
-            PhoneTextInput(state, viewModel::onPhoneTextChanged)
+            PhoneTextInput(state, viewModel::handlePhoneTextInput)
 
-            state.codeState?.let { CodeTextInput(state, viewModel::onCodeTextChanged) }
+            state.codeState?.let { CodeTextInput(state, viewModel::handleCodeTextInput) }
 
             AuthButton(
                 state = state ,
-                onClick = { if (state.codeState == null) viewModel.onAuthButtonClicked() else viewModel.signIn() }
+                onClick = { if (state.codeState == null) viewModel.auth() else viewModel.signIn() }
             )
 
             state.codeState?.timer?.let { TimerText(context, it) }
 
             if (state.codeState?.showResendCodeButton == true){
-                RequestAgainTextButton(viewModel::onRequestButtonClicked )
+                RequestAgainTextButton(viewModel::requestCodeAgain )
             }
 
         }

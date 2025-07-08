@@ -15,7 +15,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import ru.evgenykuzakov.theme.Content5
+import ru.evgenykuzakov.theme.ExtendedTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -60,9 +60,9 @@ fun ShiftTextField(
                 bottom = 0.dp,
             ),
             placeholder =  {
-                Paragraph16(
+                Paragraph16Regular(
                     text = placeholderText,
-                    color = MaterialTheme.colorScheme.Content5
+                    color = ExtendedTheme.colorScheme.content5
                 )
             },
             container = {
