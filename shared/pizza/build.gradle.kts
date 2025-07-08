@@ -37,18 +37,8 @@ android {
 }
 
 dependencies {
-    implementation(project(":utils"))
-    implementation(project(":components:ui"))
-    implementation(project(":components:theme"))
-    implementation(project(":shared:network"))
     implementation(project(":shared:model"))
-    implementation(libs.coil.compose)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.material3)
     implementation(libs.retrofit)
-    implementation(libs.logging.interceptor)
     implementation(libs.converter.gson)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.hilt.android)
