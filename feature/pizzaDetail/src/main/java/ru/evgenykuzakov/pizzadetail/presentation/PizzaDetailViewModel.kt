@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -37,7 +38,7 @@ class PizzaDetailViewModel @Inject constructor(
     }
 
     init {
-        viewModelScope.launch(handler) {
+        viewModelScope.launch(Dispatchers.IO + handler) {
             val pizza = getPizzaDetailInfoUseCase(pizzaId)
             _uiState.value = PizzaDetailScreenUIState.Content(
                 pizza = pizza,
@@ -53,6 +54,11 @@ class PizzaDetailViewModel @Inject constructor(
         }
     }
 
+    fun addToCart() {
+        viewModelScope.launch(Dispatchers.IO) {
+            addToCartUseCase((_uiState.value as PizzaDetailScreenUIState.Content).userChoice)
+        }
+    }
 
     fun selectPizzaSize(pos: Int) {
         val currentState = _uiState.value as PizzaDetailScreenUIState.Content

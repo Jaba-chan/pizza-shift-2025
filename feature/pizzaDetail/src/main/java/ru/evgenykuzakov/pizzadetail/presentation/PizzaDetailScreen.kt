@@ -69,7 +69,10 @@ fun PizzaDetailScreen(
 
                     AddToCartButton(
                         totalCost = viewModel.totalCost(),
-                        onClick = {}
+                        onClick = {
+                            viewModel.addToCart()
+                            navigateBack()
+                        }
                     )
                 }
             }
