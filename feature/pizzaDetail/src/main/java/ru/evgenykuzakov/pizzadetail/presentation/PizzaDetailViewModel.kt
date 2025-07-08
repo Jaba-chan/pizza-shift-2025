@@ -76,7 +76,7 @@ class PizzaDetailViewModel @Inject constructor(
                 if (ingredient in toppings) it.minus(ingredient) else it.plus(
                     ingredient
                 )
-            }
+            }.sortedBy { it.type.name }
         )
         _uiState.value = currentState.copy(userChoice = updatedUserChoice)
     }
