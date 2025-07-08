@@ -41,11 +41,10 @@ dependencies {
     implementation(project(":components:ui"))
     implementation(project(":components:theme"))
     implementation(project(":components:resource"))
-    implementation(project(":shared:pizza"))
+    implementation(project(":shared:pizzaMove"))
     implementation(project(":shared:network"))
     implementation(project(":shared:model"))
     implementation(project(":shared:cart"))
-    implementation(libs.androidx.room.runtime)
 
     ksp(libs.hilt.android.compiler)
     implementation(libs.coil.compose)

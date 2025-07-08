@@ -67,6 +67,7 @@ dependencies {
     implementation(project(":feature:pizzaCatalog"))
     implementation(project(":feature:pizzaDetail"))
     implementation(project(":shared:network"))
+    implementation(project(":shared:cart"))
     implementation(project(":components:ui"))
     implementation(project(":components:theme"))
     implementation(project(":components:resource"))
@@ -81,6 +82,7 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.hilt.navigation.compose)
     implementation(libs.hilt.android)
+    implementation(libs.androidx.room.runtime)
     ksp(libs.hilt.android.compiler)
 
     testImplementation(libs.junit)
