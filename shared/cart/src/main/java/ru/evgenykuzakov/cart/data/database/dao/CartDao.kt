@@ -11,7 +11,7 @@ import ru.evgenykuzakov.cart.data.database.model.PizzaEntity
 interface CartDao {
 
     @Query("""
-        SELECT *, COUTN(*) AS count FROM cart GROUP BY 
+        SELECT *, COUNT(*) AS count FROM cart GROUP BY 
         pizzaId, toppings, size, dough
     """)
     fun getCart(): List<CartItemEntity>

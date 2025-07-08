@@ -10,13 +10,14 @@ sealed class Screen(
     data object PizzaCatalogScreen: Screen(ROUTE_PIZZA_CATALOG)
     data object PizzaDetailScreen: Screen(ROUTE_PIZZA_DETAIL){
         fun createRoute(pizzaId: String): String {
-            return "$ROUTE_PIZZA_CATALOG?pizzaId=${pizzaId}"
+            return "$ROUTE_PIZZA_CATALOG?pizzaId=$pizzaId"
         }
     }
 
     data object OrdersScreen: Screen(BASE_ROUTE_ORDER)
 
-    data object CartScreen: Screen(BASE_ROUTE_CART)
+    data object CartHomeScreen: Screen(BASE_ROUTE_CART_HOME)
+    data object CartScreen: Screen(ROUTE_CART)
 
     data object ProfileScreen: Screen(BASE_ROUTE_PROFILE)
 
@@ -24,10 +25,11 @@ sealed class Screen(
         private const val ROUTE_AUTH = "auth"
         private const val ROUTE_HOME = "home"
         private const val BASE_ROUTE_PIZZA = "pizza"
-        private const val ROUTE_PIZZA_CATALOG = "${BASE_ROUTE_PIZZA}/catalog"
+        private const val ROUTE_PIZZA_CATALOG = "$BASE_ROUTE_PIZZA/catalog"
         private const val ROUTE_PIZZA_DETAIL = "$ROUTE_PIZZA_CATALOG?pizzaId={pizzaId}"
         private const val BASE_ROUTE_ORDER= "order"
-        private const val BASE_ROUTE_CART= "cart"
+        private const val BASE_ROUTE_CART_HOME = "cart"
+        private const val ROUTE_CART= "$BASE_ROUTE_CART_HOME/total"
         private const val BASE_ROUTE_PROFILE= "profile"
     }
 }

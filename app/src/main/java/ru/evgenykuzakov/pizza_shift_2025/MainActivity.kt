@@ -19,6 +19,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 import ru.evgenykuzakov.auth.presentation.AuthScreen
+import ru.evgenykuzakov.cart.presentation.CartScreen
 import ru.evgenykuzakov.pizzaCatalog.presentation.CatalogScreen
 import ru.evgenykuzakov.pizza_shift_2025.navigation.AppNavGraph
 import ru.evgenykuzakov.pizza_shift_2025.navigation.BottomNavigationItem
@@ -93,7 +94,13 @@ class MainActivity : ComponentActivity() {
                         pizzaDetailScreenContent = {
                             PizzaDetailScreen(
                                 paddingValues = innerPadding,
-                                navigateBack = { navSate.navigateTo(Screen.PizzaCatalogScreen.route) }
+                                navigateBack = { navSate.navigateBack() }
+                            )
+                        },
+                        cartScreenContent = {
+                            CartScreen(
+                                paddingValues = innerPadding,
+                                navigateBack = { navSate.navigateBack() }
                             )
                         }
                     )

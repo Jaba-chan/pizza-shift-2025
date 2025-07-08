@@ -20,7 +20,7 @@ sealed class NavigationItem(
 
     )
     data object Cart: NavigationItem(
-        screen = Screen.CartScreen,
+        screen = Screen.CartHomeScreen,
         titleResId = Res.string.cart,
         iconResId = Res.drawable.ic_cart
 

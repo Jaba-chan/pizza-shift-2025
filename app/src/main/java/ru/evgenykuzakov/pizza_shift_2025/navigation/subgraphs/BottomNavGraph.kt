@@ -24,9 +24,9 @@ fun NavGraphBuilder.bottomNavGraph(
         composable(Screen.OrdersScreen.route) {
             ordersScreenContent()
         }
-        composable(Screen.CartScreen.route) {
-            cartScreenContent()
-        }
+        cartNavGraph(
+            cartScreenContent = cartScreenContent
+        )
         composable(Screen.ProfileScreen.route) {
             profileScreenContent()
         }

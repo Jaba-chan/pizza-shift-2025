@@ -21,4 +21,8 @@ class NavigationState(
             restoreState = true
         }
     }
+
+    fun navigateBack(){
+        navController.popBackStack()
+    }
 }

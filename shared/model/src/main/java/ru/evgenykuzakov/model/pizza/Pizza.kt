@@ -8,3 +8,5 @@ data class Pizza(
     val size: Size,
     val dough: Dough
 )
+
+fun Pizza.totalCost() = this.size.price + this.dough.price + this.toppings.sumOf { it.price }

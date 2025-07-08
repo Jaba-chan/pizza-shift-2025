@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="minus">-\n</string>
+    <string name="plus">+</string>
+    <string name="change">Изменить</string>
+</resources>

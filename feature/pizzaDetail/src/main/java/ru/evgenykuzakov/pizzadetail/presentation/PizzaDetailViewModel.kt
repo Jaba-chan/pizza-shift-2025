@@ -12,6 +12,7 @@ import kotlinx.coroutines.launch
 import ru.evgenykuzakov.cart.domain.use_case.AddToCartUseCase
 import ru.evgenykuzakov.model.pizza.Ingredient
 import ru.evgenykuzakov.model.pizza.Pizza
+import ru.evgenykuzakov.model.pizza.totalCost
 import ru.evgenykuzakov.network.di.RetrofitBaseUrl
 import ru.evgenykuzakov.pizza.domain.use_case.GetPizzaDetailInfoUseCase
 import javax.inject.Inject
@@ -91,6 +92,6 @@ class PizzaDetailViewModel @Inject constructor(
 
     fun totalCost(): Int {
         val userChoice = (_uiState.value as PizzaDetailScreenUIState.Content).userChoice
-        return userChoice.size.price + userChoice.dough.price + userChoice.toppings.sumOf { it.price }
+        return userChoice.totalCost()
     }
 }
