@@ -9,10 +9,12 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import ru.evgenykuzakov.ui.LoadingScreen
 
 @Composable
 fun CatalogScreen(
     viewModel: CatalogViewModel = hiltViewModel(),
+    onCardClick: (String) -> Unit,
     paddingValues: PaddingValues
 ) {
     val state by viewModel.uiState.collectAsState()
@@ -24,7 +26,12 @@ fun CatalogScreen(
     ) {
         AppBar()
         when(state){
-            is CatalogScreenUIState.Content -> Catalog((state as CatalogScreenUIState.Content).catalog, viewModel.getBaseUrl())
+            is CatalogScreenUIState.Content ->
+                Catalog(
+                    catalog = (state as CatalogScreenUIState.Content).catalog,
+                    url = viewModel.getBaseUrl(),
+                    onCardClick = onCardClick
+                )
             is CatalogScreenUIState.Error -> {}
             CatalogScreenUIState.Loading -> LoadingScreen()
         }

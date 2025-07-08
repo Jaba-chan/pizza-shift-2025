@@ -48,8 +48,7 @@ class MainActivity : ComponentActivity() {
                     NavigationItem.Cart,
                     NavigationItem.Profile
                 )
-                println(currentRoute)
-                println(bottomNavItems.map { it.screen.route.getBaseNavUrl() })
+
                 Scaffold(
                     modifier = Modifier
                         .fillMaxSize()
@@ -82,8 +81,21 @@ class MainActivity : ComponentActivity() {
                                 onNavigateToCatalog = { navSate.navigateTo(Screen.PizzaScreen.route) }
                             )
                         },
-                        pizzaCatalogScreenContent = { CatalogScreen(paddingValues = innerPadding) },
-                        pizzaDetailScreenContent = { PizzaDetailScreen(paddingValues = innerPadding) }
+                        pizzaCatalogScreenContent = {
+                            CatalogScreen(
+                                paddingValues = innerPadding,
+                                onCardClick = { println(it)
+                                    navSate.navigateToViaBottomBar(Screen.PizzaDetailScreen.createRoute(it))
+                                println(it)
+                                }
+                            )
+                        },
+                        pizzaDetailScreenContent = {
+                            PizzaDetailScreen(
+                                paddingValues = innerPadding,
+                                onBackClick = { navSate.navigateTo(Screen.PizzaCatalogScreen.route) }
+                            )
+                        }
                     )
                 }
             }
