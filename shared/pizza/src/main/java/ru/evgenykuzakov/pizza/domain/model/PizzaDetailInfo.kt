@@ -3,11 +3,6 @@ package ru.evgenykuzakov.pizza.domain.model
 import ru.evgenykuzakov.model.pizza.Dough
 import ru.evgenykuzakov.model.pizza.Ingredient
 import ru.evgenykuzakov.model.pizza.Size
-import ru.evgenykuzakov.model.pizza.Topping
-import ru.evgenykuzakov.pizza.data.model.DoughDto
-import ru.evgenykuzakov.pizza.data.model.IngredientDto
-import ru.evgenykuzakov.pizza.data.model.SizeDto
-import ru.evgenykuzakov.pizza.data.model.ToppingDto
 
 data class PizzaDetailInfo(
     val allergens: List<String>,
@@ -26,6 +21,6 @@ data class PizzaDetailInfo(
     val protein: String,
     val sizes: List<Size>,
     val sodium: String,
-    val toppings: List<Topping>,
+    val toppings: List<Ingredient>,
     val totalFat: String
 )

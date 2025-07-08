@@ -21,6 +21,6 @@ data class CatalogDto(
     val protein: String,
     val sizes: List<SizeDto>,
     val sodium: String,
-    val toppings: List<ToppingDto>,
+    val toppings: List<IngredientDto>,
     val totalFat: String
 )

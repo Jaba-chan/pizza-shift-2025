@@ -9,3 +9,9 @@ fun IngredientEntity.toDomain() = Ingredient(
     price = price,
     type = IngredientType.fromString(type)
 )
+
+fun Ingredient.toEntity() = IngredientEntity(
+    img = img,
+    price = price,
+    type = type.name
+)
