@@ -10,6 +10,7 @@ import ru.evgenykuzakov.pizza_shift_2025.navigation.Screen
 
 fun NavGraphBuilder.cartNavGraph(
     cartScreenContent: @Composable () -> Unit,
+    paymentScreenContent: @Composable () -> Unit,
 ){
     navigation(
         startDestination = Screen.CartScreen.route,
@@ -17,6 +18,9 @@ fun NavGraphBuilder.cartNavGraph(
     ) {
         composable(Screen.CartScreen.route) {
             cartScreenContent()
+        }
+        composable(Screen.PaymentScreen.route) {
+            paymentScreenContent()
         }
     }
 }

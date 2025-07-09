@@ -21,7 +21,8 @@ fun CartScreen(
     viewModel: CartViewModel = hiltViewModel(),
     paddingValues: PaddingValues,
     navigateBack: () -> Unit,
-    navigateToChanging: (Long) -> Unit
+    navigateToChanging: (Long) -> Unit,
+    navigateToPayment: () -> Unit
 ) {
     val state by viewModel.uiState.collectAsState()
 
@@ -68,7 +69,7 @@ fun CartScreen(
         if (state is CartScreenUIState.Content){
             MakeOrderBar(
                 modifier = Modifier.align(Alignment.BottomCenter),
-                onClick = {},
+                onClick = navigateToPayment,
                 cart = (state as CartScreenUIState.Content).cart
             )
         }

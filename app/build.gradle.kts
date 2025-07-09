@@ -67,6 +67,7 @@ dependencies {
     implementation(project(":feature:pizzaCatalog"))
     implementation(project(":feature:pizzaDetail"))
     implementation(project(":feature:cart"))
+    implementation(project(":feature:payment"))
     implementation(project(":shared:network"))
     implementation(project(":shared:cart"))
     implementation(project(":components:ui"))

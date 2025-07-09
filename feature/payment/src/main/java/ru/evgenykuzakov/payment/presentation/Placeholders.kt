@@ -1,7 +1,10 @@
 package ru.evgenykuzakov.payment.presentation
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Card
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -14,6 +17,7 @@ import ru.evgenykuzakov.ui.BasicAppBar
 import ru.evgenykuzakov.ui.Paragraph12Regular
 import ru.evgenykuzakov.ui.ShiftButton
 import ru.evgenykuzakov.ui.ShiftButtonText
+import ru.evgenykuzakov.ui.ShiftHeadingTextField
 import ru.evgenykuzakov.resource.R as Res
 
 @Composable
@@ -45,28 +49,50 @@ internal fun ProgressBar(
                 stringResource(R.string.step_of),
                 step.step,
                 Step.lastStep
-            )
+            ),
+            modifier = Modifier.padding(bottom = 8.dp)
         )
 
         LinearProgressIndicator(
-            modifier = Modifier.height(4.dp),
+            modifier = Modifier
+                .height(4.dp)
+                .fillMaxWidth(),
             progress = { step.step.toFloat() / Step.lastStep },
-            color = ExtendedTheme.colorScheme.indicator,
-            trackColor = ExtendedTheme.colorScheme.indicatorPositive
+            trackColor = ExtendedTheme.colorScheme.indicator,
+            color = ExtendedTheme.colorScheme.indicatorPositive,
+            drawStopIndicator = {},
+            gapSize = (-2).dp
         )
     }
 }
 
 @Composable
 internal fun NextStepButton(
-    modifier: Modifier = Modifier,
     onClick: () -> Unit
 ) {
     ShiftButton(
-        modifier = modifier,
+        modifier = Modifier
+            .padding(top = 62.dp)
+            .fillMaxWidth(),
         onClick = onClick
     ) {
         ShiftButtonText(text = stringResource(Res.string.continue_str))
     }
 }
+
+@Composable
+internal fun PayButton(
+    onClick: () -> Unit
+) {
+    ShiftButton(
+        modifier = Modifier.fillMaxWidth(),
+        onClick = onClick
+    ) {
+        ShiftButtonText(text = stringResource(R.string.pay))
+    }
+}
+
+
+
+
 

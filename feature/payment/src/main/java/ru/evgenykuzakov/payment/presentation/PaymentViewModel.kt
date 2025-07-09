@@ -24,6 +24,7 @@ class PaymentViewModel @Inject constructor(
     val uiState: StateFlow<PaymentScreenUIState> = _uiState
 
     private val handler = CoroutineExceptionHandler { _, exception ->
+        println(exception)
         _uiState.value = PaymentScreenUIState.Error(exception.localizedMessage.orEmpty())
     }
 
@@ -60,6 +61,16 @@ class PaymentViewModel @Inject constructor(
 
     fun handleCityTextInput(text: String) {
         updateUser { it.copy(city = text) }
+    }
+
+    fun nextStep() {
+        val currentState = _uiState.value as? PaymentScreenUIState.Content ?: return
+
+        if (currentState.user.lastname.isNotBlank() && currentState.user.firstname.isNotBlank()) {
+            _uiState.update {
+                currentState.copy(step = currentState.step?.next())
+            }
+        }
     }
 
 }

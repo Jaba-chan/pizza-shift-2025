@@ -5,6 +5,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import ru.evgenykuzakov.otptoken.OptTokenDataSource
 import ru.evgenykuzakov.profile.data.network.AuthInterceptor
@@ -29,6 +30,11 @@ internal object NetworkModule {
         authInterceptor: AuthInterceptor
     ): OkHttpClient {
         return OkHttpClient.Builder().apply {
+            addInterceptor(
+                HttpLoggingInterceptor().apply {
+                level = HttpLoggingInterceptor.Level.BODY
+                }
+            )
             addInterceptor(authInterceptor)
         }.build()
     }

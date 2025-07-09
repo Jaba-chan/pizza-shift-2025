@@ -2,4 +2,8 @@
 <resources>
     <string name="your_data">Ваши данные</string>
     <string name="step_of">Шаг %d из %d</string>
+    <string name="pay">Оплатить</string>
+    <string name="card_number">Номер*</string>
+    <string name="card_date">Срок*</string>
+    <string name="cvv">CVV*</string>
 </resources>

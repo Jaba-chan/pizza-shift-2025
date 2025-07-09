@@ -1,6 +1,5 @@
 package ru.evgenykuzakov.theme
 
-import androidx.compose.material3.CardElevation
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Color
 

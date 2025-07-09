@@ -5,7 +5,7 @@ import ru.evgenykuzakov.user.User
 
 sealed interface PaymentScreenUIState {
 
-    data class Content(val user: User, val step: Step = Step.StepOne) : PaymentScreenUIState
+    data class Content(val user: User, val step: Step? = Step.One) : PaymentScreenUIState
 
     data object Loading : PaymentScreenUIState
 
@@ -14,13 +14,13 @@ sealed interface PaymentScreenUIState {
 
 sealed class Step(val step: Int){
 
-    data object StepOne: Step(1)
+    data object One: Step(1)
 
-    data object StepTwo: Step(2)
+    data object Two: Step(2)
 
     fun next(): Step? = when (this) {
-        StepOne -> StepTwo
-        StepTwo -> null
+        One -> Two
+        Two -> null
     }
 
     companion object {

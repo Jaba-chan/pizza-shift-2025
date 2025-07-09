@@ -3,6 +3,7 @@ package ru.evgenykuzakov.payment.presentation
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -26,6 +27,7 @@ fun PaymentScreen(
     val inputsHandler = listOf(
         viewModel::handleLastNameTextInput,
         viewModel::handleFirstNameTextInput,
+        null,
         viewModel::handlePhoneTextInput,
         viewModel::handleEmailTextInput,
         viewModel::handleCityTextInput
@@ -50,19 +52,28 @@ fun PaymentScreen(
                         )
                         .verticalScroll(rememberScrollState()),
                 ) {
+                    when(step){
+                        Step.One, Step.Two -> ProgressBar(step = step)
+                        null -> {}
+                    }
 
-                    ProgressBar(step = step)
+                    when(step){
+                        Step.One ->
+                            UserProfileDataScreen(
+                                Modifier.padding(vertical = 16.dp).fillMaxWidth(),
+                                user,
+                                inputsHandler = inputsHandler
+                            )
+                        Step.Two ->{}
 
-                    UserProfileDataScreen(
-                        Modifier.padding(vertical = 16.dp),
-                        user,
-                        inputsHandler = inputsHandler
-                    )
+                        null -> {}
+                    }
 
-                    NextStepButton(
-                        Modifier.padding(top = 62.dp),
-                        onClick = {}
-                    )
+                    when(step){
+                        Step.One -> NextStepButton( onClick = viewModel::nextStep )
+                        Step.Two -> PayButton( onClick = viewModel::nextStep )
+                        null -> {}
+                    }
                 }
             }
 
