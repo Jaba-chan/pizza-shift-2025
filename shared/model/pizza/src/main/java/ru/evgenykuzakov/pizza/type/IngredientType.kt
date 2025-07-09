@@ -1,4 +1,4 @@
-package ru.evgenykuzakov.model.pizza.type
+package ru.evgenykuzakov.pizza.type
 
 sealed class IngredientType(val name: String) {
     data object Pineapple : IngredientType("PINEAPPLE")

@@ -36,9 +36,11 @@ android {
 }
 
 dependencies {
-    implementation(project(":shared:model"))
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
     implementation(libs.kotlinx.serialization.json)
-    implementation(libs.hilt.android.compiler)
+    implementation(libs.hilt.android)
     implementation(libs.hilt.navigation.compose)
-    ksp(libs.hilt.android)
+    implementation(libs.kotlinx.coroutines.android)
+    ksp(libs.hilt.android.compiler)
 }

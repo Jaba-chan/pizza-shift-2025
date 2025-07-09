@@ -1,8 +1,8 @@
 package ru.evgenykuzakov.pizza.domain.model
 
-import ru.evgenykuzakov.model.pizza.Dough
-import ru.evgenykuzakov.model.pizza.Ingredient
-import ru.evgenykuzakov.model.pizza.Size
+import ru.evgenykuzakov.pizza.Dough
+import ru.evgenykuzakov.pizza.Ingredient
+import ru.evgenykuzakov.pizza.Size
 
 data class PizzaDetailInfo(
     val allergens: List<String>,

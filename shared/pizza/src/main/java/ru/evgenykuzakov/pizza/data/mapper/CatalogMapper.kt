@@ -1,6 +1,6 @@
 package ru.evgenykuzakov.pizza.data.mapper
 
-import ru.evgenykuzakov.model.pizza.type.SizeType
+import ru.evgenykuzakov.pizza.type.SizeType
 import ru.evgenykuzakov.pizza.data.model.CatalogDto
 import ru.evgenykuzakov.pizza.domain.model.Catalog
 import ru.evgenykuzakov.pizza.domain.model.PizzaDetailInfo

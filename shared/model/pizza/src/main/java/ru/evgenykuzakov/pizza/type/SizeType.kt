@@ -1,4 +1,4 @@
-package ru.evgenykuzakov.model.pizza.type
+package ru.evgenykuzakov.pizza.type
 
 sealed class SizeType(val name: String) {
     data object Small : SizeType("SMALL")

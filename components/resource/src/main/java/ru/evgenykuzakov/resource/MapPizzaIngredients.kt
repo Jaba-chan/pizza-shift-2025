@@ -1,7 +1,7 @@
 package ru.evgenykuzakov.resource
 
-import ru.evgenykuzakov.model.pizza.Ingredient
-import ru.evgenykuzakov.model.pizza.type.IngredientType
+import ru.evgenykuzakov.pizza.Ingredient
+import ru.evgenykuzakov.pizza.type.IngredientType
 
 fun Ingredient.mapToResource(): Int {
     return when(this.type){

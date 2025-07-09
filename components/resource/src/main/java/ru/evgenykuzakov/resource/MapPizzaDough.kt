@@ -1,7 +1,7 @@
 package ru.evgenykuzakov.resource
 
-import ru.evgenykuzakov.model.pizza.Dough
-import ru.evgenykuzakov.model.pizza.type.DoughType
+import ru.evgenykuzakov.pizza.Dough
+import ru.evgenykuzakov.pizza.type.DoughType
 
 fun Dough.mapToTitleResource(): Int {
     return when(this.type){

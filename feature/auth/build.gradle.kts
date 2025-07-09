@@ -41,6 +41,7 @@ dependencies {
     implementation(project(":components:ui"))
     implementation(project(":components:theme"))
     implementation(project(":components:resource"))
+    implementation(project(":shared:model:user"))
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)

@@ -1,4 +1,4 @@
-package ru.evgenykuzakov.model.pizza
+package ru.evgenykuzakov.pizza
 
 data class Pizza(
     val id: Long,

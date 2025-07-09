@@ -1,4 +1,4 @@
-package ru.evgenykuzakov.auth.domain.model
+package ru.evgenykuzakov.user
 
 data class User(
     val city: String?,

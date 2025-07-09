@@ -2,7 +2,7 @@ package ru.evgenykuzakov.cart.domain.repository
 
 import kotlinx.coroutines.flow.Flow
 import ru.evgenykuzakov.cart.domain.model.CartItem
-import ru.evgenykuzakov.model.pizza.Pizza
+import ru.evgenykuzakov.pizza.Pizza
 
 interface CartRepository {
 

@@ -1,6 +1,6 @@
-package ru.evgenykuzakov.model.pizza
+package ru.evgenykuzakov.pizza
 
-import ru.evgenykuzakov.model.pizza.type.IngredientType
+import ru.evgenykuzakov.pizza.type.IngredientType
 
 data class Ingredient(
     val img: String,

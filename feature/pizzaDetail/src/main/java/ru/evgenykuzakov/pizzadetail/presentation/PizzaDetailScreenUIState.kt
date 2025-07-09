@@ -1,6 +1,6 @@
 package ru.evgenykuzakov.pizzadetail.presentation
 
-import ru.evgenykuzakov.model.pizza.Pizza
+import ru.evgenykuzakov.pizza.Pizza
 import ru.evgenykuzakov.pizza.domain.model.PizzaDetailInfo
 
 sealed interface PizzaDetailScreenUIState {

@@ -1,7 +1,7 @@
 package ru.evgenykuzakov.auth.domain
 
 import ru.evgenykuzakov.auth.domain.model.params.OtpParams
-import ru.evgenykuzakov.auth.domain.model.User
+import ru.evgenykuzakov.user.User
 import ru.evgenykuzakov.auth.domain.model.params.SignInParams
 
 interface AuthRepository {
