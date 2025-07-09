@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Card
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -17,7 +16,6 @@ import ru.evgenykuzakov.ui.BasicAppBar
 import ru.evgenykuzakov.ui.Paragraph12Regular
 import ru.evgenykuzakov.ui.ShiftButton
 import ru.evgenykuzakov.ui.ShiftButtonText
-import ru.evgenykuzakov.ui.ShiftHeadingTextField
 import ru.evgenykuzakov.resource.R as Res
 
 @Composable

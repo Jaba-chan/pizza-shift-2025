@@ -8,3 +8,8 @@ fun DoughDto.toDomain() = Dough(
     price = price,
     type = DoughType.fromString(type)
 )
+
+fun Dough.toDto() = DoughDto(
+    price = price,
+    type = type.name
+)

@@ -9,3 +9,9 @@ fun IngredientDto.toDomain() = Ingredient(
     price = price,
     type = IngredientType.fromString(type)
 )
+
+fun Ingredient.toDto() = IngredientDto(
+    img = img,
+    price = price,
+    type = type.name
+)
