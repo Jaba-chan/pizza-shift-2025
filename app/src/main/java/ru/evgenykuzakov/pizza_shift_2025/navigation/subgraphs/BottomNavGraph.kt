@@ -9,6 +9,7 @@ import ru.evgenykuzakov.pizza_shift_2025.navigation.Screen
 fun NavGraphBuilder.bottomNavGraph(
     pizzaCatalogScreenContent: @Composable () -> Unit,
     pizzaDetailScreenContent: @Composable () -> Unit,
+    pizzaEditScreenContent: @Composable () -> Unit,
     ordersScreenContent: @Composable () -> Unit,
     cartScreenContent: @Composable () -> Unit,
     profileScreenContent: @Composable () -> Unit
@@ -19,14 +20,15 @@ fun NavGraphBuilder.bottomNavGraph(
     ){
         pizzaNavGraph(
             catalogContent = pizzaCatalogScreenContent,
-            detailScreenContent = pizzaDetailScreenContent
+            detailScreenContent = pizzaDetailScreenContent,
+            editScreenContent = pizzaEditScreenContent
         )
         composable(Screen.OrdersScreen.route) {
             ordersScreenContent()
         }
-        composable(Screen.CartScreen.route) {
-            cartScreenContent()
-        }
+        cartNavGraph(
+            cartScreenContent = cartScreenContent
+        )
         composable(Screen.ProfileScreen.route) {
             profileScreenContent()
         }

@@ -1,6 +1,7 @@
 package ru.evgenykuzakov.pizzaCatalog.presentation
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -17,6 +18,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -47,7 +49,11 @@ internal fun PizzaCard(
             .fillMaxWidth()
             .height(128.dp)
             .clip(RoundedCornerShape(16.dp))
-            .clickable{ onCardClick(pizza.id) }
+            .clickable(
+                onClick = { onCardClick(pizza.id) },
+                indication = null,
+                interactionSource = remember { MutableInteractionSource() }
+            )
     ) {
         AsyncImage(
             model = url + pizza.img,

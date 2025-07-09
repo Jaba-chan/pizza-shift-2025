@@ -8,6 +8,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
+import ru.evgenykuzakov.theme.ExtendedTheme
 
 @Composable
 fun TitleH2(
@@ -85,6 +87,7 @@ fun Paragraph14Medium(
     )
 }
 
+
 @Composable
 fun Paragraph12Regular(
     modifier: Modifier = Modifier,
@@ -98,5 +101,22 @@ fun Paragraph12Regular(
         style = MaterialTheme.typography.bodySmall,
         color = color,
         textAlign = textAlign
+    )
+}
+
+@Composable
+fun Paragraph12Underline(
+    modifier: Modifier = Modifier,
+    text: String,
+    textAlign: TextAlign = TextAlign.Start,
+    color: Color = ExtendedTheme.colorScheme.content6
+){
+    Text(
+        modifier = modifier,
+        text = text,
+        style = MaterialTheme.typography.bodySmall,
+        color = color,
+        textAlign = textAlign,
+        textDecoration = TextDecoration.Underline
     )
 }

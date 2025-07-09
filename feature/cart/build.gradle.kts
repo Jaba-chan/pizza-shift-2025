@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    namespace = "ru.evgenykuzakov.pizzadetail"
+    namespace = "ru.evgenykuzakov.cart.feature"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
@@ -44,14 +44,13 @@ android {
 }
 
 dependencies {
-    implementation(project(":utils"))
     implementation(project(":components:ui"))
     implementation(project(":components:theme"))
     implementation(project(":components:resource"))
     implementation(project(":shared:pizza"))
-    implementation(project(":shared:network"))
     implementation(project(":shared:model"))
     implementation(project(":shared:cart"))
+    implementation(project(":shared:network"))
 
     ksp(libs.hilt.android.compiler)
     implementation(libs.coil.compose)
@@ -59,11 +58,6 @@ dependencies {
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.material3)
-    implementation(libs.retrofit)
-    implementation(libs.logging.interceptor)
-    implementation(libs.converter.gson)
-    implementation(libs.kotlinx.serialization.json)
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigation.compose)
-    implementation(libs.kotlinx.coroutines.android)
 }

@@ -1,4 +1,4 @@
-package ru.evgenykuzakov.pizzadetail.di
+package ru.evgenykuzakov.pizza_shift_2025.di.cartModule
 
 import dagger.Binds
 import dagger.Module

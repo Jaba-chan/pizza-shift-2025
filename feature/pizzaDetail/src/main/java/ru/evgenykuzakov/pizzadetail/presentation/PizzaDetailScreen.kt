@@ -72,7 +72,8 @@ fun PizzaDetailScreen(
                         onClick = {
                             viewModel.addToCart()
                             navigateBack()
-                        }
+                        },
+                        userChoice = userChoice
                     )
                 }
             }

@@ -4,6 +4,8 @@ import ru.evgenykuzakov.cart.domain.repository.CartRepository
 import ru.evgenykuzakov.model.pizza.Pizza
 import javax.inject.Inject
 
-class AddToCartUseCase @Inject constructor(
+class AddOneToCartUseCase @Inject constructor(
     private val repository: CartRepository
-) : suspend (Pizza) -> Unit by repository::addToCart
+){
+    suspend operator fun invoke(pizza: Pizza) = repository.addToCart(pizza.copy(id = 0))
+}

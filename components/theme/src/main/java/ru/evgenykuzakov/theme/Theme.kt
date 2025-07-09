@@ -34,7 +34,10 @@ private val LocalExtendedColors = staticCompositionLocalOf {
         content5 = Color.Unspecified,
         content6 = Color.Unspecified,
         buttonContent = Color.Unspecified,
-        backgroundSecondary = Color.Unspecified
+        backgroundSecondary = Color.Unspecified,
+        shadowSmooth = Color.Unspecified,
+        shadowStrong = Color.Unspecified,
+        backgroundElevation = Color.Unspecified
     )
 }
 
@@ -60,7 +63,10 @@ fun ShiftAppTheme(
             content5 = if (isSystemInDarkTheme()) Content5ColorDark else Content5ColorLight,
             content6 = Content6Color,
             buttonContent = White,
-            backgroundSecondary = if (isSystemInDarkTheme()) BGSecondaryDark else BGSecondaryLight
+            backgroundSecondary = if (isSystemInDarkTheme()) BGSecondaryDark else BGSecondaryLight,
+            shadowSmooth = ShadowSmooth,
+            shadowStrong = ShadowStrong,
+            backgroundElevation = if (isSystemInDarkTheme()) BGElevationDark else White
     )
 
     CompositionLocalProvider(

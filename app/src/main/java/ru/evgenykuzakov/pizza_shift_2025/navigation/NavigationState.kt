@@ -5,9 +5,9 @@ import androidx.navigation.NavController
 class NavigationState(
     private val navController: NavController
 ) {
-    fun navigateToViaBottomBar(route: String){
-        navController.navigate(route){
-            popUpTo(Screen.HomeScreen.route){
+    fun navigateToViaBottomBar(route: String) {
+        navController.navigate(route) {
+            popUpTo(navController.graph.startDestinationId) {
                 saveState = true
             }
             launchSingleTop = true
@@ -20,5 +20,9 @@ class NavigationState(
             launchSingleTop = true
             restoreState = true
         }
+    }
+
+    fun navigateBack(){
+        navController.popBackStack()
     }
 }
