@@ -14,5 +14,6 @@ data class ExtendedColors(
     val backgroundSecondary: Color,
     val shadowSmooth: Color,
     val shadowStrong: Color,
-    val backgroundElevation: Color
+    val backgroundElevation: Color,
+    val indicatorPositive: Color
 )

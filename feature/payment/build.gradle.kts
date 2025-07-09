@@ -41,7 +41,6 @@ dependencies {
     implementation(project(":components:theme"))
     implementation(project(":components:resource"))
     implementation(project(":shared:profile"))
-    implementation(project(":shared:network"))
     implementation(project(":shared:model:user"))
 
     ksp(libs.hilt.android.compiler)

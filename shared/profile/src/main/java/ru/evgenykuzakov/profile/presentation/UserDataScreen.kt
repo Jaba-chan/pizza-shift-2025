@@ -1,8 +1,11 @@
 package ru.evgenykuzakov.profile.presentation
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import ru.evgenykuzakov.profile.R
 import ru.evgenykuzakov.ui.Paragraph14Regular
 import ru.evgenykuzakov.ui.ShiftTextField
@@ -10,6 +13,7 @@ import ru.evgenykuzakov.user.User
 
 @Composable
 fun UserProfileDataScreen(
+    modifier: Modifier = Modifier,
     user: User,
     inputsHandler: List<((String) -> Unit)?>,
     showMiddleName: Boolean = false
@@ -36,7 +40,10 @@ fun UserProfileDataScreen(
         data.forEachIndexed { index, data ->
             if (!showMiddleName && index == 2) return@forEachIndexed
             val isEditable = inputsHandler[index] != null
-            Column {
+            Column(
+                modifier = Modifier,
+                verticalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
                 Paragraph14Regular(text = stringResource(headings[index]))
             }
             ShiftTextField(
