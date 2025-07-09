@@ -13,6 +13,11 @@ sealed class Screen(
             return "$ROUTE_PIZZA_CATALOG?pizzaId=$pizzaId"
         }
     }
+    data object PizzaEditScreen: Screen(ROUTE_PIZZA_EDIT){
+        fun createRoute(editId: Long): String{
+            return "$ROUTE_PIZZA_CATALOG/edit?editId=$editId"
+        }
+    }
 
     data object OrdersScreen: Screen(BASE_ROUTE_ORDER)
 
@@ -27,6 +32,7 @@ sealed class Screen(
         private const val BASE_ROUTE_PIZZA = "pizza"
         private const val ROUTE_PIZZA_CATALOG = "$BASE_ROUTE_PIZZA/catalog"
         private const val ROUTE_PIZZA_DETAIL = "$ROUTE_PIZZA_CATALOG?pizzaId={pizzaId}"
+        private const val ROUTE_PIZZA_EDIT = "$ROUTE_PIZZA_CATALOG/edit?editId={editId}"
         private const val BASE_ROUTE_ORDER= "order"
         private const val BASE_ROUTE_CART_HOME = "cart"
         private const val ROUTE_CART= "$BASE_ROUTE_CART_HOME/total"

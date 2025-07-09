@@ -8,8 +8,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import ru.evgenykuzakov.cart.domain.use_case.AddToCartUseCase
-import ru.evgenykuzakov.cart.domain.use_case.DeleteFromCartUseCase
+import ru.evgenykuzakov.cart.domain.use_case.AddOneToCartUseCase
+import ru.evgenykuzakov.cart.domain.use_case.DeleteOneFromCartUseCase
 import ru.evgenykuzakov.cart.domain.use_case.GetCartUseCase
 import ru.evgenykuzakov.model.pizza.Pizza
 import ru.evgenykuzakov.network.di.RetrofitBaseUrl
@@ -19,8 +19,8 @@ import javax.inject.Inject
 class CartViewModel @Inject constructor(
     @RetrofitBaseUrl private val baseUrl: String,
     private val getCartUseCase: GetCartUseCase,
-    private val deleteFromCartUseCase: DeleteFromCartUseCase,
-    private val addToCartUseCase: AddToCartUseCase
+    private val deleteOneFromCartUseCase: DeleteOneFromCartUseCase,
+    private val addOneToCartUseCase: AddOneToCartUseCase
 ) : ViewModel() {
 
     fun getBaseUrl() = baseUrl
@@ -48,14 +48,14 @@ class CartViewModel @Inject constructor(
 
     fun addOne(pizza: Pizza) {
         viewModelScope.launch(Dispatchers.IO) {
-            addToCartUseCase.invoke(pizza)
+            addOneToCartUseCase.invoke(pizza)
         }
 
     }
 
     fun deleteOne(pizza: Pizza) {
         viewModelScope.launch(Dispatchers.IO) {
-            deleteFromCartUseCase.invoke(pizza)
+            deleteOneFromCartUseCase.invoke(pizza)
         }
     }
 

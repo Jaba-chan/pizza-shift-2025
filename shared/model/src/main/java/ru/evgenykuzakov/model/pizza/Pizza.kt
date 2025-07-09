@@ -1,7 +1,8 @@
 package ru.evgenykuzakov.model.pizza
 
 data class Pizza(
-    val id: String,
+    val id: Long,
+    val pizzaId: String,
     val name: String,
     val img: String,
     val toppings: List<Ingredient>,

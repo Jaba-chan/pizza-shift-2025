@@ -1,4 +1,4 @@
-package ru.evgenykuzakov.pizza_shift_2025
+package ru.evgenykuzakov.pizza_shift_2025.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import ru.evgenykuzakov.cart.domain.use_case.AddToCartUseCase
+import ru.evgenykuzakov.cart.domain.use_case.GetPizzaByIdUseCase
 import ru.evgenykuzakov.model.pizza.Ingredient
 import ru.evgenykuzakov.model.pizza.Pizza
 import ru.evgenykuzakov.model.pizza.totalCost
@@ -21,11 +22,10 @@ import javax.inject.Inject
 class PizzaDetailViewModel @Inject constructor(
     @RetrofitBaseUrl private val baseUrl: String,
     private val getPizzaDetailInfoUseCase: GetPizzaDetailInfoUseCase,
+    private val getPizzaByIdUseCase: GetPizzaByIdUseCase,
     private val addToCartUseCase: AddToCartUseCase,
     savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
-
-    private val pizzaId: String = savedStateHandle["pizzaId"]!!
 
     fun getBaseUrl() = baseUrl
 
@@ -40,20 +40,36 @@ class PizzaDetailViewModel @Inject constructor(
 
     init {
         viewModelScope.launch(Dispatchers.IO + handler) {
-            val pizza = getPizzaDetailInfoUseCase(pizzaId)
+            val pizzaId: String? = savedStateHandle["pizzaId"]
+            val editId: Long? = savedStateHandle["editId"]
+
+            val resolvedPizzaId = when {
+                pizzaId != null -> pizzaId
+                editId != null -> getPizzaByIdUseCase(editId)!!.pizzaId
+                else -> throw IllegalArgumentException("No correct pizzaId or editId")
+            }
+
+            val pizza = getPizzaDetailInfoUseCase(resolvedPizzaId)
+
+            val defaultUserChoice = Pizza(
+                id = 0,
+                pizzaId = pizza.id,
+                name = pizza.name,
+                img = pizza.img,
+                toppings = emptyList(),
+                size = pizza.sizes.first(),
+                dough = pizza.doughs.first()
+            )
+
+            val userChoice = editId?.let { getPizzaByIdUseCase(it) } ?: defaultUserChoice
+
             _uiState.value = PizzaDetailScreenUIState.Content(
                 pizza = pizza,
-                userChoice = Pizza(
-                    id = pizza.id,
-                    name = pizza.name,
-                    img = pizza.img,
-                    toppings = emptyList(),
-                    size = pizza.sizes.first(),
-                    dough = pizza.doughs.first()
-                )
+                userChoice = userChoice
             )
         }
     }
+
 
     fun addToCart() {
         viewModelScope.launch(Dispatchers.IO) {

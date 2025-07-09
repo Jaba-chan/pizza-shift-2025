@@ -56,4 +56,7 @@ interface CartDao {
     ){
         findOneInCart(pizzaId, size, dough, toppings)?.let { deleteCartItem(it) }
     }
+
+    @Query("SELECT * FROM cart WHERE id = :id LIMIT 1")
+    suspend fun getPizzaById(id: Long): PizzaEntity?
 }

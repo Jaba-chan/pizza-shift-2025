@@ -1,4 +1,4 @@
-package ru.evgenykuzakov.pizza_shift_2025
+package ru.evgenykuzakov.pizza_shift_2025.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -104,6 +104,13 @@ class MainActivity : ComponentActivity() {
                         },
                         cartScreenContent = {
                             CartScreen(
+                                paddingValues = innerPadding,
+                                navigateBack = { navSate.navigateBack() },
+                                navigateToChanging = { navSate.navigateTo(Screen.PizzaEditScreen.createRoute(it))}
+                            )
+                        },
+                        pizzaEditScreenContent = {
+                            PizzaDetailScreen(
                                 paddingValues = innerPadding,
                                 navigateBack = { navSate.navigateBack() }
                             )

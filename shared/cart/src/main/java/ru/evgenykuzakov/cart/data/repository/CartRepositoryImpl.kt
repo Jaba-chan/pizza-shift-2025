@@ -18,9 +18,11 @@ class CartRepositoryImpl @Inject constructor(
 
     override suspend fun addToCart(pizza: Pizza) = dao.addToCart(pizza.toEntity())
 
+    override suspend fun getPizzaById(id: Long): Pizza? = dao.getPizzaById(id)?.toDomain()
+
     override suspend fun deleteFromCart(pizza: Pizza) =
         dao.deleteFromCart(
-            pizzaId = pizza.id,
+            pizzaId = pizza.pizzaId,
             size = pizza.size.toEntity(),
             dough = pizza.dough.toEntity(),
             toppings = pizza.toppings.map { it.toEntity() }

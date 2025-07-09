@@ -4,7 +4,8 @@ import ru.evgenykuzakov.cart.data.database.model.PizzaEntity
 import ru.evgenykuzakov.model.pizza.Pizza
 
 fun PizzaEntity.toDomain() = Pizza(
-    id = pizzaId,
+    id = id,
+    pizzaId = pizzaId,
     img = img,
     name = name,
     toppings = toppings.map { it.toDomain() },
@@ -13,7 +14,8 @@ fun PizzaEntity.toDomain() = Pizza(
 )
 
 fun Pizza.toEntity() = PizzaEntity(
-    pizzaId = id,
+    id = id,
+    pizzaId = pizzaId,
     img = img,
     name = name,
     toppings = toppings.map { it.toEntity() },

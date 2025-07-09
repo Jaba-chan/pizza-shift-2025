@@ -69,7 +69,7 @@ internal fun CartItem(
     cartItem: CartItem,
     plusOne: (Pizza) -> Unit,
     minusOne: (Pizza) -> Unit,
-    changePizza: (Pizza) -> Unit
+    changePizza: (Long) -> Unit
 ) {
     val pizza = cartItem.pizza
     val sizeTitle =
@@ -112,7 +112,7 @@ internal fun CartItem(
                 )
 
                 Paragraph12Underline(
-                    modifier = Modifier.padding(start = 16.dp).clickable { changePizza(pizza) },
+                    modifier = Modifier.padding(start = 16.dp).clickable { changePizza(pizza.id) },
                     text = stringResource(R.string.change)
                 )
 

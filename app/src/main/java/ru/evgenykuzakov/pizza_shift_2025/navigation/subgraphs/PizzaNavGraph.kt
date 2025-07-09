@@ -11,6 +11,7 @@ import ru.evgenykuzakov.pizza_shift_2025.navigation.Screen
 fun NavGraphBuilder.pizzaNavGraph(
     catalogContent: @Composable () -> Unit,
     detailScreenContent: @Composable () -> Unit,
+    editScreenContent: @Composable () -> Unit,
 ){
     navigation(
         startDestination = Screen.PizzaCatalogScreen.route,
@@ -24,6 +25,12 @@ fun NavGraphBuilder.pizzaNavGraph(
             arguments = listOf( navArgument("pizzaId") {type = NavType.StringType})
         ) {
             detailScreenContent()
+        }
+        composable(
+            route = Screen.PizzaEditScreen.route,
+            arguments = listOf( navArgument("editId") {type = NavType.LongType})
+        ) {
+            editScreenContent()
         }
     }
 }

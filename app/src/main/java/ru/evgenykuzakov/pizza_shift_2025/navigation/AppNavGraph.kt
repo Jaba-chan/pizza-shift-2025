@@ -14,7 +14,8 @@ fun AppNavGraph(
     authScreenContent: @Composable () -> Unit,
     pizzaCatalogScreenContent: @Composable () -> Unit,
     pizzaDetailScreenContent: @Composable () -> Unit,
-    cartScreenContent: @Composable () -> Unit
+    pizzaEditScreenContent: @Composable () -> Unit,
+    cartScreenContent: @Composable () -> Unit,
 ) {
     NavHost(
         navController = navHostController,
@@ -27,6 +28,7 @@ fun AppNavGraph(
         bottomNavGraph(
             pizzaCatalogScreenContent = pizzaCatalogScreenContent,
             pizzaDetailScreenContent = pizzaDetailScreenContent,
+            pizzaEditScreenContent = pizzaEditScreenContent,
             ordersScreenContent = {},
             cartScreenContent = cartScreenContent,
             profileScreenContent = {}

@@ -10,6 +10,8 @@ interface CartRepository {
 
     suspend fun addToCart(pizza: Pizza)
 
+    suspend fun getPizzaById(id: Long): Pizza?
+
     suspend fun deleteFromCart(pizza: Pizza)
 
     fun getCartSize(): Flow<Int>
