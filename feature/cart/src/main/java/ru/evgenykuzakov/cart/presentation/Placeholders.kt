@@ -2,20 +2,20 @@ package ru.evgenykuzakov.cart.presentation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -112,7 +112,11 @@ internal fun CartItem(
                 )
 
                 Paragraph12Underline(
-                    modifier = Modifier.padding(start = 16.dp).clickable { changePizza(pizza.id) },
+                    modifier = Modifier.clickable(
+                        onClick = {changePizza(pizza.id)},
+                        indication = null,
+                        interactionSource = remember { MutableInteractionSource() }
+                    ),
                     text = stringResource(R.string.change)
                 )
 
@@ -141,7 +145,11 @@ internal fun Counter(
             .padding(horizontal = 16.dp, vertical = 4.dp)
     ) {
         Paragraph12Regular(
-            modifier = Modifier.clickable { minusOne(cartItem.pizza) },
+            modifier = Modifier.clickable(
+                onClick = { minusOne(cartItem.pizza) },
+                indication = null,
+                interactionSource = remember { MutableInteractionSource() }
+            ),
             text = stringResource(R.string.minus)
         )
 
@@ -151,10 +159,13 @@ internal fun Counter(
         )
 
         Paragraph12Regular(
-            modifier = Modifier.clickable { plusOne(cartItem.pizza) },
+            modifier = Modifier.clickable(
+                onClick = { plusOne(cartItem.pizza) },
+                indication = null,
+                interactionSource = remember { MutableInteractionSource() }
+            ),
             text = stringResource(R.string.plus)
         )
-
     }
 }
 
