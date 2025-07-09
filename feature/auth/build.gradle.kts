@@ -53,6 +53,8 @@ dependencies {
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigation.compose)
     implementation(libs.kotlinx.coroutines.android)
+    implementation(project(":shared:datastore:otpToken"))
+    implementation(project(":shared:network"))
     ksp(libs.hilt.android.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

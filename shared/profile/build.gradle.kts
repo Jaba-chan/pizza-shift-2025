@@ -36,6 +36,17 @@ android {
 }
 
 dependencies {
+    implementation(project(":components:ui"))
+    implementation(project(":components:theme"))
+    implementation(project(":components:resource"))
+    implementation(project(":shared:model:user"))
+    implementation(project(":shared:network"))
+    implementation(project(":shared:datastore:otpToken"))
+
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.ui)
+    implementation(libs.androidx.ui.graphics)
+    implementation(libs.androidx.material3)
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.kotlinx.serialization.json)

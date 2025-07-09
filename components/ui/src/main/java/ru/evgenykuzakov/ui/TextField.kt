@@ -33,6 +33,7 @@ fun ShiftTextField(
     placeholderText: String,
     shape: RoundedCornerShape = RoundedCornerShape(8.dp),
     isError: Boolean = false,
+
 ) {
     BasicTextField(
         modifier = modifier
@@ -54,7 +55,10 @@ fun ShiftTextField(
             singleLine = singleLine,
             visualTransformation = visualTransformation,
             interactionSource = interactionSource,
-            colors = OutlinedTextFieldDefaults.colors(),
+            colors = OutlinedTextFieldDefaults.colors(
+                disabledTextColor = ExtendedTheme.colorScheme.content5,
+                disabledContainerColor = ExtendedTheme.colorScheme.backgroundSecondary
+            ),
             contentPadding = TextFieldDefaults.contentPaddingWithoutLabel(
                 top = 0.dp,
                 bottom = 0.dp,

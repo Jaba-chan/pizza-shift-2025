@@ -1,12 +1,12 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
+    alias(libs.plugins.ksp)
 }
 
 android {
-    namespace = "ru.evgenykuzakov.network"
+    namespace = "ru.evgenykuzakov.otptoken"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
@@ -33,19 +33,8 @@ android {
         jvmTarget = "1.8"
     }
 }
-
-dependencies {
-    implementation(libs.retrofit)
-    implementation(libs.converter.gson)
-    implementation(libs.kotlinx.serialization.json)
+dependencies{
     implementation(libs.hilt.android)
-    implementation(project(":shared:datastore:otpToken"))
+    implementation(libs.hilt.navigation.compose)
     ksp(libs.hilt.android.compiler)
-
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
 }
