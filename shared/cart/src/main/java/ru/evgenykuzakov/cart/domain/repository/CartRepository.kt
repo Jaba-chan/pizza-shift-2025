@@ -1,12 +1,17 @@
 package ru.evgenykuzakov.cart.domain.repository
 
+import kotlinx.coroutines.flow.Flow
 import ru.evgenykuzakov.cart.domain.model.CartItem
 import ru.evgenykuzakov.model.pizza.Pizza
 
 interface CartRepository {
 
-    suspend fun getCart(): List<CartItem>
+    fun getCart(): Flow<List<CartItem>>
 
-    suspend fun addToCard(pizza: Pizza)
+    suspend fun addToCart(pizza: Pizza)
+
+    suspend fun deleteFromCart(pizza: Pizza)
+
+    fun getCartSize(): Flow<Int>
 
 }

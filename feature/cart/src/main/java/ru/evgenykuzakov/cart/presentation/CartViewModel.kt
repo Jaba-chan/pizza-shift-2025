@@ -1,6 +1,5 @@
 package ru.evgenykuzakov.cart.presentation
 
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -10,17 +9,18 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import ru.evgenykuzakov.cart.domain.use_case.AddToCartUseCase
+import ru.evgenykuzakov.cart.domain.use_case.DeleteFromCartUseCase
 import ru.evgenykuzakov.cart.domain.use_case.GetCartUseCase
-import ru.evgenykuzakov.model.pizza.Ingredient
 import ru.evgenykuzakov.model.pizza.Pizza
 import ru.evgenykuzakov.network.di.RetrofitBaseUrl
-import ru.evgenykuzakov.pizza.domain.use_case.GetPizzaDetailInfoUseCase
 import javax.inject.Inject
 
 @HiltViewModel
 class CartViewModel @Inject constructor(
     @RetrofitBaseUrl private val baseUrl: String,
     private val getCartUseCase: GetCartUseCase,
+    private val deleteFromCartUseCase: DeleteFromCartUseCase,
+    private val addToCartUseCase: AddToCartUseCase
 ) : ViewModel() {
 
     fun getBaseUrl() = baseUrl
@@ -29,10 +29,34 @@ class CartViewModel @Inject constructor(
         MutableStateFlow<CartScreenUIState>(CartScreenUIState.Loading)
     val uiState: StateFlow<CartScreenUIState> = _uiState
 
+    private val handler = CoroutineExceptionHandler { _, exception ->
+        _uiState.value = CartScreenUIState.Error(exception.localizedMessage.orEmpty())
+    }
+
     init {
+        updateCart()
+    }
+
+    private fun updateCart(){
         _uiState.value = CartScreenUIState.Loading
-        viewModelScope.launch(Dispatchers.IO) {
-            _uiState.value = CartScreenUIState.Content(getCartUseCase.invoke())
+        viewModelScope.launch(handler + Dispatchers.IO) {
+            getCartUseCase.invoke().collect {cart ->
+                _uiState.value = CartScreenUIState.Content(cart)
+            }
         }
     }
+
+    fun addOne(pizza: Pizza) {
+        viewModelScope.launch(Dispatchers.IO) {
+            addToCartUseCase.invoke(pizza)
+        }
+
+    }
+
+    fun deleteOne(pizza: Pizza) {
+        viewModelScope.launch(Dispatchers.IO) {
+            deleteFromCartUseCase.invoke(pizza)
+        }
+    }
+
 }

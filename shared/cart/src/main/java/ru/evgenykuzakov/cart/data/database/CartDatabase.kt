@@ -9,7 +9,7 @@ import ru.evgenykuzakov.cart.data.database.model.PizzaEntity
 
 @Database(
     entities = [PizzaEntity::class],
-    version = 1
+    version = 6
 )
 @TypeConverters(
     PizzaTypeConverter::class

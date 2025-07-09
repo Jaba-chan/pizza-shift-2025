@@ -118,7 +118,7 @@ internal fun CartItem(
 
                 Paragraph16Medium(
                     modifier = Modifier.padding(start = 32.dp),
-                    text = "${pizza.totalCost()} ${stringResource(Res.string.rub_char)}"
+                    text = "${pizza.totalCost() * cartItem.count} ${stringResource(Res.string.rub_char)}"
                 )
             }
         }

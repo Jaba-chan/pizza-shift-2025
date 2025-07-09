@@ -4,6 +4,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Badge
+import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBarItem
@@ -17,10 +19,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import ru.evgenykuzakov.theme.ExtendedTheme
+import ru.evgenykuzakov.ui.Paragraph12Regular
 
 @Composable
 internal fun RowScope.BottomNavigationItem(
     item: NavigationItem,
+    cartBadgeCount: Int,
     currentRoute: String?,
     onClick: () -> Unit
 ) {
@@ -35,12 +39,25 @@ internal fun RowScope.BottomNavigationItem(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
-                Icon(
-                    modifier = Modifier.size(24.dp),
-                    painter = painterResource(item.iconResId),
-                    contentDescription = null,
-                    tint = color
-                )
+                BadgedBox(
+                    badge = {
+                        if (item.screen.route == Screen.CartHomeScreen.route && cartBadgeCount > 0) {
+                            Badge {
+                                Paragraph12Regular(
+                                    text = cartBadgeCount.toString(),
+                                    color = ExtendedTheme.colorScheme.buttonContent
+                                )
+                            }
+                        }
+                    }
+                ) {
+                    Icon(
+                        modifier = Modifier.size(24.dp),
+                        painter = painterResource(item.iconResId),
+                        contentDescription = null,
+                        tint = color
+                    )
+                }
                 Text(
                     text = stringResource(item.titleResId),
                     style = ExtendedTheme.typography.bottomBarItemLabel,

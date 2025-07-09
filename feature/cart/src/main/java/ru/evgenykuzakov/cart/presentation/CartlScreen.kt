@@ -47,8 +47,8 @@ fun CartScreen(
                         CartItem(
                             url = viewModel.getBaseUrl(),
                             cartItem = it,
-                            minusOne = {},
-                            plusOne = {},
+                            minusOne = viewModel::deleteOne,
+                            plusOne = viewModel::addOne,
                             changePizza = {}
                         )
                     }

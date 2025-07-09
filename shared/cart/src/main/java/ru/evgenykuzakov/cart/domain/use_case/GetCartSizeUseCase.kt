@@ -1,9 +1,9 @@
 package ru.evgenykuzakov.cart.domain.use_case
 
+import kotlinx.coroutines.flow.Flow
 import ru.evgenykuzakov.cart.domain.repository.CartRepository
-import ru.evgenykuzakov.model.pizza.Pizza
 import javax.inject.Inject
 
-class AddToCartUseCase @Inject constructor(
+class GetCartSizeUseCase @Inject constructor(
     private val repository: CartRepository
-) : suspend (Pizza) -> Unit by repository::addToCart
+) : () -> Flow<Int> by repository::getCartSize
