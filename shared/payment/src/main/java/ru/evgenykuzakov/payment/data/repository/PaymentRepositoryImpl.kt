@@ -12,6 +12,6 @@ class PaymentRepositoryImpl @Inject constructor(
     private val api: PaymentRetrofitApi
 ) : PaymentRepository {
 
-    override suspend fun payForCart(param: PayCartParam): Order = api.payForCart(param.oRequest()).order.toDomain()
+    override suspend fun payForCart(param: PayCartParam): Order = api.payForCart(param.toRequest()).order.toDomain()
 
 }
