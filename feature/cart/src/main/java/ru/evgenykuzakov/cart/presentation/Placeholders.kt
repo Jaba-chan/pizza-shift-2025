@@ -5,22 +5,32 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import ru.evgenykuzakov.cart.R
+import ru.evgenykuzakov.cart.feature.R
 import ru.evgenykuzakov.cart.domain.model.CartItem
 import ru.evgenykuzakov.model.pizza.Pizza
 import ru.evgenykuzakov.model.pizza.totalCost
@@ -33,6 +43,8 @@ import ru.evgenykuzakov.ui.BasicAppBar
 import ru.evgenykuzakov.ui.Paragraph12Regular
 import ru.evgenykuzakov.ui.Paragraph12Underline
 import ru.evgenykuzakov.ui.Paragraph16Medium
+import ru.evgenykuzakov.ui.ShiftButton
+import ru.evgenykuzakov.ui.ShiftButtonText
 import ru.evgenykuzakov.resource.R as Res
 
 @Composable
@@ -104,7 +116,9 @@ internal fun CartItem(
                 text = "$sizeTitle $size, $dough$toppings"
             )
 
-            Row {
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
                 Counter(
                     plusOne = plusOne,
                     minusOne = minusOne,
@@ -112,11 +126,13 @@ internal fun CartItem(
                 )
 
                 Paragraph12Underline(
-                    modifier = Modifier.clickable(
-                        onClick = {changePizza(pizza.id)},
-                        indication = null,
-                        interactionSource = remember { MutableInteractionSource() }
-                    ),
+                    modifier = Modifier
+                        .padding(start = 16.dp)
+                        .clickable(
+                            onClick = { changePizza(pizza.id) },
+                            indication = null,
+                            interactionSource = remember { MutableInteractionSource() }
+                        ),
                     text = stringResource(R.string.change)
                 )
 
@@ -169,4 +185,51 @@ internal fun Counter(
     }
 }
 
+@Composable
+internal fun MakeOrderBar(
+    modifier: Modifier = Modifier,
+    cart: List<CartItem>,
+    onClick: () -> Unit
+) {
+    val shape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp)
+    Card(
+        modifier = modifier
+            .fillMaxWidth()
+            .shadow(
+                elevation = 30.dp,
+                spotColor = ExtendedTheme.colorScheme.shadowStrong,
+                shape = shape
+            ),
+        shape = shape,
+        colors = CardDefaults.cardColors(
+            containerColor = ExtendedTheme.colorScheme.backgroundElevation
+
+        )
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+        ) {
+            Row {
+                Paragraph16Medium(text = stringResource(R.string.order_cost))
+
+                Spacer(modifier = Modifier.width(24.dp))
+
+                Paragraph16Medium(
+                    text = "${cart.sumOf { it.pizza.totalCost() * it.count }} ${stringResource(R.string.rub_str_p)}"
+                )
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            ShiftButton(
+                modifier = Modifier.fillMaxWidth(),
+                onClick = onClick
+            ) {
+                ShiftButtonText(text = stringResource(R.string.make_order))
+            }
+        }
+    }
+}
 

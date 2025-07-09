@@ -42,7 +42,9 @@ internal fun RowScope.BottomNavigationItem(
                 BadgedBox(
                     badge = {
                         if (item.screen.route == Screen.CartHomeScreen.route && cartBadgeCount > 0) {
-                            Badge {
+                            Badge(
+                                containerColor = MaterialTheme.colorScheme.primary
+                            ) {
                                 Paragraph12Regular(
                                     text = cartBadgeCount.toString(),
                                     color = ExtendedTheme.colorScheme.buttonContent

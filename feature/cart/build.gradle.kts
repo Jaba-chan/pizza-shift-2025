@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    namespace = "ru.evgenykuzakov.cart"
+    namespace = "ru.evgenykuzakov.cart.feature"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {

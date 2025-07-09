@@ -1,8 +1,10 @@
 package ru.evgenykuzakov.pizzadetail.presentation
 
+import android.icu.lang.UProperty.NameChoice
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.FlowRow
@@ -24,7 +26,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -32,6 +33,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import ru.evgenykuzakov.model.pizza.Dough
 import ru.evgenykuzakov.model.pizza.Ingredient
+import ru.evgenykuzakov.model.pizza.Pizza
 import ru.evgenykuzakov.model.pizza.Size
 import ru.evgenykuzakov.pizzadetail.R
 import ru.evgenykuzakov.resource.mapToResource
@@ -145,13 +147,11 @@ internal fun IngredientCard(
     val shape = RoundedCornerShape(12.dp)
     Card(
         modifier = Modifier
-            .padding(8.dp)
             .height(172.dp)
             .shadow(
                 elevation = 12.dp,
-                ambientColor = Color(0xFF1A1A1E).copy(alpha = 0.15f),
+                spotColor = ExtendedTheme.colorScheme.shadowStrong.copy(alpha = 0.85f),
                 shape = RoundedCornerShape(12.dp),
-                clip = false
             )
             .let {
                 if (ingredient in toppings) it.border(
@@ -168,7 +168,7 @@ internal fun IngredientCard(
             )
             .clip(shape),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.background
+            containerColor = ExtendedTheme.colorScheme.backgroundElevation
         )
     ) {
         Column(
@@ -209,7 +209,9 @@ internal fun ExtrasIngredients(
 ) {
     FlowRow(
         modifier = Modifier.wrapContentHeight(),
-        maxItemsInEachRow = 3
+        maxItemsInEachRow = 3,
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         ingredients.forEach { ingredient ->
             IngredientCard(
@@ -242,6 +244,7 @@ internal fun ColumnScope.DoughSelector(
 @Composable
 internal fun ColumnScope.AddToCartButton(
     onClick: () -> Unit,
+    userChoice: Pizza,
     totalCost: Int
 ) {
     ShiftButton(
@@ -253,8 +256,9 @@ internal fun ColumnScope.AddToCartButton(
             contentDescription = null,
             tint = ExtendedTheme.colorScheme.buttonContent
         )
+        val text = if (userChoice.id == 0L) "$totalCost ${stringResource(Res.string.rub_char)}" else stringResource(R.string.change)
         ShiftButtonText(
-            text = "$totalCost ${stringResource(Res.string.rub_char)}",
+            text = text,
         )
     }
 }
