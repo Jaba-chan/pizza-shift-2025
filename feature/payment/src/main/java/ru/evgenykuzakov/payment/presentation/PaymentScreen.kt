@@ -13,6 +13,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import ru.evgenykuzakov.payment.feature.R
 import ru.evgenykuzakov.profile.presentation.UserProfileDataScreen
 import ru.evgenykuzakov.ui.LoadingScreen
 
@@ -21,7 +22,7 @@ fun PaymentScreen(
     viewModel: PaymentViewModel = hiltViewModel(),
     paddingValues: PaddingValues,
     navigateBack: () -> Unit
-){
+) {
     val state by viewModel.uiState.collectAsState()
 
     val inputsHandler = listOf(
@@ -34,15 +35,28 @@ fun PaymentScreen(
     )
 
     Column(
-        modifier = Modifier.fillMaxSize().padding(paddingValues)
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(paddingValues)
     ) {
-
-        AppBar(onButtonClick = navigateBack)
-
-        when(state){
+        when (state) {
             is PaymentScreenUIState.Content -> {
                 val step = (state as PaymentScreenUIState.Content).step
                 val user = (state as PaymentScreenUIState.Content).user
+
+                step?.let {
+                    AppBar(
+                        headingTextRes = when(step){
+                            Step.One -> R.string.your_data
+                            Step.Two -> R.string.card_for_pay
+                        },
+                        onButtonClick = {
+                            if (step is Step.One) navigateBack()
+                            if (step is Step.Two) viewModel.previousStep()
+                        }
+                    )
+                }
+
 
                 Column(
                     Modifier
@@ -52,26 +66,38 @@ fun PaymentScreen(
                         )
                         .verticalScroll(rememberScrollState()),
                 ) {
-                    when(step){
+                    when (step) {
                         Step.One, Step.Two -> ProgressBar(step = step)
                         null -> {}
                     }
 
-                    when(step){
-                        Step.One ->
+                    when (step) {
+                        Step.One -> {
                             UserProfileDataScreen(
-                                Modifier.padding(vertical = 16.dp).fillMaxWidth(),
+                                Modifier
+                                    .padding(vertical = 16.dp)
+                                    .fillMaxWidth(),
                                 user,
                                 inputsHandler = inputsHandler
                             )
-                        Step.Two ->{}
+                        }
+
+                        Step.Two -> {
+                            val debitCard = (state as PaymentScreenUIState.Content).debitCard
+                            PayWindow(
+                                debitCard = debitCard!!,
+                                onPanChanged = viewModel::handlePan,
+                                onExpireDateChanged = viewModel::handleExpireDate,
+                                onCVVChanged = viewModel::handleCVV
+                            )
+                        }
 
                         null -> {}
                     }
 
-                    when(step){
-                        Step.One -> NextStepButton( onClick = viewModel::nextStep )
-                        Step.Two -> PayButton( onClick = viewModel::nextStep )
+                    when (step) {
+                        Step.One -> NextStepButton(onClick = viewModel::nextStep)
+                        Step.Two -> PayButton(onClick = { viewModel.nextStep() })
                         null -> {}
                     }
                 }

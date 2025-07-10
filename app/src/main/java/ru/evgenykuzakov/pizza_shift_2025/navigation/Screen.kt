@@ -37,7 +37,7 @@ sealed class Screen(
         private const val BASE_ROUTE_ORDER= "order"
         private const val BASE_ROUTE_CART_HOME = "cart"
         private const val ROUTE_CART= "$BASE_ROUTE_CART_HOME/total"
-        private const val ROUTE_CART_PAYMENT= "$BASE_ROUTE_CART_HOME/payment"
+        private const val ROUTE_CART_PAYMENT= "payment"
         private const val BASE_ROUTE_PROFILE= "profile"
     }
 }

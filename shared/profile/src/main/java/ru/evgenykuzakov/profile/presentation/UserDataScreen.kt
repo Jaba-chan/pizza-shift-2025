@@ -58,7 +58,7 @@ fun UserProfileDataScreen(
             if (!showMiddleName && index == 2) return@forEachIndexed
             val isEditable = index != 3
             val requiredMark = when(index){
-                0, 1, 3 -> "*"
+                0, 1, 3, 5 -> "*"
                 else -> ""
             }
 

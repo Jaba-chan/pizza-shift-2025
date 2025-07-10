@@ -1,13 +1,11 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.serialization)
-    alias(libs.plugins.ksp)
-    alias(libs.plugins.hilt)
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
-    namespace = "ru.evgenykuzakov.payment"
+    namespace = "ru.evgenykuzakov.util"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
@@ -36,15 +34,8 @@ android {
 }
 
 dependencies {
-    implementation(project(":shared:cart"))
-    implementation(project(":shared:pizza"))
-    implementation(project(":shared:model:pizza"))
-    implementation(project(":shared:model:user"))
-
-    implementation(libs.retrofit)
-    implementation(libs.converter.gson)
-    implementation(libs.kotlinx.serialization.json)
-    implementation(libs.hilt.android)
-    implementation(libs.hilt.navigation.compose)
-    ksp(libs.hilt.android.compiler)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.ui)
+    implementation(libs.androidx.ui.graphics)
+    implementation(libs.androidx.material3)
 }

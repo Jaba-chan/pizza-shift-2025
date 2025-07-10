@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    namespace = "ru.evgenykuzakov.payment"
+    namespace = "ru.evgenykuzakov.payment.feature"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
@@ -37,12 +37,16 @@ android {
 }
 
 dependencies {
+    implementation(project(":utils"))
+    implementation(project(":components:util"))
     implementation(project(":components:ui"))
     implementation(project(":components:theme"))
     implementation(project(":components:resource"))
+    implementation(project(":shared:cart"))
     implementation(project(":shared:profile"))
     implementation(project(":shared:payment"))
     implementation(project(":shared:model:user"))
+    implementation(project(":shared:model:pizza"))
 
     ksp(libs.hilt.android.compiler)
     implementation(libs.coil.compose)

@@ -185,7 +185,7 @@ internal fun Counter(
 @Composable
 internal fun MakeOrderBar(
     modifier: Modifier = Modifier,
-    cart: List<CartItem>,
+    total: Int,
     onClick: () -> Unit
 ) {
     val shape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp)
@@ -214,7 +214,7 @@ internal fun MakeOrderBar(
                 Spacer(modifier = Modifier.width(24.dp))
 
                 Paragraph16Medium(
-                    text = "${cart.sumOf { it.pizza.totalCost() * it.count }} ${stringResource(R.string.rub_str_p)}"
+                    text = "$total ${stringResource(R.string.rub_str_p)}"
                 )
             }
 

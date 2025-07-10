@@ -1,11 +1,16 @@
 package ru.evgenykuzakov.payment.presentation
 
+import ru.evgenykuzakov.payment.domain.model.DebitCard
 import ru.evgenykuzakov.user.User
 
 
 sealed interface PaymentScreenUIState {
 
-    data class Content(val user: User, val step: Step? = Step.One) : PaymentScreenUIState
+    data class Content(
+        val user: User,
+        val debitCard: DebitCard? = null,
+        val step: Step? = Step.One
+    ) : PaymentScreenUIState
 
     data object Loading : PaymentScreenUIState
 
@@ -21,6 +26,11 @@ sealed class Step(val step: Int){
     fun next(): Step? = when (this) {
         One -> Two
         Two -> null
+    }
+
+    fun previous(): Step? = when (this) {
+        One -> null
+        Two -> One
     }
 
     companion object {

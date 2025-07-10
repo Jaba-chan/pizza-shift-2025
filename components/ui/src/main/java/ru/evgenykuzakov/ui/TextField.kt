@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextFieldDefaults
@@ -17,6 +18,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -28,6 +30,7 @@ fun ShiftTextField(
     modifier: Modifier = Modifier,
     value: String,
     onTextChanged: (String) -> Unit,
+    maxLength: Int = 100,
     textStyle: TextStyle = MaterialTheme.typography.bodyLarge.copy(),
     enabled: Boolean = true,
     readOnly: Boolean = false,
@@ -38,13 +41,17 @@ fun ShiftTextField(
     placeholderText: String,
     shape: RoundedCornerShape = RoundedCornerShape(8.dp),
     isError: Boolean = false,
-
-    ) {
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default
+) {
     BasicTextField(
         modifier = modifier
             .height(height),
         value = value,
-        onValueChange = onTextChanged,
+        onValueChange = {
+            if (it.length <= maxLength){
+                onTextChanged(it)
+            }
+        },
         textStyle = textStyle.copy(
             color = if (!enabled) ExtendedTheme.colorScheme.content5 else MaterialTheme.colorScheme.onSurface
         ),
@@ -53,6 +60,7 @@ fun ShiftTextField(
         singleLine = singleLine,
         visualTransformation = visualTransformation,
         interactionSource = interactionSource,
+        keyboardOptions = keyboardOptions
     ) { innerTextField ->
         OutlinedTextFieldDefaults.DecorationBox(
             value = value,
@@ -101,9 +109,12 @@ fun ShiftHeadingTextField(
     value: String,
     onTextChanged: (String) -> Unit,
     placeholderText: String,
-    enabled: Boolean,
-    readOnly: Boolean
-){
+    enabled: Boolean = true,
+    readOnly: Boolean = false,
+    maxLength: Int = 100,
+    keyboardOptions: KeyboardOptions =KeyboardOptions.Default,
+    visualTransformation: VisualTransformation = VisualTransformation.None
+) {
     Column(modifier = modifier) {
 
         Paragraph14Regular(text = headingText)
@@ -114,10 +125,12 @@ fun ShiftHeadingTextField(
             modifier = Modifier.fillMaxSize(),
             value = value,
             onTextChanged = onTextChanged,
+            maxLength = maxLength,
             placeholderText = placeholderText,
+            keyboardOptions = keyboardOptions,
             enabled = enabled,
             readOnly = readOnly,
+            visualTransformation = visualTransformation
         )
-
     }
 }
