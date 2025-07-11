@@ -13,7 +13,7 @@ fun NavGraphBuilder.bottomNavGraph(
     ordersScreenContent: @Composable () -> Unit,
     cartScreenContent: @Composable () -> Unit,
     paymentScreenContent: @Composable () -> Unit,
-    profileScreenContent: @Composable () -> Unit
+    showProfileScreenContent: @Composable () -> Unit,
 ){
     navigation(
         startDestination = Screen.PizzaScreen.route,
@@ -31,8 +31,8 @@ fun NavGraphBuilder.bottomNavGraph(
             cartScreenContent = cartScreenContent,
             paymentScreenContent = paymentScreenContent
         )
-        composable(Screen.ProfileScreen.route) {
-            profileScreenContent()
-        }
+        profileNavGraph(
+            showProfileScreenContent = showProfileScreenContent
+        )
     }
 }

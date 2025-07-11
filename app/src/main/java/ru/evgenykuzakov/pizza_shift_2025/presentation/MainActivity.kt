@@ -31,6 +31,7 @@ import ru.evgenykuzakov.pizza_shift_2025.navigation.NavigationItem
 import ru.evgenykuzakov.pizza_shift_2025.navigation.NavigationState
 import ru.evgenykuzakov.pizza_shift_2025.navigation.Screen
 import ru.evgenykuzakov.pizzadetail.presentation.PizzaDetailScreen
+import ru.evgenykuzakov.profile.presentation.ShowProfileScreen
 import ru.evgenykuzakov.theme.ShiftAppTheme
 import ru.evgenykuzakov.utils.getBaseNavUrl
 
@@ -124,6 +125,11 @@ class MainActivity : ComponentActivity() {
                                 onBackButton = { navSate.navigateBack() },
                                 onMainButtonClick = { navSate.navigateTo(Screen.HomeScreen.route) },
                                 onOrderDetailButtonClick = { navSate.navigateTo(Screen.OrdersScreen.route) }
+                            )
+                        },
+                        showProfileScreenContent = {
+                            ShowProfileScreen(
+                                paddingValues = innerPadding
                             )
                         }
                     )

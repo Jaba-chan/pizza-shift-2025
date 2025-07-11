@@ -62,6 +62,7 @@ android {
 dependencies {
     implementation(project(":utils"))
     implementation(project(":feature:auth"))
+    implementation(project(":feature:profile"))
     implementation(project(":feature:pizzaCatalog"))
     implementation(project(":feature:pizzaDetail"))
     implementation(project(":feature:cart"))
