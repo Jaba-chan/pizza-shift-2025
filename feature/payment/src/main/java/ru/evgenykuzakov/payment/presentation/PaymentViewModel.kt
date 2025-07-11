@@ -42,11 +42,10 @@ class PaymentViewModel @Inject constructor(
         _uiState.value = PaymentScreenUIState.Error(exception.localizedMessage.orEmpty())
     }
 
-    init {
+    fun getProfile(){
         viewModelScope.launch(Dispatchers.IO + handler) {
             _uiState.value = PaymentScreenUIState.Content(user = (getProfileUseCase.invoke()))
         }
-
     }
 
     private fun updateProfile() {

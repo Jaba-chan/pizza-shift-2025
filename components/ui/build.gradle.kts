@@ -36,6 +36,9 @@ android {
 dependencies {
     implementation(project(":components:theme"))
     implementation(project(":components:resource"))
+    implementation(project(":shared:network"))
+    implementation(libs.coil.compose)
+    implementation(libs.javax.inject)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)

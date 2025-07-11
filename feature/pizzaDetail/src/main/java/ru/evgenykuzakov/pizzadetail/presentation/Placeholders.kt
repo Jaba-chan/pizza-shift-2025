@@ -48,6 +48,7 @@ import ru.evgenykuzakov.ui.Paragraph14Regular
 import ru.evgenykuzakov.ui.Paragraph16Medium
 import ru.evgenykuzakov.ui.Paragraph16Regular
 import ru.evgenykuzakov.ui.PrimaryButton
+import ru.evgenykuzakov.ui.ShiftAsyncImage
 import ru.evgenykuzakov.ui.ShiftButtonText
 import ru.evgenykuzakov.ui.TabSelector
 import ru.evgenykuzakov.ui.TitleH2
@@ -71,16 +72,15 @@ internal fun AppBar(
 
 @Composable
 internal fun ColumnScope.PizzaImage(
-    baseUrl: String,
     img: String
 ) {
-    AsyncImage(
+    ShiftAsyncImage(
         modifier = Modifier
             .align(Alignment.CenterHorizontally)
             .size(220.dp)
             .padding(bottom = 32.dp),
-        model = "$baseUrl$img",
-        contentDescription = null
+        img = img,
+
     )
 }
 
@@ -137,7 +137,6 @@ internal fun ExtrasHeading() {
 
 @Composable
 internal fun IngredientCard(
-    url: String,
     toppings: List<Ingredient>,
     ingredient: Ingredient,
     onClick: (Ingredient) -> Unit
@@ -176,10 +175,9 @@ internal fun IngredientCard(
                 .wrapContentHeight(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            AsyncImage(
+            ShiftAsyncImage(
                 modifier = Modifier.size(88.dp),
-                model = "$url${ingredient.img}",
-                contentDescription = null
+                img = ingredient.img
             )
 
             Paragraph12Regular(
@@ -200,7 +198,6 @@ internal fun IngredientCard(
 
 @Composable
 internal fun ExtrasIngredients(
-    url: String,
     ingredients: List<Ingredient>,
     toppings: List<Ingredient>,
     select: (Ingredient) -> Unit
@@ -213,7 +210,6 @@ internal fun ExtrasIngredients(
     ) {
         ingredients.forEach { ingredient ->
             IngredientCard(
-                url = url,
                 ingredient = ingredient,
                 toppings = toppings,
                 onClick = { select(it) }

@@ -20,25 +20,20 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PizzaDetailViewModel @Inject constructor(
-    @RetrofitBaseUrl private val baseUrl: String,
     private val getPizzaDetailInfoUseCase: GetPizzaDetailInfoUseCase,
     private val getPizzaByIdUseCase: GetPizzaByIdUseCase,
     private val addToCartUseCase: AddToCartUseCase,
-    savedStateHandle: SavedStateHandle,
+    private val savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
 
-    fun getBaseUrl() = baseUrl
-
-    private val _uiState =
-        MutableStateFlow<PizzaDetailScreenUIState>(PizzaDetailScreenUIState.Loading)
+    private val _uiState = MutableStateFlow<PizzaDetailScreenUIState>(PizzaDetailScreenUIState.Loading)
     val uiState: StateFlow<PizzaDetailScreenUIState> = _uiState
 
     private val handler = CoroutineExceptionHandler { _, exception ->
-        println(exception)
         _uiState.value = PizzaDetailScreenUIState.Error(exception.localizedMessage.orEmpty())
     }
 
-    init {
+    fun getDetailInfo() {
         viewModelScope.launch(Dispatchers.IO + handler) {
             val pizzaId: String? = savedStateHandle["pizzaId"]
             val editId: Long? = savedStateHandle["editId"]
@@ -78,7 +73,7 @@ class PizzaDetailViewModel @Inject constructor(
     }
 
     fun selectPizzaSize(pos: Int) {
-        val currentState = _uiState.value as PizzaDetailScreenUIState.Content
+        val currentState = _uiState.value as? PizzaDetailScreenUIState.Content ?: return
         val updatedUserChoice = currentState.userChoice.copy(
             size = currentState.pizza.sizes[pos]
         )
@@ -86,7 +81,7 @@ class PizzaDetailViewModel @Inject constructor(
     }
 
     fun selectExtraIngredient(ingredient: Ingredient) {
-        val currentState = _uiState.value as PizzaDetailScreenUIState.Content
+        val currentState = _uiState.value as? PizzaDetailScreenUIState.Content ?: return
         val toppings = currentState.userChoice.toppings
         val updatedUserChoice = currentState.userChoice.copy(
             toppings = toppings.let {
@@ -99,7 +94,7 @@ class PizzaDetailViewModel @Inject constructor(
     }
 
     fun selectPizzaDough(pos: Int) {
-        val currentState = _uiState.value as PizzaDetailScreenUIState.Content
+        val currentState = _uiState.value as? PizzaDetailScreenUIState.Content ?: return
         val updatedUserChoice = currentState.userChoice.copy(
             dough = currentState.pizza.doughs[pos]
         )

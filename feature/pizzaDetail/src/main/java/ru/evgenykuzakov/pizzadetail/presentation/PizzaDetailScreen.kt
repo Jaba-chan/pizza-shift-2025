@@ -7,11 +7,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import ru.evgenykuzakov.ui.LoadingScreen
 
 @Composable
 fun PizzaDetailScreen(
@@ -21,16 +23,18 @@ fun PizzaDetailScreen(
 ) {
     val state by viewModel.uiState.collectAsState()
 
+    LaunchedEffect(Unit) { viewModel.getDetailInfo() }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(paddingValues)
     ) {
         AppBar(onButtonClick = navigateBack)
-        when (state) {
+        when (val currentState = state) {
             is PizzaDetailScreenUIState.Content -> {
-                val pizza = (state as PizzaDetailScreenUIState.Content).pizza
-                val userChoice = (state as PizzaDetailScreenUIState.Content).userChoice
+                val pizza = currentState.pizza
+                val userChoice = currentState.userChoice
 
                 Column(
                     modifier = Modifier
@@ -42,7 +46,7 @@ fun PizzaDetailScreen(
                         .verticalScroll(rememberScrollState())
                 ) {
 
-                    PizzaImage(baseUrl = viewModel.getBaseUrl(), img = pizza.img)
+                    PizzaImage(img = pizza.img)
 
                     PizzaName(pizza.name)
 
@@ -61,7 +65,6 @@ fun PizzaDetailScreen(
                     ExtrasHeading()
 
                     ExtrasIngredients(
-                        url = viewModel.getBaseUrl(),
                         ingredients = pizza.ingredients,
                         toppings = userChoice.toppings,
                         select = viewModel::selectExtraIngredient
@@ -79,7 +82,7 @@ fun PizzaDetailScreen(
             }
 
             is PizzaDetailScreenUIState.Error -> {}
-            PizzaDetailScreenUIState.Loading -> {}
+            PizzaDetailScreenUIState.Loading -> LoadingScreen()
         }
 
     }

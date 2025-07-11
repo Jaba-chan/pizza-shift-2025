@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -36,15 +37,17 @@ fun PaymentScreen(
         viewModel::handleCityTextInput
     )
 
+    LaunchedEffect(Unit) { viewModel.getProfile() }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(paddingValues)
     ) {
-        when (state) {
+        when (val currentState = state) {
             is PaymentScreenUIState.Content -> {
-                val step = (state as PaymentScreenUIState.Content).step
-                val user = (state as PaymentScreenUIState.Content).user
+                val step = currentState.step
+                val user = currentState.user
 
                 step?.let {
                     AppBar(
@@ -85,7 +88,7 @@ fun PaymentScreen(
                         }
 
                         Step.Two -> {
-                            val debitCard = (state as PaymentScreenUIState.Content).debitCard
+                            val debitCard = currentState.debitCard
                             debitCard?.let {
                                 PayWindow(
                                     debitCard = it,
@@ -98,7 +101,7 @@ fun PaymentScreen(
                         }
 
                         null -> {
-                            val order = (state as PaymentScreenUIState.Content).order
+                            val order = currentState.order
                             order?.let {
                                 PaymentSuccessfully(
                                     order = it,
