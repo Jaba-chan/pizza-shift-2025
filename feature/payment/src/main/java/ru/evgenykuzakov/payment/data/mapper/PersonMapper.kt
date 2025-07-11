@@ -17,6 +17,7 @@ fun PersonDto.toDomain() = Person(
     middlename = middlename,
     phone = phone
 )
+
 fun User.toPerson() = Person(
     firstname = firstname,
     lastname = lastname,

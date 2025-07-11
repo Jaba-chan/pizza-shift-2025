@@ -44,7 +44,6 @@ dependencies {
     implementation(project(":shared:cart"))
     implementation(project(":shared:network"))
     implementation(project(":shared:model:pizza"))
-    implementation(project(":shared:payment"))
 
     ksp(libs.hilt.android.compiler)
     implementation(libs.coil.compose)

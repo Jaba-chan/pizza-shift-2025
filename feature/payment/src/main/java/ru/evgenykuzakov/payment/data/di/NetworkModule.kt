@@ -5,7 +5,6 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
-import ru.evgenykuzakov.payment.data.network.PaymentRetrofitApi
 import javax.inject.Singleton
 
 @Module
@@ -16,8 +15,8 @@ internal object NetworkModule {
     @Singleton
     fun providePaymentRetrofitApi(
         retrofit: Retrofit,
-    ): PaymentRetrofitApi {
-        return retrofit.create(PaymentRetrofitApi::class.java)
+    ): ru.evgenykuzakov.payment.data.network.PaymentRetrofitApi {
+        return retrofit.create(ru.evgenykuzakov.payment.data.network.PaymentRetrofitApi::class.java)
     }
 
 }

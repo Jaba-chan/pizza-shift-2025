@@ -4,7 +4,7 @@ import ru.evgenykuzakov.payment.data.mapper.toDomain
 import ru.evgenykuzakov.payment.data.mapper.toRequest
 import ru.evgenykuzakov.payment.data.network.PaymentRetrofitApi
 import ru.evgenykuzakov.payment.domain.model.Order
-import ru.evgenykuzakov.payment.domain.model.param.PayCartParam
+import ru.evgenykuzakov.payment.domain.model.PayCartParam
 import ru.evgenykuzakov.payment.domain.repository.PaymentRepository
 import javax.inject.Inject
 

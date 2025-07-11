@@ -44,7 +44,6 @@ dependencies {
     implementation(project(":components:resource"))
     implementation(project(":shared:cart"))
     implementation(project(":shared:profile"))
-    implementation(project(":shared:payment"))
     implementation(project(":shared:pizza"))
     implementation(project(":shared:model:user"))
     implementation(project(":shared:model:pizza"))
@@ -57,4 +56,7 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigation.compose)
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.kotlinx.serialization.json)
 }
