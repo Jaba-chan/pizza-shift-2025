@@ -6,7 +6,7 @@ import ru.evgenykuzakov.profile.data.model.request.UpdateProfileRequest
 import ru.evgenykuzakov.user.User
 
 fun UserDto.toDomain() = User(
-    city = city,
+    city = city ?: "",
     email = email,
     firstname = firstname ?: "",
     lastname = lastname ?: "",

@@ -1,6 +1,7 @@
 package ru.evgenykuzakov.payment.presentation
 
 import ru.evgenykuzakov.payment.domain.model.DebitCard
+import ru.evgenykuzakov.payment.domain.model.Order
 import ru.evgenykuzakov.user.User
 
 
@@ -9,6 +10,7 @@ sealed interface PaymentScreenUIState {
     data class Content(
         val user: User,
         val debitCard: DebitCard? = null,
+        val order: Order? = null,
         val step: Step? = Step.One
     ) : PaymentScreenUIState
 

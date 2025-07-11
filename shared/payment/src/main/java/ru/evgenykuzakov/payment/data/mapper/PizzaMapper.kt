@@ -1,21 +1,22 @@
 package ru.evgenykuzakov.payment.data.mapper
 
 import ru.evgenykuzakov.payment.data.model.PizzaDto
-import ru.evgenykuzakov.pizza.Pizza
 import ru.evgenykuzakov.pizza.PizzaShort
-import ru.evgenykuzakov.pizza.data.mapper.toDomain
-import ru.evgenykuzakov.pizza.data.mapper.toDto
+import ru.evgenykuzakov.pizza.type.DoughType
+import ru.evgenykuzakov.pizza.type.IngredientType
+import ru.evgenykuzakov.pizza.type.SizeType
 
 fun PizzaShort.toDto() = PizzaDto(
     id = pizzaId,
-    dough = dough.toDto(),
-    size = size.toDto(),
-    toppings = toppings.map { it.toDto() }
+    dough = dough.name,
+    size = size.name,
+    toppings = toppings.map { it.name }
 )
 
-fun PizzaDto.toDomain() = PizzaShort(
+fun PizzaDto.toDomain(name: String) = PizzaShort(
+    name = name,
     pizzaId = id,
-    dough = dough.toDomain(),
-    size = size.toDomain(),
-    toppings = toppings.map { it.toDomain() }
+    dough = DoughType.fromString(dough),
+    size = SizeType.fromString(size),
+    toppings = toppings.map { IngredientType.fromString(it) }
 )

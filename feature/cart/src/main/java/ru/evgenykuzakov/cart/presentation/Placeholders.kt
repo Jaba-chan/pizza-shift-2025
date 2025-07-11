@@ -40,7 +40,7 @@ import ru.evgenykuzakov.ui.BasicAppBar
 import ru.evgenykuzakov.ui.Paragraph12Regular
 import ru.evgenykuzakov.ui.Paragraph12Underline
 import ru.evgenykuzakov.ui.Paragraph16Medium
-import ru.evgenykuzakov.ui.ShiftButton
+import ru.evgenykuzakov.ui.PrimaryButton
 import ru.evgenykuzakov.ui.ShiftButtonText
 import ru.evgenykuzakov.resource.R as Res
 
@@ -214,13 +214,13 @@ internal fun MakeOrderBar(
                 Spacer(modifier = Modifier.width(24.dp))
 
                 Paragraph16Medium(
-                    text = "$total ${stringResource(R.string.rub_str_p)}"
+                    text = "$total ${stringResource(Res.string.rub_str_p)}"
                 )
             }
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            ShiftButton(
+            PrimaryButton(
                 modifier = Modifier.fillMaxWidth(),
                 onClick = onClick
             ) {
@@ -229,4 +229,3 @@ internal fun MakeOrderBar(
         }
     }
 }
-

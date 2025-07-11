@@ -9,9 +9,8 @@ import ru.evgenykuzakov.payment.domain.repository.PaymentRepository
 import javax.inject.Inject
 
 class PaymentRepositoryImpl @Inject constructor(
-    private val api: PaymentRetrofitApi
+    private val api: PaymentRetrofitApi,
 ) : PaymentRepository {
 
     override suspend fun payForCart(param: PayCartParam): Order = api.payForCart(param.toRequest()).order.toDomain()
-
 }

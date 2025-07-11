@@ -28,5 +28,7 @@ class CartRepositoryImpl @Inject constructor(
             toppings = pizza.toppings.map { it.toEntity() }
         )
 
+    override suspend fun clearCart() = dao.clearCart()
+
     override fun getCartSize(): Flow<Int> = dao.getCartSizeAsFlow()
 }

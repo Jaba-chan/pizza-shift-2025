@@ -14,6 +14,8 @@ interface CartRepository {
 
     suspend fun deleteFromCart(pizza: Pizza)
 
+    suspend fun clearCart()
+
     fun getCartSize(): Flow<Int>
 
 }

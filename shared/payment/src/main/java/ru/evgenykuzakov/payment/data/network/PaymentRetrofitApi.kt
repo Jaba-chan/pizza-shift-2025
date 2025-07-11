@@ -7,7 +7,7 @@ import ru.evgenykuzakov.payment.data.model.PayResponse
 
 interface PaymentRetrofitApi {
 
-    @POST
+    @POST("pizza/payment")
     suspend fun payForCart(@Body payRequest: PayRequest): PayResponse
 
 }

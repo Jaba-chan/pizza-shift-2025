@@ -34,6 +34,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.accompanist.systemuicontroller)
     implementation(libs.androidx.ui.text.google.fonts)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)

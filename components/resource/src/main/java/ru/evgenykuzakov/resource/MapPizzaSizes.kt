@@ -18,3 +18,19 @@ fun Size.mapToSizeResource(): Int {
         SizeType.Small -> R.string.small_size
     }
 }
+
+fun SizeType.mapToTitleResource(): Int {
+    return when(this){
+        SizeType.Large -> R.string.large_title
+        SizeType.Medium -> R.string.medium_title
+        SizeType.Small -> R.string.small_title
+    }
+}
+
+fun SizeType.mapToSizeResource(): Int {
+    return when(this){
+        SizeType.Large -> R.string.large_size
+        SizeType.Medium -> R.string.medium_size
+        SizeType.Small -> R.string.small_size
+    }
+}

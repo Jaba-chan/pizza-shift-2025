@@ -59,4 +59,7 @@ interface CartDao {
 
     @Query("SELECT * FROM cart WHERE id = :id LIMIT 1")
     suspend fun getPizzaById(id: Long): PizzaEntity?
+
+    @Query("DELETE FROM cart")
+    suspend fun clearCart()
 }

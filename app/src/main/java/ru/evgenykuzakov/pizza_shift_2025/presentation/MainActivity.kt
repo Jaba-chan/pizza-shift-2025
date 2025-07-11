@@ -92,9 +92,7 @@ class MainActivity : ComponentActivity() {
                         pizzaCatalogScreenContent = {
                             CatalogScreen(
                                 paddingValues = innerPadding,
-                                onCardClick = {
-                                    navSate.navigateTo(Screen.PizzaDetailScreen.createRoute(it))
-                                }
+                                onCardClick = { navSate.navigateTo(Screen.PizzaDetailScreen.createRoute(it)) }
                             )
                         },
                         pizzaDetailScreenContent = {
@@ -107,7 +105,7 @@ class MainActivity : ComponentActivity() {
                             CartScreen(
                                 paddingValues = innerPadding,
                                 navigateBack = { navSate.navigateBack() },
-                                navigateToChanging = { navSate.navigateTo(Screen.PizzaEditScreen.createRoute(it))},
+                                navigateToChanging = { navSate.navigateTo(Screen.PizzaEditScreen.createRoute(it)) },
                                 navigateToPayment = { navSate.navigateTo(Screen.PaymentScreen.route) }
                             )
                         },
@@ -120,7 +118,9 @@ class MainActivity : ComponentActivity() {
                         paymentScreenContent = {
                             PaymentScreen(
                                 paddingValues = innerPadding,
-                                navigateBack = { navSate.navigateBack() }
+                                onBackButton = { navSate.navigateBack() },
+                                onMainButtonClick = { navSate.navigateTo(Screen.HomeScreen.route) },
+                                onOrderDetailButtonClick = { navSate.navigateTo(Screen.OrdersScreen.route) }
                             )
                         }
                     )

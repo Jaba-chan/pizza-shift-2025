@@ -22,7 +22,7 @@ import ru.evgenykuzakov.ui.BasicAppBar
 import ru.evgenykuzakov.ui.ButtonProgressIndicator
 import ru.evgenykuzakov.ui.Paragraph14Regular
 import ru.evgenykuzakov.ui.Paragraph16Regular
-import ru.evgenykuzakov.ui.ShiftButton
+import ru.evgenykuzakov.ui.PrimaryButton
 import ru.evgenykuzakov.ui.ShiftButtonText
 import ru.evgenykuzakov.ui.ShiftTextField
 
@@ -87,7 +87,7 @@ internal fun AuthButton(
     state: AuthScreenUIState,
     onClick: () -> Unit
 ) {
-    ShiftButton(
+    PrimaryButton(
         modifier = Modifier
             .fillMaxWidth()
             .padding(top = 24.dp),

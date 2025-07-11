@@ -4,7 +4,7 @@ import ru.evgenykuzakov.auth.data.model.UserDto
 import ru.evgenykuzakov.user.User
 
 fun UserDto.toDomain() = User(
-    city = city,
+    city = city ?: "",
     email = email,
     firstname = firstname ?: "",
     lastname = lastname ?: "",

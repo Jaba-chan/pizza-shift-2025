@@ -28,9 +28,10 @@ uiTextGoogleFonts = "1.8.3"
 navigationCompose = "2.9.0"
 coil = "2.5.0"
 room= "2.7.2"
-
+accompanistSystemuicontroller = "0.27.0"
 
 [libraries]
+accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanistSystemuicontroller" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-ui-text-google-fonts = { module = "androidx.compose.ui:ui-text-google-fonts", version.ref = "uiTextGoogleFonts" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }

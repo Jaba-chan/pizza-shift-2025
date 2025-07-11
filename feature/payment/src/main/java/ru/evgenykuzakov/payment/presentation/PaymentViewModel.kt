@@ -1,5 +1,6 @@
 package ru.evgenykuzakov.payment.presentation
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -11,11 +12,11 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import ru.evgenykuzakov.cart.domain.use_case.ClearCartUseCase
 import ru.evgenykuzakov.cart.domain.use_case.GetCartUseCase
 import ru.evgenykuzakov.payment.data.mapper.toPerson
 import ru.evgenykuzakov.payment.data.mapper.toShort
 import ru.evgenykuzakov.payment.domain.model.DebitCard
-import ru.evgenykuzakov.payment.domain.model.Person
 import ru.evgenykuzakov.payment.domain.model.ReceiverAddress
 import ru.evgenykuzakov.payment.domain.model.param.PayCartParam
 import ru.evgenykuzakov.payment.domain.use_case.PayForCartUseCase
@@ -30,14 +31,14 @@ class PaymentViewModel @Inject constructor(
     private val getProfileUseCase: GetProfileUseCase,
     private val updateProfileUseCase: UpdateProfileUseCase,
     private val payForCartUseCase: PayForCartUseCase,
-    private val getCartUseCase: GetCartUseCase
+    private val getCartUseCase: GetCartUseCase,
+    private val clearCartUseCase: ClearCartUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<PaymentScreenUIState>(PaymentScreenUIState.Loading)
     val uiState: StateFlow<PaymentScreenUIState> = _uiState
 
     private val handler = CoroutineExceptionHandler { _, exception ->
-        println(exception)
         _uiState.value = PaymentScreenUIState.Error(exception.localizedMessage.orEmpty())
     }
 
@@ -57,21 +58,30 @@ class PaymentViewModel @Inject constructor(
 
     private fun createOrder() {
         val currentState = _uiState.value as? PaymentScreenUIState.Content ?: return
-        val address = currentState.user.city?.split(",") ?: listOf("", "", "", "")
-
-        val getCartJob = viewModelScope.async(Dispatchers.IO + handler) {
-            getCartUseCase.invoke().first()
-        }
-
+        val address = currentState.user.city.split(", ")
         viewModelScope.launch(Dispatchers.IO + handler) {
-            payForCartUseCase.invoke(
+            val cart = getCartUseCase.invoke().first()
+            val orderResult = payForCartUseCase.invoke(
                 PayCartParam(
                     person = currentState.user.toPerson(),
-                    pizzas = getCartJob.await().map { it.toShort() },
+                    pizzas = cart.map { it.toShort() },
                     debitCard = currentState.debitCard!!,
-                    receiverAddress = ReceiverAddress(address[0], address[1], address[2], address[3])
+                    receiverAddress = ReceiverAddress(
+                        address[0],
+                        address[1],
+                        address[2],
+                        address[3]
+                    )
                 )
             )
+            clearCartUseCase()
+            _uiState.update { state ->
+                if (state is PaymentScreenUIState.Content) {
+                    state.copy(order = orderResult)
+                } else {
+                    state
+                }
+            }
         }
     }
 
@@ -111,15 +121,15 @@ class PaymentViewModel @Inject constructor(
         updateUser { it.copy(city = text) }
     }
 
-    fun handlePan(text: String){
+    fun handlePan(text: String) {
         updateDebitCard { it.copy(pan = text) }
     }
 
-    fun handleExpireDate(text: String){
+    fun handleExpireDate(text: String) {
         updateDebitCard { it.copy(expireDate = text) }
     }
 
-    fun handleCVV(text: String){
+    fun handleCVV(text: String) {
         updateDebitCard { it.copy(cvv = text) }
     }
 
@@ -127,10 +137,9 @@ class PaymentViewModel @Inject constructor(
         val currentState = _uiState.value as? PaymentScreenUIState.Content ?: return
         when (currentState.step) {
             Step.One -> {
-                if (
-                    currentState.user.lastname.isNotBlank()
+                if (currentState.user.lastname.isNotBlank()
                     && currentState.user.firstname.isNotBlank()
-                    && (currentState.user.city?.isNotBlank() == true)
+                    && (currentState.user.city.split(",").size == 4)
                 ) {
                     updateProfile()
                     _uiState.update {
@@ -147,11 +156,11 @@ class PaymentViewModel @Inject constructor(
             }
 
             Step.Two -> {
-                createOrder()
                 if (currentState.debitCard!!.pan.length == 16
                     && currentState.debitCard.expireDate.isValidExpiredDate()
                     && currentState.debitCard.cvv.length == 3
                 ) {
+                    createOrder()
                     _uiState.update {
                         currentState.copy(
                             step = currentState.step.next()
@@ -160,22 +169,20 @@ class PaymentViewModel @Inject constructor(
                 }
             }
 
-            null -> {
-
-            }
+            null -> {}
         }
 
     }
 
-    fun previousStep(){
+    fun previousStep() {
         val currentState = _uiState.value as? PaymentScreenUIState.Content ?: return
         when (currentState.step) {
             Step.Two -> {
-                    _uiState.update {
-                        currentState.copy(
-                            step = currentState.step.previous(),
-                        )
-                    }
+                _uiState.update {
+                    currentState.copy(
+                        step = currentState.step.previous(),
+                    )
+                }
             }
             else -> {}
         }

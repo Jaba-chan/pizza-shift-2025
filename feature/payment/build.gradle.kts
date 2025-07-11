@@ -45,6 +45,7 @@ dependencies {
     implementation(project(":shared:cart"))
     implementation(project(":shared:profile"))
     implementation(project(":shared:payment"))
+    implementation(project(":shared:pizza"))
     implementation(project(":shared:model:user"))
     implementation(project(":shared:model:pizza"))
 

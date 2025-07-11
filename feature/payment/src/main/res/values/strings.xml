@@ -10,4 +10,8 @@
     <string name="pan_placeholder">0000 0000 0000 0000</string>
     <string name="expire_date_placeholder">00/00</string>
     <string name="cvv_placeholder">000</string>
+    <string name="payment_successfully">Оплата прошла успешно!</string>
+    <string name="to_main">На главную</string>
+    <string name="all_info_dublicated_in_sms">Вся информация была продублирована в SMS</string>
+
 </resources>

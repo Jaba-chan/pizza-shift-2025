@@ -47,7 +47,7 @@ import ru.evgenykuzakov.ui.Paragraph14Medium
 import ru.evgenykuzakov.ui.Paragraph14Regular
 import ru.evgenykuzakov.ui.Paragraph16Medium
 import ru.evgenykuzakov.ui.Paragraph16Regular
-import ru.evgenykuzakov.ui.ShiftButton
+import ru.evgenykuzakov.ui.PrimaryButton
 import ru.evgenykuzakov.ui.ShiftButtonText
 import ru.evgenykuzakov.ui.TabSelector
 import ru.evgenykuzakov.ui.TitleH2
@@ -246,7 +246,7 @@ internal fun ColumnScope.AddToCartButton(
     userChoice: Pizza,
     totalCost: Int
 ) {
-    ShiftButton(
+    PrimaryButton(
         modifier = Modifier.align(Alignment.CenterHorizontally).padding(vertical = 16.dp),
         onClick = onClick
     ){

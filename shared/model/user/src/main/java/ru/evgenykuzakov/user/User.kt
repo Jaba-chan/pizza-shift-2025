@@ -1,7 +1,7 @@
 package ru.evgenykuzakov.user
 
 data class User(
-    val city: String?,
+    val city: String,
     val email: String?,
     val firstname: String,
     val lastname: String,

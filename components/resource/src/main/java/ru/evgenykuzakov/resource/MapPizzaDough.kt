@@ -9,3 +9,11 @@ fun Dough.mapToTitleResource(): Int {
         DoughType.Thin ->  R.string.dough_thin
     }
 }
+
+fun DoughType.mapToTitleResource(): Int {
+    return when(this){
+        DoughType.Thick -> R.string.dough_thick
+        DoughType.Thin ->  R.string.dough_thin
+    }
+}
+

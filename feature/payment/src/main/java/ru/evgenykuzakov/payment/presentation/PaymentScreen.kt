@@ -21,7 +21,9 @@ import ru.evgenykuzakov.ui.LoadingScreen
 fun PaymentScreen(
     viewModel: PaymentViewModel = hiltViewModel(),
     paddingValues: PaddingValues,
-    navigateBack: () -> Unit
+    onBackButton: () -> Unit,
+    onMainButtonClick: () -> Unit,
+    onOrderDetailButtonClick: () -> Unit,
 ) {
     val state by viewModel.uiState.collectAsState()
 
@@ -46,12 +48,12 @@ fun PaymentScreen(
 
                 step?.let {
                     AppBar(
-                        headingTextRes = when(step){
+                        headingTextRes = when (step) {
                             Step.One -> R.string.your_data
                             Step.Two -> R.string.card_for_pay
                         },
                         onButtonClick = {
-                            if (step is Step.One) navigateBack()
+                            if (step is Step.One) onBackButton()
                             if (step is Step.Two) viewModel.previousStep()
                         }
                     )
@@ -84,20 +86,33 @@ fun PaymentScreen(
 
                         Step.Two -> {
                             val debitCard = (state as PaymentScreenUIState.Content).debitCard
-                            PayWindow(
-                                debitCard = debitCard!!,
-                                onPanChanged = viewModel::handlePan,
-                                onExpireDateChanged = viewModel::handleExpireDate,
-                                onCVVChanged = viewModel::handleCVV
-                            )
+                            debitCard?.let {
+                                PayWindow(
+                                    debitCard = it,
+                                    onPanChanged = viewModel::handlePan,
+                                    onExpireDateChanged = viewModel::handleExpireDate,
+                                    onCVVChanged = viewModel::handleCVV
+                                )
+                            }
+
                         }
 
-                        null -> {}
+                        null -> {
+                            val order = (state as PaymentScreenUIState.Content).order
+                            order?.let {
+                                PaymentSuccessfully(
+                                    order = it,
+                                    onMainButtonClick = onMainButtonClick,
+                                    onOrderDetailButtonClick = onOrderDetailButtonClick,
+                                    onCloseClick = onMainButtonClick
+                                )
+                            }
+                        }
                     }
 
                     when (step) {
                         Step.One -> NextStepButton(onClick = viewModel::nextStep)
-                        Step.Two -> PayButton(onClick = { viewModel.nextStep() })
+                        Step.Two -> PayButton(onClick = viewModel::nextStep)
                         null -> {}
                     }
                 }

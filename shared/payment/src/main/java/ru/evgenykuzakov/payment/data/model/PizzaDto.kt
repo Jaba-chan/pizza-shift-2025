@@ -8,8 +8,8 @@ import ru.evgenykuzakov.pizza.data.model.SizeDto
 
 @Serializable
 data class PizzaDto(
-    val dough: DoughDto,
+    val dough: String,
     val id: String,
-    val size: SizeDto,
-    val toppings: List<IngredientDto>
+    val size: String,
+    val toppings: List<String>
 )
