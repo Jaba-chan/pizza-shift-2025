@@ -120,10 +120,9 @@ internal fun SizeSelector(
 ) {
     TabSelector(
         modifier = Modifier.padding(top = 24.dp, bottom = 12.dp),
-        options = sizes,
+        optionsTitle = sizes.map { stringResource(it.mapToTitleResource()) },
         selectedPos = sizes.indexOf(selectedSize),
-        select = select,
-        descriptions = sizes.map { stringResource(it.mapToTitleResource()) }
+        onSelectTab = select,
     )
 }
 
@@ -231,11 +230,10 @@ internal fun ColumnScope.DoughSelector(
 ) {
     ArrowSelector(
         modifier = Modifier.padding(bottom = 16.dp),
-        options = doughs,
-        descriptions = doughs.map { dough ->
+        optionsLabel = doughs.map { dough ->
             stringResource(dough.mapToTitleResource()).replaceFirstChar { it.titlecaseChar() }
         },
-        select = select,
+        onSelectTab = select,
         selectedPos = doughs.indexOf(selectedDough)
     )
 }

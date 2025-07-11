@@ -29,12 +29,11 @@ import ru.evgenykuzakov.theme.ExtendedTheme
 import ru.evgenykuzakov.resource.R as Res
 
 @Composable
-fun <T> TabSelector(
+fun TabSelector(
     modifier: Modifier = Modifier,
-    options: List<T>,
-    descriptions: List<String>,
+    optionsTitle: List<String>,
     selectedPos: Int,
-    select: (Int) -> Unit,
+    onSelectTab: (Int) -> Unit,
 ) {
     Row(
         modifier = modifier
@@ -44,7 +43,7 @@ fun <T> TabSelector(
                 shape = RoundedCornerShape(16.dp)
             )
     ) {
-        options.forEachIndexed { index, _ ->
+        optionsTitle.forEachIndexed { index, _ ->
             Box(
                 modifier = Modifier
                     .weight(1f)
@@ -52,7 +51,7 @@ fun <T> TabSelector(
                     .fillMaxSize()
                     .clip(RoundedCornerShape(14.dp))
                     .clickable(
-                        onClick = { select(index) },
+                        onClick = { onSelectTab(index) },
                         indication = null,
                         interactionSource = remember { MutableInteractionSource() },
                     )
@@ -60,7 +59,7 @@ fun <T> TabSelector(
             ) {
                 Paragraph14Regular(
                     modifier = Modifier.align(Alignment.Center),
-                    text = descriptions[index]
+                    text = optionsTitle[index]
                 )
             }
         }
@@ -68,12 +67,11 @@ fun <T> TabSelector(
 }
 
 @Composable
-fun <T> ColumnScope.ArrowSelector(
+fun ColumnScope.ArrowSelector(
     modifier: Modifier = Modifier,
-    options: List<T>,
-    descriptions: List<String>,
+    optionsLabel: List<String>,
     selectedPos: Int,
-    select: (Int) -> Unit,
+    onSelectTab: (Int) -> Unit,
 ) {
     Row(
         modifier = modifier
@@ -88,17 +86,17 @@ fun <T> ColumnScope.ArrowSelector(
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Arrow(
-            onClick = { select(if (selectedPos > 0) selectedPos - 1 else options.size - 1) }
+            onClick = { onSelectTab(if (selectedPos > 0) selectedPos - 1 else optionsLabel.size - 1) }
         )
 
         Paragraph14Regular(
             textAlign = TextAlign.Center,
-            text = descriptions[selectedPos]
+            text = optionsLabel[selectedPos]
         )
 
         Arrow(
             isLeft = false,
-            onClick = { select(if (selectedPos < options.size - 1) selectedPos + 1 else 0) }
+            onClick = { onSelectTab(if (selectedPos < optionsLabel.size - 1) selectedPos + 1 else 0) }
         )
     }
 }
