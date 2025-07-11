@@ -7,7 +7,7 @@ import ru.evgenykuzakov.cart.data.mapper.toDomain
 import ru.evgenykuzakov.cart.data.mapper.toEntity
 import ru.evgenykuzakov.cart.domain.model.CartItem
 import ru.evgenykuzakov.cart.domain.repository.CartRepository
-import ru.evgenykuzakov.model.pizza.Pizza
+import ru.evgenykuzakov.pizza.Pizza
 import javax.inject.Inject
 
 class CartRepositoryImpl @Inject constructor(
@@ -27,6 +27,8 @@ class CartRepositoryImpl @Inject constructor(
             dough = pizza.dough.toEntity(),
             toppings = pizza.toppings.map { it.toEntity() }
         )
+
+    override suspend fun clearCart() = dao.clearCart()
 
     override fun getCartSize(): Flow<Int> = dao.getCartSizeAsFlow()
 }

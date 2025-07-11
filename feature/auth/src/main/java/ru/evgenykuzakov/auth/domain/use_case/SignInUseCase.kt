@@ -1,7 +1,7 @@
 package ru.evgenykuzakov.auth.domain.use_case
 
 import ru.evgenykuzakov.auth.domain.AuthRepository
-import ru.evgenykuzakov.auth.domain.model.User
+import ru.evgenykuzakov.user.User
 import ru.evgenykuzakov.auth.domain.model.params.SignInParams
 import ru.evgenykuzakov.utils.Resource
 import javax.inject.Inject

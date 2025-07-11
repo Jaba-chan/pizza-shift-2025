@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="your_data">Ваши данные</string>
+    <string name="card_for_pay">Карта оплаты</string>
+    <string name="step_of">Шаг %d из %d</string>
+    <string name="pay">Оплатить</string>
+    <string name="pan">Номер*</string>
+    <string name="expire_date">Срок*</string>
+    <string name="cvv">CVV*</string>
+    <string name="pan_placeholder">0000 0000 0000 0000</string>
+    <string name="expire_date_placeholder">00/00</string>
+    <string name="cvv_placeholder">000</string>
+    <string name="payment_successfully">Оплата прошла успешно!</string>
+    <string name="to_main">На главную</string>
+    <string name="all_info_dublicated_in_sms">Вся информация была продублирована в SMS</string>
+
+</resources>

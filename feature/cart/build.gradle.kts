@@ -48,9 +48,10 @@ dependencies {
     implementation(project(":components:theme"))
     implementation(project(":components:resource"))
     implementation(project(":shared:pizza"))
-    implementation(project(":shared:model"))
     implementation(project(":shared:cart"))
     implementation(project(":shared:network"))
+    implementation(project(":shared:model:pizza"))
+    implementation(project(":shared:payment"))
 
     ksp(libs.hilt.android.compiler)
     implementation(libs.coil.compose)

@@ -15,13 +15,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import ru.evgenykuzakov.pizza.totalCost
 
 @Composable
 fun CartScreen(
     viewModel: CartViewModel = hiltViewModel(),
     paddingValues: PaddingValues,
     navigateBack: () -> Unit,
-    navigateToChanging: (Long) -> Unit
+    navigateToChanging: (Long) -> Unit,
+    navigateToPayment: () -> Unit
 ) {
     val state by viewModel.uiState.collectAsState()
 
@@ -65,12 +67,15 @@ fun CartScreen(
 
         }
 
-        if (state is CartScreenUIState.Content){
-            MakeOrderBar(
-                modifier = Modifier.align(Alignment.BottomCenter),
-                onClick = {},
-                cart = (state as CartScreenUIState.Content).cart
-            )
+        if (state is CartScreenUIState.Content) {
+            val totalPay = (state as CartScreenUIState.Content).cart.sumOf { it.pizza.totalCost() * it.count }
+            if (totalPay > 0) {
+                MakeOrderBar(
+                    modifier = Modifier.align(Alignment.BottomCenter),
+                    onClick = navigateToPayment,
+                    total = totalPay
+                )
+            }
         }
 
     }

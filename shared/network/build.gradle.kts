@@ -39,6 +39,7 @@ dependencies {
     implementation(libs.converter.gson)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.hilt.android)
+    implementation(project(":shared:datastore:otpToken"))
     ksp(libs.hilt.android.compiler)
 
     implementation(libs.androidx.core.ktx)

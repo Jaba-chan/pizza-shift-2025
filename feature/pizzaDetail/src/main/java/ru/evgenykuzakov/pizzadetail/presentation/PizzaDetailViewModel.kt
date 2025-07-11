@@ -11,9 +11,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import ru.evgenykuzakov.cart.domain.use_case.AddToCartUseCase
 import ru.evgenykuzakov.cart.domain.use_case.GetPizzaByIdUseCase
-import ru.evgenykuzakov.model.pizza.Ingredient
-import ru.evgenykuzakov.model.pizza.Pizza
-import ru.evgenykuzakov.model.pizza.totalCost
+import ru.evgenykuzakov.pizza.Ingredient
+import ru.evgenykuzakov.pizza.Pizza
+import ru.evgenykuzakov.pizza.totalCost
 import ru.evgenykuzakov.network.di.RetrofitBaseUrl
 import ru.evgenykuzakov.pizza.domain.use_case.GetPizzaDetailInfoUseCase
 import javax.inject.Inject

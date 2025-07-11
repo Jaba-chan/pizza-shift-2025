@@ -1,8 +1,8 @@
 package ru.evgenykuzakov.cart.data.mapper
 
 import ru.evgenykuzakov.cart.data.database.model.IngredientEntity
-import ru.evgenykuzakov.model.pizza.Ingredient
-import ru.evgenykuzakov.model.pizza.type.IngredientType
+import ru.evgenykuzakov.pizza.Ingredient
+import ru.evgenykuzakov.pizza.type.IngredientType
 
 fun IngredientEntity.toDomain() = Ingredient(
     img = img,

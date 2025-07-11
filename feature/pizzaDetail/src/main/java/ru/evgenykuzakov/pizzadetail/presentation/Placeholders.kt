@@ -1,6 +1,5 @@
 package ru.evgenykuzakov.pizzadetail.presentation
 
-import android.icu.lang.UProperty.NameChoice
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -31,10 +30,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import ru.evgenykuzakov.model.pizza.Dough
-import ru.evgenykuzakov.model.pizza.Ingredient
-import ru.evgenykuzakov.model.pizza.Pizza
-import ru.evgenykuzakov.model.pizza.Size
+import ru.evgenykuzakov.pizza.Dough
+import ru.evgenykuzakov.pizza.Ingredient
+import ru.evgenykuzakov.pizza.Pizza
+import ru.evgenykuzakov.pizza.Size
 import ru.evgenykuzakov.pizzadetail.R
 import ru.evgenykuzakov.resource.mapToResource
 import ru.evgenykuzakov.resource.mapToSizeResource
@@ -48,7 +47,7 @@ import ru.evgenykuzakov.ui.Paragraph14Medium
 import ru.evgenykuzakov.ui.Paragraph14Regular
 import ru.evgenykuzakov.ui.Paragraph16Medium
 import ru.evgenykuzakov.ui.Paragraph16Regular
-import ru.evgenykuzakov.ui.ShiftButton
+import ru.evgenykuzakov.ui.PrimaryButton
 import ru.evgenykuzakov.ui.ShiftButtonText
 import ru.evgenykuzakov.ui.TabSelector
 import ru.evgenykuzakov.ui.TitleH2
@@ -247,7 +246,7 @@ internal fun ColumnScope.AddToCartButton(
     userChoice: Pizza,
     totalCost: Int
 ) {
-    ShiftButton(
+    PrimaryButton(
         modifier = Modifier.align(Alignment.CenterHorizontally).padding(vertical = 16.dp),
         onClick = onClick
     ){

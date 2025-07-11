@@ -1,7 +1,7 @@
 package ru.evgenykuzakov.resource
 
-import ru.evgenykuzakov.model.pizza.Size
-import ru.evgenykuzakov.model.pizza.type.SizeType
+import ru.evgenykuzakov.pizza.Size
+import ru.evgenykuzakov.pizza.type.SizeType
 
 fun Size.mapToTitleResource(): Int {
     return when(this.type){
@@ -13,6 +13,22 @@ fun Size.mapToTitleResource(): Int {
 
 fun Size.mapToSizeResource(): Int {
     return when(this.type){
+        SizeType.Large -> R.string.large_size
+        SizeType.Medium -> R.string.medium_size
+        SizeType.Small -> R.string.small_size
+    }
+}
+
+fun SizeType.mapToTitleResource(): Int {
+    return when(this){
+        SizeType.Large -> R.string.large_title
+        SizeType.Medium -> R.string.medium_title
+        SizeType.Small -> R.string.small_title
+    }
+}
+
+fun SizeType.mapToSizeResource(): Int {
+    return when(this){
         SizeType.Large -> R.string.large_size
         SizeType.Medium -> R.string.medium_size
         SizeType.Small -> R.string.small_size

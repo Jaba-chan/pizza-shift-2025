@@ -1,7 +1,7 @@
 package ru.evgenykuzakov.cart.data.mapper
 
 import ru.evgenykuzakov.cart.data.database.model.PizzaEntity
-import ru.evgenykuzakov.model.pizza.Pizza
+import ru.evgenykuzakov.pizza.Pizza
 
 fun PizzaEntity.toDomain() = Pizza(
     id = id,

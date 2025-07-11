@@ -6,7 +6,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import ru.evgenykuzakov.pizza_shift_2025.navigation.subgraphs.bottomNavGraph
-import ru.evgenykuzakov.pizza_shift_2025.navigation.subgraphs.pizzaNavGraph
 
 @Composable
 fun AppNavGraph(
@@ -16,10 +15,11 @@ fun AppNavGraph(
     pizzaDetailScreenContent: @Composable () -> Unit,
     pizzaEditScreenContent: @Composable () -> Unit,
     cartScreenContent: @Composable () -> Unit,
+    paymentScreenContent: @Composable () -> Unit,
 ) {
     NavHost(
         navController = navHostController,
-        startDestination = Screen.HomeScreen.route
+        startDestination = Screen.AuthScreen.route
 
     ) {
         composable(Screen.AuthScreen.route) {
@@ -31,6 +31,7 @@ fun AppNavGraph(
             pizzaEditScreenContent = pizzaEditScreenContent,
             ordersScreenContent = {},
             cartScreenContent = cartScreenContent,
+            paymentScreenContent = paymentScreenContent,
             profileScreenContent = {}
         )
     }

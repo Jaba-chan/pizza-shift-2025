@@ -33,5 +33,5 @@ android {
 }
 
 dependencies{
-    implementation(project(":shared:model"))
+    implementation(project(":shared:model:pizza"))
 }

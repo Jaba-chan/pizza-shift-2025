@@ -1,6 +1,5 @@
 package ru.evgenykuzakov.theme
 
-import androidx.compose.material3.CardElevation
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Color
 
@@ -14,5 +13,6 @@ data class ExtendedColors(
     val backgroundSecondary: Color,
     val shadowSmooth: Color,
     val shadowStrong: Color,
-    val backgroundElevation: Color
+    val backgroundElevation: Color,
+    val indicatorPositive: Color
 )

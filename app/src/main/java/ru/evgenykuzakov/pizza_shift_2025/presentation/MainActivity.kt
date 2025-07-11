@@ -22,6 +22,7 @@ import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 import ru.evgenykuzakov.auth.presentation.AuthScreen
 import ru.evgenykuzakov.cart.presentation.CartScreen
+import ru.evgenykuzakov.payment.presentation.PaymentScreen
 import ru.evgenykuzakov.pizzaCatalog.presentation.CatalogScreen
 import ru.evgenykuzakov.pizza_shift_2025.navigation.AppNavGraph
 import ru.evgenykuzakov.pizza_shift_2025.navigation.BottomNavigationItem
@@ -91,9 +92,7 @@ class MainActivity : ComponentActivity() {
                         pizzaCatalogScreenContent = {
                             CatalogScreen(
                                 paddingValues = innerPadding,
-                                onCardClick = {
-                                    navSate.navigateTo(Screen.PizzaDetailScreen.createRoute(it))
-                                }
+                                onCardClick = { navSate.navigateTo(Screen.PizzaDetailScreen.createRoute(it)) }
                             )
                         },
                         pizzaDetailScreenContent = {
@@ -106,13 +105,22 @@ class MainActivity : ComponentActivity() {
                             CartScreen(
                                 paddingValues = innerPadding,
                                 navigateBack = { navSate.navigateBack() },
-                                navigateToChanging = { navSate.navigateTo(Screen.PizzaEditScreen.createRoute(it))}
+                                navigateToChanging = { navSate.navigateTo(Screen.PizzaEditScreen.createRoute(it)) },
+                                navigateToPayment = { navSate.navigateTo(Screen.PaymentScreen.route) }
                             )
                         },
                         pizzaEditScreenContent = {
                             PizzaDetailScreen(
                                 paddingValues = innerPadding,
                                 navigateBack = { navSate.navigateBack() }
+                            )
+                        },
+                        paymentScreenContent = {
+                            PaymentScreen(
+                                paddingValues = innerPadding,
+                                onBackButton = { navSate.navigateBack() },
+                                onMainButtonClick = { navSate.navigateTo(Screen.HomeScreen.route) },
+                                onOrderDetailButtonClick = { navSate.navigateTo(Screen.OrdersScreen.route) }
                             )
                         }
                     )

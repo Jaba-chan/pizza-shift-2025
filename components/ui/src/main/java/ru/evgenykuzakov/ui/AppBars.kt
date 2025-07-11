@@ -20,7 +20,8 @@ import ru.evgenykuzakov.theme.ExtendedTheme
 @Composable
 fun BasicAppBar(
    leadingIcon: @Composable (() -> Unit)? = null,
-   headingText: String
+   trailingIcon: @Composable (() -> Unit)? = null,
+   headingText: String? = null
 ){
     Row(
         modifier = Modifier
@@ -37,11 +38,19 @@ fun BasicAppBar(
                 leadingIcon()
                 Spacer(modifier = Modifier.width(32.dp))
             }
-            TitleH2(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                text = headingText
-            )
+
+            if (headingText!=null){
+                TitleH2(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    text = headingText
+                )
+            }
+
+            if (trailingIcon != null){
+                Spacer(Modifier.weight(1f))
+                trailingIcon()
+            }
         }
 
     }

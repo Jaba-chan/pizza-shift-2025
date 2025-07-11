@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import ru.evgenykuzakov.cart.domain.use_case.AddOneToCartUseCase
 import ru.evgenykuzakov.cart.domain.use_case.DeleteOneFromCartUseCase
 import ru.evgenykuzakov.cart.domain.use_case.GetCartUseCase
-import ru.evgenykuzakov.model.pizza.Pizza
+import ru.evgenykuzakov.pizza.Pizza
 import ru.evgenykuzakov.network.di.RetrofitBaseUrl
 import javax.inject.Inject
 

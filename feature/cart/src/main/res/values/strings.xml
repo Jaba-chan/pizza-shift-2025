@@ -4,6 +4,5 @@
     <string name="minus">-</string>
     <string name="change">Изменить</string>
     <string name="order_cost">Стоимость заказа:</string>
-    <string name="rub_str_p">р</string>
     <string name="make_order">Оформить заказ</string>
 </resources>

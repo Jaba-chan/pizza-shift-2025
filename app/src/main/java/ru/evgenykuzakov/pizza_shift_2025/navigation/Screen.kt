@@ -23,6 +23,7 @@ sealed class Screen(
 
     data object CartHomeScreen: Screen(BASE_ROUTE_CART_HOME)
     data object CartScreen: Screen(ROUTE_CART)
+    data object PaymentScreen: Screen(ROUTE_CART_PAYMENT)
 
     data object ProfileScreen: Screen(BASE_ROUTE_PROFILE)
 
@@ -36,6 +37,7 @@ sealed class Screen(
         private const val BASE_ROUTE_ORDER= "order"
         private const val BASE_ROUTE_CART_HOME = "cart"
         private const val ROUTE_CART= "$BASE_ROUTE_CART_HOME/total"
+        private const val ROUTE_CART_PAYMENT= "payment"
         private const val BASE_ROUTE_PROFILE= "profile"
     }
 }

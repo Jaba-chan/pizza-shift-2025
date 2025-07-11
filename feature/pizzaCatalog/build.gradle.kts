@@ -43,7 +43,6 @@ dependencies {
     implementation(project(":components:resource"))
     implementation(project(":shared:pizza"))
     implementation(project(":shared:network"))
-    implementation(project(":shared:model"))
     implementation(libs.coil.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)

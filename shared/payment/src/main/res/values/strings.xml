@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pan_placeholder">0000 0000 0000 0000</string>
+    <string name="expire_date">Срок*</string>
+    <string name="expire_date_placeholder">00/00\n</string>
+    <string name="cvv">CVV*</string>
+    <string name="cvv_placeholder">000</string>
+</resources>
