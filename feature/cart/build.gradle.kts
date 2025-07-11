@@ -27,13 +27,6 @@ android {
             )
         }
     }
-    packaging {
-        resources {
-            pickFirsts += listOf(
-                "META-INF/gradle/incremental.annotation.processors"
-            )
-        }
-    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -51,7 +44,6 @@ dependencies {
     implementation(project(":shared:cart"))
     implementation(project(":shared:network"))
     implementation(project(":shared:model:pizza"))
-    implementation(project(":shared:payment"))
 
     ksp(libs.hilt.android.compiler)
     implementation(libs.coil.compose)

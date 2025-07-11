@@ -13,6 +13,7 @@ import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -30,6 +31,7 @@ import ru.evgenykuzakov.pizza_shift_2025.navigation.NavigationItem
 import ru.evgenykuzakov.pizza_shift_2025.navigation.NavigationState
 import ru.evgenykuzakov.pizza_shift_2025.navigation.Screen
 import ru.evgenykuzakov.pizzadetail.presentation.PizzaDetailScreen
+import ru.evgenykuzakov.profile.presentation.ShowProfileScreen
 import ru.evgenykuzakov.theme.ShiftAppTheme
 import ru.evgenykuzakov.utils.getBaseNavUrl
 
@@ -55,6 +57,8 @@ class MainActivity : ComponentActivity() {
                     NavigationItem.Cart,
                     NavigationItem.Profile
                 )
+
+                LaunchedEffect(Unit){ viewModel.getCartSize() }
 
                 Scaffold(
                     modifier = Modifier
@@ -121,6 +125,11 @@ class MainActivity : ComponentActivity() {
                                 onBackButton = { navSate.navigateBack() },
                                 onMainButtonClick = { navSate.navigateTo(Screen.HomeScreen.route) },
                                 onOrderDetailButtonClick = { navSate.navigateTo(Screen.OrdersScreen.route) }
+                            )
+                        },
+                        showProfileScreenContent = {
+                            ShowProfileScreen(
+                                paddingValues = innerPadding
                             )
                         }
                     )

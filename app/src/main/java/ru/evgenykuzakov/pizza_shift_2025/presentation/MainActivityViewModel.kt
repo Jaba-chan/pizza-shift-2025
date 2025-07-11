@@ -14,14 +14,13 @@ import javax.inject.Inject
 @HiltViewModel
 class MainActivityViewModel @Inject constructor(
     private val getCartSizeUseCase: GetCartSizeUseCase
-): ViewModel() {
+) : ViewModel() {
     private val _uiState = MutableStateFlow(MainActivityUIState())
     val uiState: StateFlow<MainActivityUIState> = _uiState
 
-    init {
+    fun getCartSize() {
         viewModelScope.launch(Dispatchers.IO) {
             getCartSizeUseCase().collect { count ->
-                println("MainActivityViewModel $count")
                 _uiState.update {
                     it.copy(cartBadge = count)
                 }

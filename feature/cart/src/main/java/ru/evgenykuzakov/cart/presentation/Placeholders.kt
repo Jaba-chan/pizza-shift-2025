@@ -41,6 +41,7 @@ import ru.evgenykuzakov.ui.Paragraph12Regular
 import ru.evgenykuzakov.ui.Paragraph12Underline
 import ru.evgenykuzakov.ui.Paragraph16Medium
 import ru.evgenykuzakov.ui.PrimaryButton
+import ru.evgenykuzakov.ui.ShiftAsyncImage
 import ru.evgenykuzakov.ui.ShiftButtonText
 import ru.evgenykuzakov.resource.R as Res
 
@@ -74,7 +75,6 @@ internal fun Divider(
 
 @Composable
 internal fun CartItem(
-    url: String,
     cartItem: CartItem,
     plusOne: (Pizza) -> Unit,
     minusOne: (Pizza) -> Unit,
@@ -93,12 +93,11 @@ internal fun CartItem(
             .padding(horizontal = 4.dp)
     ) {
 
-        AsyncImage(
+        ShiftAsyncImage(
             modifier = Modifier
                 .padding(end = 16.dp)
                 .size(66.dp),
-            model = "$url${pizza.img}",
-            contentDescription = null
+            img = pizza.img
         )
 
         Column(

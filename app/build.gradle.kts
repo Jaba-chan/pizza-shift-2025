@@ -54,9 +54,7 @@ android {
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
-            pickFirsts += listOf(
-                "META-INF/gradle/incremental.annotation.processors"
-            )
+            excludes += "META-INF/gradle/incremental.annotation.processors"
         }
     }
 }
@@ -64,6 +62,7 @@ android {
 dependencies {
     implementation(project(":utils"))
     implementation(project(":feature:auth"))
+    implementation(project(":feature:profile"))
     implementation(project(":feature:pizzaCatalog"))
     implementation(project(":feature:pizzaDetail"))
     implementation(project(":feature:cart"))
@@ -86,12 +85,4 @@ dependencies {
     implementation(libs.hilt.android)
     implementation(libs.androidx.room.runtime)
     ksp(libs.hilt.android.compiler)
-
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
 }

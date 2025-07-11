@@ -26,6 +26,7 @@ sealed class Screen(
     data object PaymentScreen: Screen(ROUTE_CART_PAYMENT)
 
     data object ProfileScreen: Screen(BASE_ROUTE_PROFILE)
+    data object ShowProfileScreen: Screen(ROUTE_SHOW_PROFILE)
 
     companion object {
         private const val ROUTE_AUTH = "auth"
@@ -39,5 +40,6 @@ sealed class Screen(
         private const val ROUTE_CART= "$BASE_ROUTE_CART_HOME/total"
         private const val ROUTE_CART_PAYMENT= "payment"
         private const val BASE_ROUTE_PROFILE= "profile"
+        private const val ROUTE_SHOW_PROFILE= "profile/show"
     }
 }

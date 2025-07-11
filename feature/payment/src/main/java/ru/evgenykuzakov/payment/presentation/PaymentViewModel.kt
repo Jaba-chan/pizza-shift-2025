@@ -1,12 +1,10 @@
 package ru.evgenykuzakov.payment.presentation
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.first
@@ -18,7 +16,7 @@ import ru.evgenykuzakov.payment.data.mapper.toPerson
 import ru.evgenykuzakov.payment.data.mapper.toShort
 import ru.evgenykuzakov.payment.domain.model.DebitCard
 import ru.evgenykuzakov.payment.domain.model.ReceiverAddress
-import ru.evgenykuzakov.payment.domain.model.param.PayCartParam
+import ru.evgenykuzakov.payment.domain.model.PayCartParam
 import ru.evgenykuzakov.payment.domain.use_case.PayForCartUseCase
 import ru.evgenykuzakov.profile.domain.use_case.GetProfileUseCase
 import ru.evgenykuzakov.profile.domain.use_case.UpdateProfileUseCase
@@ -42,11 +40,10 @@ class PaymentViewModel @Inject constructor(
         _uiState.value = PaymentScreenUIState.Error(exception.localizedMessage.orEmpty())
     }
 
-    init {
+    fun getProfile(){
         viewModelScope.launch(Dispatchers.IO + handler) {
             _uiState.value = PaymentScreenUIState.Content(user = (getProfileUseCase.invoke()))
         }
-
     }
 
     private fun updateProfile() {

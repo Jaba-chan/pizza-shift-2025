@@ -31,6 +31,7 @@ import ru.evgenykuzakov.theme.ExtendedTheme
 import ru.evgenykuzakov.ui.BasicAppBar
 import ru.evgenykuzakov.ui.Paragraph12Regular
 import ru.evgenykuzakov.ui.Paragraph16Medium
+import ru.evgenykuzakov.ui.ShiftAsyncImage
 import ru.evgenykuzakov.resource.R as Res
 
 @Composable
@@ -41,7 +42,6 @@ internal fun AppBar() {
 @Composable
 internal fun PizzaCard(
     pizza: Catalog,
-    url: String,
     onCardClick: (String) -> Unit
 ){
     Row(
@@ -55,10 +55,7 @@ internal fun PizzaCard(
                 interactionSource = remember { MutableInteractionSource() }
             )
     ) {
-        AsyncImage(
-            model = url + pizza.img,
-            contentDescription = null
-        )
+        ShiftAsyncImage(img =  pizza.img)
 
         Spacer(modifier = Modifier.width(24.dp))
 
@@ -77,13 +74,12 @@ internal fun PizzaCard(
 @Composable
 internal fun Catalog(
     catalog: List<Catalog>,
-    url: String,
     onCardClick: (String) -> Unit
 ){
     LazyColumn(
         modifier = Modifier.padding(horizontal = 16.dp),
         verticalArrangement = Arrangement.spacedBy(24.dp)
     ) {
-        items(catalog) { PizzaCard(pizza = it, url = url, onCardClick = onCardClick) }
+        items(catalog) { PizzaCard(pizza = it, onCardClick = onCardClick) }
     }
 }

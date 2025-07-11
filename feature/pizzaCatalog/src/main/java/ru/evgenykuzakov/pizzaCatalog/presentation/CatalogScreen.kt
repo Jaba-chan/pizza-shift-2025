@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -19,17 +20,18 @@ fun CatalogScreen(
 ) {
     val state by viewModel.uiState.collectAsState()
 
+    LaunchedEffect(Unit) { viewModel.getCatalog() }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(paddingValues)
     ) {
         AppBar()
-        when(state){
+        when(val currentState = state){
             is CatalogScreenUIState.Content ->
                 Catalog(
-                    catalog = (state as CatalogScreenUIState.Content).catalog,
-                    url = viewModel.getBaseUrl(),
+                    catalog = currentState.catalog,
                     onCardClick = onCardClick
                 )
             is CatalogScreenUIState.Error -> {}

@@ -17,27 +17,19 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CartViewModel @Inject constructor(
-    @RetrofitBaseUrl private val baseUrl: String,
     private val getCartUseCase: GetCartUseCase,
     private val deleteOneFromCartUseCase: DeleteOneFromCartUseCase,
     private val addOneToCartUseCase: AddOneToCartUseCase
 ) : ViewModel() {
 
-    fun getBaseUrl() = baseUrl
-
-    private val _uiState =
-        MutableStateFlow<CartScreenUIState>(CartScreenUIState.Loading)
+    private val _uiState = MutableStateFlow<CartScreenUIState>(CartScreenUIState.Loading)
     val uiState: StateFlow<CartScreenUIState> = _uiState
 
     private val handler = CoroutineExceptionHandler { _, exception ->
         _uiState.value = CartScreenUIState.Error(exception.localizedMessage.orEmpty())
     }
 
-    init {
-        updateCart()
-    }
-
-    private fun updateCart(){
+     fun updateCart(){
         _uiState.value = CartScreenUIState.Loading
         viewModelScope.launch(handler + Dispatchers.IO) {
             getCartUseCase.invoke().collect {cart ->

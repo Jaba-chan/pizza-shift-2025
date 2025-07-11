@@ -13,11 +13,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CatalogViewModel @Inject constructor(
-    @RetrofitBaseUrl private val baseUrl: String,
     private val getCatalogUseCase: GetCatalogUseCase
 ): ViewModel() {
-
-    fun getBaseUrl() = baseUrl
 
     private val _uiState = MutableStateFlow<CatalogScreenUIState>(CatalogScreenUIState.Loading)
     val uiState: StateFlow<CatalogScreenUIState> = _uiState
@@ -26,7 +23,7 @@ class CatalogViewModel @Inject constructor(
         _uiState.value = CatalogScreenUIState.Error(exception.localizedMessage.orEmpty())
     }
 
-    init {
+    fun getCatalog(){
         viewModelScope.launch(handler) {
             _uiState.value = CatalogScreenUIState.Content(getCatalogUseCase.invoke())
         }
